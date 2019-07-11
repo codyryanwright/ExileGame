@@ -1,0 +1,20 @@
+# Mac
+.DS_Store
+
+# Vim
+*~
+*.swp
+
+# C/C++
+*.o
+*.a
+
+# Arduino
+*.lst
+*.elf
+*.hex
+
+# Python
+*.py[cod]
+__pycache__
+rst/_build
