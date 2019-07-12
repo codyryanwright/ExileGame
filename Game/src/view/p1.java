@@ -21,6 +21,16 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequencer;
 import javax.swing.border.MatteBorder;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.JButton;
+import javax.swing.JProgressBar;
+import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
+import java.awt.Insets;
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public class p1 {
 
@@ -70,22 +80,13 @@ public class p1 {
 		panel.setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(350, 265, 175, 200);
+		layeredPane.setBounds(350, 263, 400, 150);
 		panel.add(layeredPane);
-		
-		JTextPane txtpnCardHolder_1 = new JTextPane();
-		txtpnCardHolder_1.setBorder(new MatteBorder(3, 3, 3, 3, (Color) Color.BLUE));
-		txtpnCardHolder_1.setBounds(0, 0, 175, 200);
-		layeredPane.add(txtpnCardHolder_1);
-		txtpnCardHolder_1.setEditable(false);
-		txtpnCardHolder_1.setBackground(Color.LIGHT_GRAY);
-		txtpnCardHolder_1.setText("Card Holder 1");
-		txtpnCardHolder_1.setFont(new Font("SimSun", Font.PLAIN, 12));
 		
 		JTextPane txtpnCardHolder_0 = new JTextPane();
 		// if card.color == "red" then Color.RED
 		txtpnCardHolder_0.setBorder(new MatteBorder(3, 3, 3, 3, (Color) Color.RED));
-		txtpnCardHolder_0.setBounds(0, 0, 175, 200);
+		txtpnCardHolder_0.setBounds(0, 0, 125, 150);
 		layeredPane.add(txtpnCardHolder_0);
 		txtpnCardHolder_0.setBackground(Color.LIGHT_GRAY);
 		txtpnCardHolder_0.setForeground(Color.BLACK);
@@ -94,18 +95,27 @@ public class p1 {
 		txtpnCardHolder_0.setEditable(false);
 		
 		JTextPane txtpnCardHolder_2 = new JTextPane();
-		txtpnCardHolder_2.setBorder(new MatteBorder(3, 3, 3, 3, (Color) Color.GREEN));
-		txtpnCardHolder_2.setBounds(0, 0, 175, 200);
+		txtpnCardHolder_2.setBounds(275, 0, 125, 150);
 		layeredPane.add(txtpnCardHolder_2);
+		txtpnCardHolder_2.setBorder(new MatteBorder(3, 3, 3, 3, (Color) Color.GREEN));
 		txtpnCardHolder_2.setText("Card Holder 2");
 		txtpnCardHolder_2.setForeground(Color.BLACK);
 		txtpnCardHolder_2.setFont(new Font("SimSun", Font.PLAIN, 12));
 		txtpnCardHolder_2.setEditable(false);
 		txtpnCardHolder_2.setBackground(Color.LIGHT_GRAY);
 		
+		JTextPane txtpnCardHolder_1 = new JTextPane();
+		txtpnCardHolder_1.setBounds(137, 0, 125, 150);
+		layeredPane.add(txtpnCardHolder_1);
+		txtpnCardHolder_1.setBorder(new MatteBorder(3, 3, 3, 3, (Color) Color.BLUE));
+		txtpnCardHolder_1.setEditable(false);
+		txtpnCardHolder_1.setBackground(Color.LIGHT_GRAY);
+		txtpnCardHolder_1.setText("Card Holder 1");
+		txtpnCardHolder_1.setFont(new Font("SimSun", Font.PLAIN, 12));
+		
 		txtExileConquest = new JTextField();
 		txtExileConquest.setBorder(null);
-		txtExileConquest.setBounds(453, 10, 253, 43);
+		txtExileConquest.setBounds(533, 10, 253, 43);
 		panel.add(txtExileConquest);
 		txtExileConquest.setBackground(Color.BLACK);
 		txtExileConquest.setEditable(false);
@@ -114,19 +124,70 @@ public class p1 {
 		txtExileConquest.setText("Exile & Conquest");
 		txtExileConquest.setColumns(10);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setEditable(false);
-		textPane.setFont(new Font("SimSun", Font.PLAIN, 7));
-		textPane.setText("           ,   ,\r\n         ,-`{-`/\r\n      ,-~ , \\ {-~~-,\r\n    ,~  ,   ,`,-~~-,`,\r\n  ,`   ,   { {      } }                                             }/\r\n ;     ,--/`\\ \\    / /                                     }/      /,/\r\n;  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n  `        { {                                     __  /  ,`/   ,`,;\r\n        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,");
-		textPane.setBounds(350, 63, 400, 193);
-		panel.add(textPane);
+		JTextPane txtPainMain = new JTextPane();
+		txtPainMain.setEditable(false);
+		txtPainMain.setFont(new Font("SimSun", Font.PLAIN, 7));
+		txtPainMain.setText("           ,   ,\r\n         ,-`{-`/\r\n      ,-~ , \\ {-~~-,\r\n    ,~  ,   ,`,-~~-,`,\r\n  ,`   ,   { {      } }                                             }/\r\n ;     ,--/`\\ \\    / /                                     }/      /,/\r\n;  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n  `        { {                                     __  /  ,`/   ,`,;\r\n        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,");
+		txtPainMain.setBounds(350, 63, 400, 193);
+		panel.add(txtPainMain);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 0, 800, 500);
-		panel.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(ClassLoader.getSystemResource("images/GameSkin800x500.png")));
+		JButton btnPlay = new JButton("Play Card");
+		btnPlay.setBounds(440, 423, 221, 39);
+		panel.add(btnPlay);
+		
+		JLabel lblHealth = new JLabel("Health");
+		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHealth.setForeground(Color.LIGHT_GRAY);
+		lblHealth.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHealth.setBounds(365, 35, 46, 18);
+		panel.add(lblHealth);
+		
+		JProgressBar healthBar = new JProgressBar();
+		healthBar.setForeground(Color.GREEN);
+		healthBar.setValue(100);
+		healthBar.setBounds(412, 35, 111, 18);
+		panel.add(healthBar);
+		
+		JLabel lblWins = new JLabel("Wins");
+		lblWins.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWins.setForeground(Color.LIGHT_GRAY);
+		lblWins.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblWins.setBounds(365, 10, 46, 18);
+		panel.add(lblWins);
+		
+		JTextPane txtPnWins = new JTextPane();
+		txtPnWins.setMargin(new Insets(0, 3, 3, 3));
+		txtPnWins.setBackground(Color.LIGHT_GRAY);
+		txtPnWins.setEditable(false);
+		txtPnWins.setForeground(new Color(0, 0, 0));
+		txtPnWins.setText("01");
+		txtPnWins.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		txtPnWins.setBounds(412, 10, 20, 20);
+		panel.add(txtPnWins);
+		
+		JLabel lblLosses = new JLabel("Losses");
+		lblLosses.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLosses.setForeground(Color.LIGHT_GRAY);
+		lblLosses.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLosses.setBounds(459, 10, 46, 18);
+		panel.add(lblLosses);
+		
+		JTextPane txtPnLosses = new JTextPane();
+		txtPnLosses.setText("01");
+		txtPnLosses.setMargin(new Insets(0, 3, 3, 3));
+		txtPnLosses.setForeground(Color.BLACK);
+		txtPnLosses.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		txtPnLosses.setEditable(false);
+		txtPnLosses.setBackground(Color.LIGHT_GRAY);
+		txtPnLosses.setBounds(503, 10, 20, 20);
+		panel.add(txtPnLosses);
+		
+		JLabel imgBackground = new JLabel("");
+		imgBackground.setHorizontalTextPosition(SwingConstants.CENTER);
+		imgBackground.setHorizontalAlignment(SwingConstants.CENTER);
+		imgBackground.setBounds(0, 0, 800, 500);
+		panel.add(imgBackground);
+		imgBackground.setIcon(new ImageIcon(ClassLoader.getSystemResource("images/GameSkin800x500.png")));
 		frame.setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(100, 100, 800, 534);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
