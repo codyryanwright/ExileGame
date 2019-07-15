@@ -26,29 +26,29 @@ class Deck{
 		Card *card; // pointer to a hash table of cards
 		
 	public:
-		Card getCard(); // returns top card of the deck
+		Card getCard(); // returns top card of the deck, either that or we can just make a stack
 	
 };
 
 class Participant {
 	private:
 		Deck deck;
-		Card hand[3];
+		//Card hand[3]; DONT NEED A HAND FOR OPPONENT, ONLY FOR PLAYER
 		int health;
 	
 	public:
-		void draw();
+		Card draw(); // returns a card to draw
 		void decreaseHealth();
 };
 
 class Opponent : public Participant { 
 	private:
 		Deck deck;
-		Card hand[3];
+		//Card hand[3];
 		int health;
 	
 	public:
-		void draw();
+		Card draw(); 
 		void decreaseHealth();
 };
 
@@ -59,21 +59,28 @@ class Player : public Participant {
 		Deck deck; 
 		
 	public:
-		void draw();
+		Card draw(); // returns the top card of the deck
+		void drawToHand(int choice); // puts a card that was drawn in the hand
 		void decreaseHealth();
 		 
 };
 
 void displayHand(Player player) {
-	
+	//shows the three card hand to the player
 }
 
-/*
-void displayBattlefield(Player player, Opponent opponent) {
-	displayCard(opponent draw);
-	displayCard(player.draw)
+void Participant::decreaseHealth() {
+	health--;
 }
-*/
+
+Card Participant::draw() {
+	Card card = deck.top(); // get the card from the top of the deck, assuming that it is a stack
+	deck.pop();
+}
+
+void Player::drawToHand(int choice) {
+	hand[choice] = draw();
+}
 
 int getPlayerChoice(Player player) {
 	int choice;
@@ -101,6 +108,7 @@ void displayRoundWinner(Player player, Opponent opponent) {
 		case 3: chosenCard = player.hand[2];	
 	}
 	
+	//show the two chosen cards on the battlefield
 	displayCard(opponentCard);
 	displayCard(chosenCard);
 	sleep(1000); // NOT ACTUAL c++ CODE, ITS FOR WHEN WE TRANSLATE IT INTO JAVA, IT IS MEANT TO GIVE THE USER TIME TO SEE THE CARDS
@@ -141,9 +149,12 @@ void displayRoundWinner(Player player, Opponent opponent) {
 	//get the result of the battle and decrements losing player's health
 	if(opponentPower > playerPower)
 		player.decreaseHealth();
-	else 
+	else if (opponentPower < playerPower)
 		opponent.decreaseHealth();
+	else 
+		//do nothing, its a draw
 	
+	player.drawToHand(choice); // draws a card to replace the card that was played
 }
 
 //just some bullshit code to display a card, the one we will actually use will be different
@@ -174,8 +185,6 @@ void playTurn(Card card1, Card card2, Card card3) {
 	getPlayerChoice();
 	showOpponentCard();
 	displayRoundWinner();
-	player.draw();
-	opponent.draw();
 }
 
 
