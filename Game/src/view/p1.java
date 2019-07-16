@@ -166,7 +166,7 @@ public class p1 {
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "playPanel");
-				// reset game environment
+				// TODO reset game environment
 			}
 		});
 		
@@ -460,7 +460,9 @@ public class p1 {
 		});
 		
 		JButton btnMenu = new JButton("Menu");
-		btnMenu.setBounds(690, 6, 71, 29);
+		btnMenu.setBackground(Color.LIGHT_GRAY);
+		btnMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
+		btnMenu.setBounds(690, 9, 71, 25);
 		playPanel.add(btnMenu);
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -564,7 +566,7 @@ public class p1 {
 		initPlay();
 	    initEnd();
 
-		// Commands used to switch witch Panel is viewed for debug
+		// Commands used to switch which Panel is viewed for debug
 //		cardlayout.show(frame.getContentPane(), "startPanel");
 //		cardlayout.show(frame.getContentPane(), "aboutPanel");
 //		cardlayout.show(frame.getContentPane(), "settingsPanel");
