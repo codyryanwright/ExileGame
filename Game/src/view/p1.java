@@ -244,17 +244,46 @@ public class p1 {
 		lblSettings.setBounds(498, 53, 148, 47);
 		settingsPanel.add(lblSettings);
 		
+		JLabel lblSound = new JLabel("Sound");
+		lblSound.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSound.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		lblSound.setBackground(Color.BLACK);
+		lblSound.setForeground(Color.WHITE);
+		lblSound.setBounds(478, 174, 83, 27);
+		settingsPanel.add(lblSound);
+		
 		JSpinner spinnerSound = new JSpinner();
-		spinnerSound.setFont(new Font("Viner Hand ITC", Font.PLAIN, 26));
-		spinnerSound.setModel(new SpinnerListModel(new String[] {"Sound On", "Sound Off"}));
-		spinnerSound.setBounds(498, 124, 148, 45);
+		spinnerSound.setFont(new Font("SimSun", Font.PLAIN, 26));
+		spinnerSound.setModel(new SpinnerListModel(new String[] {"On", "Off"}));
+		spinnerSound.setBounds(583, 167, 100, 40);
 		spinnerSound.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				if(spinnerSound.getValue() == "Sound On") playMusic(true);
+				if(spinnerSound.getValue() == "On") playMusic(true);
 				else playMusic(false);
 			}
 		});
 		settingsPanel.add(spinnerSound);
+		
+		JLabel lblDifficulty = new JLabel("Difficulty");
+		lblDifficulty.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDifficulty.setForeground(Color.WHITE);
+		lblDifficulty.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		lblDifficulty.setBackground(Color.BLACK);
+		lblDifficulty.setBounds(437, 298, 124, 27);
+		settingsPanel.add(lblDifficulty);
+		
+		JSpinner spinnerDifficulty = new JSpinner();
+		spinnerDifficulty.setModel(new SpinnerListModel(new String[] {"Easy", "Normal", "Hard"}));
+		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
+		spinnerDifficulty.setBounds(583, 291, 100, 40);
+		spinnerDifficulty.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) { // TODO fill in difficulty changes
+				if(spinnerDifficulty.getValue() == "Easy");
+				else if(spinnerDifficulty.getValue() == "Normal");
+				else;
+			}
+		});
+		settingsPanel.add(spinnerDifficulty);
 		
 		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
