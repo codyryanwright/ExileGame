@@ -15,17 +15,13 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
-import java.awt.Window;
 import java.awt.image.BufferedImage;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequencer;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 import java.awt.CardLayout;
@@ -35,10 +31,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+
 
 public class p1 {
 
@@ -166,7 +159,6 @@ public class p1 {
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "playPanel");
-				// TODO reset game environment
 			}
 		});
 		
@@ -197,6 +189,7 @@ public class p1 {
 		aboutPanel.add(lblAbout);
 		
 		JTextPane txtpnAbout = new JTextPane();
+		txtpnAbout.setEditable(false);
 		txtpnAbout.setFont(new Font("SimSun", Font.PLAIN, 18));
 		txtpnAbout.setText("This game was developed by Round Rock Team 1.\r\n\r\nTo play, first...\r\n<Insert Instructions>");
 		txtpnAbout.setBackground(Color.BLACK);
@@ -337,6 +330,7 @@ public class p1 {
 		btnDeck1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "playPanel");	
+				// TODO set deck 1
 			}
 		});
 		deckPanel.add(btnDeck1);
@@ -345,7 +339,8 @@ public class p1 {
 		JButton btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
 		btnDeck2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");	
+				cardlayout.show(frame.getContentPane(), "playPanel");
+				// TODO set deck 2
 			}
 		});
 		deckPanel.add(btnDeck2);
@@ -354,7 +349,8 @@ public class p1 {
 		JButton btnDeck3 = new JButton(new ImageIcon(getScaledImage(imgIconDeck3.getImage(),127, 175)));
 		btnDeck3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");	
+				cardlayout.show(frame.getContentPane(), "playPanel");
+				// TODO set deck 3
 			}
 		});
 		deckPanel.add(btnDeck3);
@@ -388,7 +384,7 @@ public class p1 {
 			}
 		});
 		
-		ImageIcon imgIconWizard = new ImageIcon(p1.class.getResource("/images/wizard.jpg"));
+		ImageIcon imgIconWizard = new ImageIcon(p1.class.getResource("/images/wizard.jpg")); //TODO image should be variable
 		JButton btnCard2 = new JButton(new ImageIcon(getScaledImage(imgIconWizard.getImage(),127, 175)));
 		cardPanel.add(btnCard2);
 		btnCard2.addActionListener(new ActionListener() {
@@ -397,7 +393,7 @@ public class p1 {
 			}
 		});
 		
-		ImageIcon imgIconKnight = new ImageIcon(p1.class.getResource("/images/knight.jpg"));
+		ImageIcon imgIconKnight = new ImageIcon(p1.class.getResource("/images/knight.jpg")); //TODO image should be variable
 		JButton btnCard3 = new JButton(new ImageIcon(getScaledImage(imgIconKnight.getImage(),127, 175)));
 		cardPanel.add(btnCard3);
 		btnCard3.addActionListener(new ActionListener() {
@@ -414,7 +410,7 @@ public class p1 {
 		playPanel.add(lblTitle);
 		
 		JTextPane txtpnGame = new JTextPane();
-		txtpnGame.setText("           ,   ,\r\n         ,-`{-`/\r\n      ,-~ , \\ {-~~-,\r\n    ,~  ,   ,`,-~~-,`,\r\n  ,`   ,   { {      } }                                             }/\r\n ;     ,--/`\\ \\    / /                                     }/      /,/\r\n;  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n  `        { {                                     __  /  ,`/   ,`,;\r\n        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,");
+		txtpnGame.setText(""); // TODO this needs to be variable and append card action text
 		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 7));
 		txtpnGame.setEditable(false);
 		txtpnGame.setBounds(379, 49, 382, 193);
@@ -569,13 +565,6 @@ public class p1 {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosed(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		
 		frame.setResizable(false);
 		frame.setMaximumSize(new Dimension(800, 525));
 		frame.setMinimumSize(new Dimension(800, 525));
