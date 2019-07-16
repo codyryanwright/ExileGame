@@ -33,22 +33,24 @@ class Deck{
 class Participant {
 	private:
 		Deck deck;
-		//Card hand[3]; DONT NEED A HAND FOR OPPONENT, ONLY FOR PLAYER
+		Card hand[3]; 
 		int health;
 	
 	public:
-		Card draw(); // returns a card to draw
+		Card draw(); // returns the top card of the deck
+		void drawToHand(int choice); // puts a card that was drawn into the hand
 		void decreaseHealth();
 };
 
 class Opponent : public Participant { 
 	private:
 		Deck deck;
-		//Card hand[3];
+		Card hand[3];
 		int health;
 	
 	public:
 		Card draw(); 
+		void drawToHand(int choice);
 		void decreaseHealth();
 };
 
@@ -59,8 +61,8 @@ class Player : public Participant {
 		Deck deck; 
 		
 	public:
-		Card draw(); // returns the top card of the deck
-		void drawToHand(int choice); // puts a card that was drawn in the hand
+		Card draw(); 
+		void drawToHand(int choice); 
 		void decreaseHealth();
 		 
 };
