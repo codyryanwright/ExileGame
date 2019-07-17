@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -131,7 +130,7 @@ public class p1 {
 		btnNewGame.setBorder(UIManager.getBorder("Button.border"));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");
+				cardlayout.show(frame.getContentPane(), "choosePanel");
 				// TODO reset game environment
 			}
 		});
@@ -685,7 +684,7 @@ public class p1 {
 		btnNewGame.setBorder(UIManager.getBorder("Button.border"));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");	
+				cardlayout.show(frame.getContentPane(), "choosePanel");	
 			}
 		});
 		
