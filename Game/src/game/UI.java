@@ -1,4 +1,4 @@
-package view;
+package game;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -35,14 +35,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
 
-public class p1 {
+public class UI {
 
 	private JFrame frame;
 	private CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
 	private Sequencer sequencer;
 	private InputStream is;
-	final private ImageIcon imgIconButton = new ImageIcon(p1.class.getResource("/images/buttonPaper.png"));
+	final private ImageIcon imgIconButton = new ImageIcon(UI.class.getResource("/images/buttonPaper.png"));
 
 	/**
 	 * Launch the application.
@@ -51,7 +51,7 @@ public class p1 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					p1 window = new p1();
+					UI window = new UI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +63,7 @@ public class p1 {
 	/**
 	 * Create the application.
 	 */
-	public p1() {
+	public UI() {
 		initialize();
 		
 		// set music
@@ -105,7 +105,7 @@ public class p1 {
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
 		
-		ImageIcon imgMainMenuScreen = new ImageIcon(p1.class.getResource("/images/mainMenuScreen.jpg"));		
+		ImageIcon imgMainMenuScreen = new ImageIcon(UI.class.getResource("/images/mainMenuScreen.jpg"));		
 		
 		JLabel lblMainMenuScreen = new JLabel("");
 		lblMainMenuScreen.setBounds(0, 0, 477, 675);
@@ -196,7 +196,7 @@ public class p1 {
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
 		
-		ImageIcon imgRulesScreen = new ImageIcon(p1.class.getResource("/images/rulesScreen.jpg"));		
+		ImageIcon imgRulesScreen = new ImageIcon(UI.class.getResource("/images/rulesScreen.jpg"));		
 		JLabel lblRulesScreen = new JLabel("");
 		lblRulesScreen.setBounds(0, 0, 477, 675);
 		panelTitle.add(lblRulesScreen);
@@ -271,7 +271,7 @@ public class p1 {
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
 		
-		ImageIcon imgSettingsScreen = new ImageIcon(p1.class.getResource("/images/settingsScreen.jpg"));		
+		ImageIcon imgSettingsScreen = new ImageIcon(UI.class.getResource("/images/settingsScreen.jpg"));		
 		JLabel lblSettingsScreen = new JLabel("");
 		lblSettingsScreen.setBounds(0, 0, 477, 675);
 		panelTitle.add(lblSettingsScreen);
@@ -370,7 +370,7 @@ public class p1 {
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
 		
-		ImageIcon imgChooseScreen = new ImageIcon(p1.class.getResource("/images/chooseScreen.jpg"));		
+		ImageIcon imgChooseScreen = new ImageIcon(UI.class.getResource("/images/chooseScreen.jpg"));		
 		JLabel lblChooseScreen = new JLabel("");
 		lblChooseScreen.setBounds(0, 0, 477, 675);
 		panelTitle.add(lblChooseScreen);
@@ -400,9 +400,9 @@ public class p1 {
 		deckPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
 
-		ImageIcon imgIconDeck1 = new ImageIcon(p1.class.getResource("/images/deck1.png"));		
-		ImageIcon imgIconDeck2 = new ImageIcon(p1.class.getResource("/images/deck2.png"));
-		ImageIcon imgIconDeck3 = new ImageIcon(p1.class.getResource("/images/deck3.png"));
+		ImageIcon imgIconDeck1 = new ImageIcon(UI.class.getResource("/images/deck1.png"));		
+		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
+		ImageIcon imgIconDeck3 = new ImageIcon(UI.class.getResource("/images/deck3.png"));
 		
 		JButton btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
 		deckPanel.add(btnDeck1);
@@ -449,7 +449,7 @@ public class p1 {
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
 		
-		ImageIcon imgPlayScreen = new ImageIcon(p1.class.getResource("/images/playScreen.jpg"));		
+		ImageIcon imgPlayScreen = new ImageIcon(UI.class.getResource("/images/playScreen.jpg"));		
 		JLabel lblPlayScreen = new JLabel("");
 		lblPlayScreen.setBounds(0, 0, 477, 675);
 		panelTitle.add(lblPlayScreen);
@@ -463,11 +463,11 @@ public class p1 {
 		playPanel.add(panelContent);
 		panelContent.setLayout(null);
 		
-		ImageIcon imgIconDragon = new ImageIcon(p1.class.getResource("/images/dragon.jpg")); //TODO image should be variable
+		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/dragon.jpg")); //TODO image should be variable
 		
-		ImageIcon imgIconWizard = new ImageIcon(p1.class.getResource("/images/wizard.jpg")); //TODO image should be variable
+		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/wizard.jpg")); //TODO image should be variable
 		
-		ImageIcon imgIconKnight = new ImageIcon(p1.class.getResource("/images/knight.jpg")); //TODO image should be variable
+		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/knight.jpg")); //TODO image should be variable
 		
 		JPanel panelStatus = new JPanel();
 		panelStatus.setBorder(UIManager.getBorder("InternalFrame.border"));
@@ -660,7 +660,7 @@ public class p1 {
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
 		
-		ImageIcon imgEndScreen = new ImageIcon(p1.class.getResource("/images/endScreen.jpg"));		
+		ImageIcon imgEndScreen = new ImageIcon(UI.class.getResource("/images/endScreen.jpg"));		
 		JLabel lblEndScreen = new JLabel("");
 		lblEndScreen.setBounds(0, 0, 477, 675);
 		panelTitle.add(lblEndScreen);
