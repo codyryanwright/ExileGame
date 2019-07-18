@@ -2,15 +2,10 @@ package game;
 
 public class GameController {
 	private Deck[] collection;
-	private int difficulty;
 	private int deckChoice;
 	
 	public GameController() {
 		buildCollection();
-	}
-	
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
 	}
 	
 	public void setDeckChoice(int deckChoice) {
@@ -19,10 +14,6 @@ public class GameController {
 	
 	public void buildCollection() {
 		// TODO build collection of decks
-	}
-	
-	public int getDifficulty() {
-		return difficulty;
 	}
 	
 	public int getDeckChoice() {

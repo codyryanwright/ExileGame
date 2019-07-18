@@ -20,6 +20,13 @@ public class Deck {
 		return deckSize;
 	}
 	
+	public Card getCard() {
+		if(deck.isEmpty())
+			swapDecks();
+		
+		return deck.pop();
+	}
+	
 	public void shuffle() {
 		Collections.shuffle(deck);
 	}
