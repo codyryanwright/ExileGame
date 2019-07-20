@@ -6,25 +6,33 @@ import java.util.Stack;
 public class Deck {
 	private Stack <Card> deck;
 	private Stack <Card> discard;
-	private int deckSize; // Do we really need this, or is it just deck.size()?
+	private Card playedCard;
+	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) {
-		// TODO build deck
+		buildDeck(deckChoice);
 	}
 	
-	public void setDeckSize(int deckSize) {
-		this.deckSize = deckSize;
+	private void buildDeck(int deckChoice) {	
 	}
 	
-	public int getDeckSize() {
-		return deckSize;
+	private void loadBluedeck() {
+	}
+	
+	private void loadReddeck() {
+	}
+	
+	private void loadGreendeck() {
 	}
 	
 	public Card getCard() {
 		if(deck.isEmpty())
 			swapDecks();
 		
-		return deck.pop();
+		playedCard = deck.pop();
+		discard.push(playedCard);
+
+		return playedCard;
 	}
 	
 	public void shuffle() {
