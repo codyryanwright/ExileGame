@@ -13,7 +13,7 @@ public class Deck {
 		buildDeck(deckChoice);
 	}
 	
-	private void buildDeck(int deckChoice) {	
+	private void buildDeck(int deckChoice) {
 	}
 	
 	private void loadBluedeck() {
