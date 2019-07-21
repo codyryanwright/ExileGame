@@ -1,10 +1,13 @@
 package game;
 
+import java.io.IOException;
+
 public class GameController {
-	private Deck[] collection;
+	final int deckTotal = 3;
+	private Deck[] collection = new Deck[deckTotal];
 	private int deckChoice;
 	
-	public GameController() {
+	public GameController() throws IOException {
 		buildCollection();
 	}
 	
@@ -12,8 +15,9 @@ public class GameController {
 		this.deckChoice = deckChoice;
 	}
 	
-	public void buildCollection() {
-		// TODO build collection of decks
+	public void buildCollection() throws IOException {
+		for(int i = 0; i < deckTotal; i++)
+			collection[i] = new Deck(i+1);
 	}
 	
 	public int getDeckChoice() {
