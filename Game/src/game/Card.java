@@ -6,8 +6,12 @@ public class Card {
 	private String rarity;
 	private Float power;
 	
-	public Card() {
-		// TODO build Card
+	public Card(String type, String archetype, String rarity,
+			Float power) {
+		setType(type);
+		setArchetype(archetype);
+		setRarity(rarity);
+		setPower(power);
 	}
 	
 	public String getType() {

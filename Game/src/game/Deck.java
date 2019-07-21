@@ -1,30 +1,61 @@
 package game;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Stack;
 
 public class Deck {
 	private Stack <Card> deck;
 	private Stack <Card> discard;
-	private int deckSize; // Do we really need this, or is it just deck.size()?
+	private Card playedCard;
+	final private int deckSize = 20;
 	
-	public Deck(int deckChoice) {
-		// TODO build deck
+	public Deck(int deckChoice) throws IOException {
+		loadDeck(deckChoice);
 	}
 	
-	public void setDeckSize(int deckSize) {
-		this.deckSize = deckSize;
-	}
-	
-	public int getDeckSize() {
-		return deckSize;
+	private void loadDeck(int deckChoice) throws IOException {
+		BufferedReader bufferedReader = null;
+		
+		switch (deckChoice) {
+		case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+			break;
+		case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+			break;
+		case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+			break;
+		}
+		
+		int lineCount = 1;
+		
+		try {
+			String line = bufferedReader.readLine();
+			
+			while (lineCount <= deckSize) {
+		        String[] split = line.split("\\s+");
+		        Card cardToAdd = new Card(split[0], split[1], 
+		        		split[2], Float.valueOf(split[3]));
+		        
+		        deck.push(cardToAdd);
+		        
+				line = bufferedReader.readLine();
+				lineCount++;
+			}
+		} finally {
+			bufferedReader.close();
+		}
 	}
 	
 	public Card getCard() {
 		if(deck.isEmpty())
 			swapDecks();
 		
-		return deck.pop();
+		playedCard = deck.pop();
+		discard.push(playedCard);
+
+		return playedCard;
 	}
 	
 	public void shuffle() {
