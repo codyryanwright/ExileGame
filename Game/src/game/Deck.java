@@ -13,6 +13,7 @@ public class Deck {
 	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) throws IOException {
+		deck = new Stack<Card>();
 		loadDeck(deckChoice);
 	}
 	
@@ -46,6 +47,14 @@ public class Deck {
 		} finally {
 			bufferedReader.close();
 		}
+	}
+	
+	public void setDeck(Stack<Card> deck) {
+		this.deck = deck;
+	}
+	
+	public  Stack<Card> getDeck() {
+		return deck;
 	}
 	
 	public Card getCard() {

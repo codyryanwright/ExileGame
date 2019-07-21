@@ -99,7 +99,7 @@ public class UI {
 		panelTitle.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
-		lblTitle.setBounds(73, 10, 330, 65);
+		lblTitle.setBounds(72, 10, 332, 65);
 		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
@@ -190,7 +190,7 @@ public class UI {
 		panelTitle.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
-		lblTitle.setBounds(73, 10, 330, 65);
+		lblTitle.setBounds(72, 10, 332, 65);
 		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
@@ -265,7 +265,7 @@ public class UI {
 		panelTitle.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
-		lblTitle.setBounds(73, 10, 330, 65);
+		lblTitle.setBounds(72, 10, 332, 65);
 		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
@@ -364,7 +364,7 @@ public class UI {
 		panelTitle.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
-		lblTitle.setBounds(73, 10, 330, 65);
+		lblTitle.setBounds(72, 10, 332, 65);
 		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
@@ -443,7 +443,7 @@ public class UI {
 		panelTitle.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
-		lblTitle.setBounds(73, 10, 330, 65);
+		lblTitle.setBounds(72, 10, 332, 65);
 		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
@@ -654,7 +654,7 @@ public class UI {
 		panelTitle.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
-		lblTitle.setBounds(73, 10, 330, 65);
+		lblTitle.setBounds(72, 10, 332, 65);
 		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
