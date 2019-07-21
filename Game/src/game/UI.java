@@ -224,6 +224,11 @@ public class UI {
 		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
+			}
+		});
 		
 		JTextPane txtpnRules = new JTextPane();
 		txtpnRules.setEditable(false);
@@ -247,11 +252,6 @@ public class UI {
 		scrollPane.setBounds(16, 131, 567, 420);
 		panelContent.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		btnMainMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
-			}
-		});
 	}
 	
 	private void initSettings() {
