@@ -1,5 +1,8 @@
 package game;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -9,20 +12,40 @@ public class Deck {
 	private Card playedCard;
 	final private int deckSize = 20;
 	
-	public Deck(int deckChoice) {
-		buildDeck(deckChoice);
+	public Deck(int deckChoice) throws IOException {
+		loadDeck(deckChoice);
 	}
 	
-	private void buildDeck(int deckChoice) {
-	}
-	
-	private void loadBluedeck() {
-	}
-	
-	private void loadReddeck() {
-	}
-	
-	private void loadGreendeck() {
+	private void loadDeck(int deckChoice) throws IOException {
+		BufferedReader bufferedReader = null;
+		
+		switch (deckChoice) {
+		case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+			break;
+		case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+			break;
+		case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+			break;
+		}
+		
+		int lineCount = 1;
+		
+		try {
+			String line = bufferedReader.readLine();
+			
+			while (lineCount <= deckSize) {
+		        String[] split = line.split("\\s+");
+		        Card cardToAdd = new Card(split[0], split[1], 
+		        		split[2], Float.valueOf(split[3]));
+		        
+		        deck.push(cardToAdd);
+		        
+				line = bufferedReader.readLine();
+				lineCount++;
+			}
+		} finally {
+			bufferedReader.close();
+		}
 	}
 	
 	public Card getCard() {
