@@ -93,7 +93,6 @@ public class GameController {
 	
 	class ContinueListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("In continue");
 			if(deckChoice == 0)
 				view.show("choosePanel");
 			else
