@@ -13,7 +13,7 @@ public class GameController {
 	private Participant user, opponent;	
 	
 	public GameController(UI view) throws IOException {
-		deckChoice = 0;
+		deckChoice = -1;
 		this.view = view;
 		user = new User();
 		
@@ -96,6 +96,7 @@ public class GameController {
 				compareCards(userCard, opCard);
 				user.pushToDiscard(userCard);
 				opponent.pushToDiscard(opCard);
+				user.setCardPosition(-1); // resets card position
 				
 				// TODO set card art for new card
 				// 		update score / health
@@ -106,7 +107,7 @@ public class GameController {
 	
 	class ContinueListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(deckChoice == 0)
+			if(deckChoice == -1)
 				view.show("choosePanel");
 			else
 				view.show("playPanel");
