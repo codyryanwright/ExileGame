@@ -3,11 +3,11 @@ package game;
 import java.util.ArrayList;
 
 public abstract class Participant {
-	private String name;
-	private Deck deck;
-	private ArrayList <Card> hand;
-	private int health;
-	private int cardPosition; // seems out of place
+	protected String name;
+	protected Deck deck;
+	protected ArrayList <Card> hand;
+	protected int health;
+	protected int cardPosition; // seems out of place
 	
 	public Participant() {		
 		// Controller builds Participant given player choices from UI
@@ -43,11 +43,8 @@ public abstract class Participant {
 	public void setCardPosition(int cardPosition) {
 		this.cardPosition = cardPosition;
 	}
-	
-	// play card from hand and replace from deck
-	public Card playCard() {
-		Card chosenCard = hand.get(cardPosition);
-		hand.set(cardPosition, deck.getCard());
-		return chosenCard;
+
+	public void pushToDiscard(Card userCard) {
+		deck.pushToDiscard(userCard);
 	}
 }

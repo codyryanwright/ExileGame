@@ -23,12 +23,12 @@ public class GameController {
 	
 		// TODO add action listeners to view
 		view.addNewGameListener(new NewGameListener());
+		view.addDeck0Listener(new Deck0Listener());
 		view.addDeck1Listener(new Deck1Listener());
 		view.addDeck2Listener(new Deck2Listener());
-		view.addDeck3Listener(new Deck3Listener());
+		view.addCard0Listener(new Card0Listener());
 		view.addCard1Listener(new Card1Listener());
 		view.addCard2Listener(new Card2Listener());
-		view.addCard3Listener(new Card3Listener());
 		view.addPlayCardListener(new PlayCardListener());
 		view.addContinueListener(new ContinueListener());
 	}
@@ -40,6 +40,14 @@ public class GameController {
 	}
 	
 	// TODO a way to combine similar button listeners?
+	class Deck0Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			deckChoice = 0;
+			user.setDeck(collection[deckChoice]);
+			view.show("playPanel");
+		}
+	}
+	
 	class Deck1Listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 1;
@@ -56,11 +64,9 @@ public class GameController {
 		}
 	}
 	
-	class Deck3Listener implements ActionListener {
+	class Card0Listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			deckChoice = 3;
-			user.setDeck(collection[deckChoice]);
-			view.show("playPanel");
+			user.setCardPosition(0);
 		}
 	}
 	
@@ -76,18 +82,25 @@ public class GameController {
 		}
 	}
 	
-	class Card3Listener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			user.setCardPosition(3);
-		}
-	}
-	
 	class PlayCardListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			compareCards(user.playCard(), opponent.playCard());
-			// TODO set card art for new card
-			// 		update score / health
-			//		check if game over
+			if (user.getCardPosition() == -1)
+				// card not chosen do nothing
+				return;
+			else
+			{
+				//gets a card from the user and the opponent
+				Card userCard = ((User) user).playCard();
+				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
+				
+				compareCards(userCard, opCard);
+				user.pushToDiscard(userCard);
+				opponent.pushToDiscard(opCard);
+				
+				// TODO set card art for new card
+				// 		update score / health
+				//		check if game over
+			}
 		}
 	}
 	
