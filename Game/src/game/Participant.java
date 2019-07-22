@@ -9,8 +9,8 @@ public abstract class Participant {
 	private int health;
 	private int cardPosition; // seems out of place
 	
-	public Participant() {
-		// TODO build participant
+	public Participant() {		
+		// Controller builds Participant given player choices from UI
 	}
 	
 	public String getName() {
@@ -42,5 +42,12 @@ public abstract class Participant {
 	}
 	public void setCardPosition(int cardPosition) {
 		this.cardPosition = cardPosition;
+	}
+	
+	// play card from hand and replace from deck
+	public Card playCard() {
+		Card chosenCard = hand.get(cardPosition);
+		hand.set(cardPosition, deck.getCard());
+		return chosenCard;
 	}
 }

@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
@@ -37,28 +36,15 @@ import javax.swing.JScrollPane;
 
 public class UI {
 
-	private JFrame frame;
-	private CardLayout cardlayout;
-	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
-	private Sequencer sequencer;
-	private InputStream is;
 	final private ImageIcon imgIconButton = new ImageIcon(UI.class.getResource("/images/buttonPaper.png"));
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UI window = new UI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JFrame frame;
+	protected CardLayout cardlayout;
+	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
+	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck1, btnDeck2, btnDeck3, btnCard1, btnCard2, btnCard3, btnPlayCard;
+	private JSpinner spinnerDifficulty;
+	private Sequencer sequencer;
+	private InputStream is;
 
 	/**
 	 * Create the application.
@@ -80,9 +66,56 @@ public class UI {
 		}
 	}
 	
+
+	public void show(String panel) {
+		cardlayout.show(frame.getContentPane(), panel);
+	}
+	
+	// TODO Is this function even necessary?
 	public void playMusic(Boolean on) {
 		if(on) sequencer.start();
 		else sequencer.stop();
+	}
+	
+	
+	/**
+	 * Add Controller Listeners
+	 */
+	protected void addNewGameListener(ActionListener newGameListener) {
+		btnNewGameStart.addActionListener(newGameListener);
+		btnNewGameEnd.addActionListener(newGameListener);
+	}
+	
+	protected void addDeck1Listener(ActionListener deck1Listener) {
+		btnDeck1.addActionListener(deck1Listener);
+	}
+
+	public void addDeck2Listener(ActionListener deck2Listener) {
+		btnDeck2.addActionListener(deck2Listener);		
+	}
+
+	public void addDeck3Listener(ActionListener deck3Listener) {
+		btnDeck3.addActionListener(deck3Listener);
+	}
+	
+	protected void addCard1Listener(ActionListener card1Listener) {
+		btnCard1.addActionListener(card1Listener);
+	}
+	
+	protected void addCard2Listener(ActionListener card2Listener) {
+		btnCard2.addActionListener(card2Listener);
+	}
+	
+	protected void addCard3Listener(ActionListener card3Listener) {
+		btnCard3.addActionListener(card3Listener);
+	}
+	
+	protected void addPlayCardListener(ActionListener playCardListener) {
+		btnPlayCard.addActionListener(playCardListener);
+	}
+	
+	protected void addContinueListener(ActionListener ContinueListener) {
+		btnContinue.addActionListener(ContinueListener);
 	}
 
 	/**
@@ -120,20 +153,14 @@ public class UI {
 		panelContent.setLayout(null);
 		mainMenuPanel.add(panelContent);
 
-		JButton btnNewGame = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
-		btnNewGame.setBounds(189, 103, 220, 40);
-		panelContent.add(btnNewGame);
-		btnNewGame.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewGame.setText("New Game");
-		btnNewGame.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewGame.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
-		btnNewGame.setBorder(UIManager.getBorder("Button.border"));
-		btnNewGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "choosePanel");
-				// TODO reset game environment
-			}
-		});
+		btnNewGameStart = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnNewGameStart.setBounds(189, 103, 220, 40);
+		panelContent.add(btnNewGameStart);
+		btnNewGameStart.setVerticalTextPosition(SwingConstants.CENTER);
+		btnNewGameStart.setText("New Game");
+		btnNewGameStart.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewGameStart.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		btnNewGameStart.setBorder(UIManager.getBorder("Button.border"));
 		
 		JButton btnRules = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnRules.setBounds(189, 246, 220, 40);
@@ -163,7 +190,7 @@ public class UI {
 			}
 		});
 		
-		JButton btnContinue = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnContinue = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnContinue.setBounds(189, 532, 220, 40);
 		panelContent.add(btnContinue);
 		btnContinue.setVerticalTextPosition(SwingConstants.CENTER);
@@ -171,11 +198,11 @@ public class UI {
 		btnContinue.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnContinue.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnContinue.setBorder(UIManager.getBorder("Button.border"));
-		btnContinue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");
-			}
-		});
+//		btnContinue.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				cardlayout.show(frame.getContentPane(), "playPanel");
+//			}
+//		});
 	}
 	
 	private void initRules() {
@@ -319,7 +346,7 @@ public class UI {
 		lblDifficulty.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		lblDifficulty.setBackground(Color.BLACK);
 		
-		JSpinner spinnerDifficulty = new JSpinner();
+		spinnerDifficulty = new JSpinner();
 		spinnerDifficulty.setBounds(146, 124, 100, 40);
 		panel.add(spinnerDifficulty);
 		spinnerDifficulty.setModel(new SpinnerListModel(new String[] {"Easy", "Normal", "Hard"}));
@@ -404,16 +431,16 @@ public class UI {
 		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
 		ImageIcon imgIconDeck3 = new ImageIcon(UI.class.getResource("/images/deck3.png"));
 		
-		JButton btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
+		btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
 		deckPanel.add(btnDeck1);
-		btnDeck1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");	
-				// TODO set deck 1
-			}
-		});
+//		btnDeck1.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				cardlayout.show(frame.getContentPane(), "playPanel");	
+//				// TODO set deck 1
+//			}
+//		});
 
-		JButton btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
+		btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
 		deckPanel.add(btnDeck2);
 		btnDeck2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -422,7 +449,7 @@ public class UI {
 			}
 		});
 		
-		JButton btnDeck3 = new JButton(new ImageIcon(getScaledImage(imgIconDeck3.getImage(),127, 175)));
+		btnDeck3 = new JButton(new ImageIcon(getScaledImage(imgIconDeck3.getImage(),127, 175)));
 		deckPanel.add(btnDeck3);
 		btnDeck3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -595,21 +622,24 @@ public class UI {
 		cardPanel.setBorder(null);
 		cardPanel.setBackground(Color.BLACK);
 		cardPanel.setLayout(new GridLayout(0, 3, 0, 0));
-		JButton btnCard1 = new JButton(new ImageIcon(getScaledImage(imgIconDragon.getImage(), 146, 200)));
+		
+		btnCard1 = new JButton(new ImageIcon(getScaledImage(imgIconDragon.getImage(), 146, 200)));
 		cardPanel.add(btnCard1);
 		btnCard1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO change currently selected card
 			}
 		});
-		JButton btnCard2 = new JButton(new ImageIcon(getScaledImage(imgIconWizard.getImage(), 146, 200)));
+		
+		btnCard2 = new JButton(new ImageIcon(getScaledImage(imgIconWizard.getImage(), 146, 200)));
 		cardPanel.add(btnCard2);
 		btnCard2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO change currently selected card
 			}
 		});
-		JButton btnCard3 = new JButton(new ImageIcon(getScaledImage(imgIconKnight.getImage(), 146, 200)));
+		
+		btnCard3 = new JButton(new ImageIcon(getScaledImage(imgIconKnight.getImage(), 146, 200)));
 		cardPanel.add(btnCard3);
 		btnCard3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -617,7 +647,7 @@ public class UI {
 			}
 		});
 		
-		JButton btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
+		btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
 		btnPlayCard.setBounds(189, 603, 220, 40);
 		panelContent.add(btnPlayCard);
 		btnPlayCard.setVerticalTextPosition(SwingConstants.CENTER);
@@ -674,15 +704,15 @@ public class UI {
 		endPanel.add(panelContent);
 		panelContent.setLayout(null);
 		
-		JButton btnNewGame = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
-		btnNewGame.setBounds(189, 324, 220, 40);
-		panelContent.add(btnNewGame);
-		btnNewGame.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewGame.setText("New Game");
-		btnNewGame.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewGame.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
-		btnNewGame.setBorder(UIManager.getBorder("Button.border"));
-		btnNewGame.addActionListener(new ActionListener() {
+		btnNewGameEnd = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnNewGameEnd.setBounds(189, 324, 220, 40);
+		panelContent.add(btnNewGameEnd);
+		btnNewGameEnd.setVerticalTextPosition(SwingConstants.CENTER);
+		btnNewGameEnd.setText("New Game");
+		btnNewGameEnd.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewGameEnd.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		btnNewGameEnd.setBorder(UIManager.getBorder("Button.border"));
+		btnNewGameEnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "choosePanel");	
 			}
@@ -739,7 +769,12 @@ public class UI {
 //		cardlayout.show(frame.getContentPane(), "endPanel");
 	}
 	
-	private Image getScaledImage(Image srcImg, int w, int h){
+// For difficulty setting, unsure how to do
+//	private void addChangeListener(JSpinner spinner, PropertyChange listener) {
+//		spinner.addChangeListener(listener);
+//	}
+	
+	private Image getScaledImage(Image srcImg, int w, int h) {
 	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
 	    Graphics2D g2 = resizedImg.createGraphics();
 	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
