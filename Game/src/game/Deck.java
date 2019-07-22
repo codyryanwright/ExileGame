@@ -62,7 +62,7 @@ public class Deck {
 			swapDecks();
 		
 		playedCard = deck.pop();
-		discard.push(playedCard);
+//		discard.push(playedCard);
 
 		return playedCard;
 	}
@@ -76,5 +76,10 @@ public class Deck {
 			deck.push(discard.pop());
 		
 		shuffle();
+	}
+
+	public void pushToDiscard(Card userCard) {
+		discard.push(userCard);
+		
 	}
 }

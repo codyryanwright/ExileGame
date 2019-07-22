@@ -85,6 +85,10 @@ public class UI {
 		btnNewGameStart.addActionListener(newGameListener);
 		btnNewGameEnd.addActionListener(newGameListener);
 	}
+
+	public void addDeck0Listener(ActionListener deck0Listener) {
+		btnDeck3.addActionListener(deck0Listener);
+	}
 	
 	protected void addDeck1Listener(ActionListener deck1Listener) {
 		btnDeck1.addActionListener(deck1Listener);
@@ -93,9 +97,9 @@ public class UI {
 	public void addDeck2Listener(ActionListener deck2Listener) {
 		btnDeck2.addActionListener(deck2Listener);		
 	}
-
-	public void addDeck3Listener(ActionListener deck3Listener) {
-		btnDeck3.addActionListener(deck3Listener);
+	
+	protected void addCard0Listener(ActionListener card0Listener) {
+		btnCard3.addActionListener(card0Listener);
 	}
 	
 	protected void addCard1Listener(ActionListener card1Listener) {
@@ -104,10 +108,6 @@ public class UI {
 	
 	protected void addCard2Listener(ActionListener card2Listener) {
 		btnCard2.addActionListener(card2Listener);
-	}
-	
-	protected void addCard3Listener(ActionListener card3Listener) {
-		btnCard3.addActionListener(card3Listener);
 	}
 	
 	protected void addPlayCardListener(ActionListener playCardListener) {
