@@ -39,6 +39,11 @@ public class Deck {
 		        Card cardToAdd = new Card(split[0], split[1], 
 		        		split[2], Float.valueOf(split[3]), split[4]);
 		        
+//		        For testing
+//		        Card cardToAdd = new Card(split[0], split[1], 
+//		        		split[2], Float.valueOf(split[3]), split[4]);
+//		        
+		        
 		        deck.push(cardToAdd);
 		        
 				line = bufferedReader.readLine();
