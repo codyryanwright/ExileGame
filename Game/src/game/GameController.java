@@ -10,7 +10,8 @@ public class GameController {
 	private Deck[] collection = new Deck[DECK_TOTAL];
 	private int deckChoice;
 	private UI view;
-	private Participant user, opponent;	
+	public Participant user;
+	public Participant opponent;	
 	
 	public GameController(UI view) throws IOException {
 		deckChoice = -1;
@@ -142,7 +143,7 @@ public class GameController {
 //		return null;
 //	}
 	
-	void compareCards(Card userCard, Card opponentCard){
+	public void compareCards(Card userCard, Card opponentCard){
 		// TODO game logic
 	}
 }
