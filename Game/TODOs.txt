@@ -1,10 +1,10 @@
 TODO's
 
-1- Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
-2- Get rid of playMusic function (refactor into where it's called)
-3- Add card hierarchy explanation to rules
+A 1- Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
+C 2- Get rid of playMusic function (refactor into where it's called)
+D 3- Add card hierarchy explanation to rules
 4- Move ChangeListener for spinnerDifficulty to GameController (like the EventListeners for buttons were)
-5- Add the rest of ActionListeners (already created in GameController, just need changed in UI)
+A 5- Add the rest of ActionListeners (already created in GameController, just need changed in UI)
 6- Connect barPlayerHealth to outcome of compareCards() (listener for GC)
 7- Get rid of Wins/Losses move health bars / menu button
 8- Create text that will be displayed at game start, and after each turn. (also where that will be held)
