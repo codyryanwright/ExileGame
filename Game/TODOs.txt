@@ -1,0 +1,17 @@
+TODO's
+
+1- Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
+2- Get rid of playMusic function (refactor into where it's called)
+3- Add card heirarchy explaination to rules
+4- Move ChangeListener for spinnerDifficulty to GameController (like the EventListeners for buttons were)
+5- Add the rest of ActionListeners (already created in GameController, just need changed in UI)
+6- Connect barPlayerHealth to outcome of compareCards() (listener for GC)
+7- Get rid of Wins/Losses move health bars / menu button
+8- Create text that will be displayed at game start, and after each turn. (also where that will be held)
+9- endPanel txtYouWin("You Win!") should be variable (String win or loss) not hardcoded
+10- ImageIcon attribute added to the cards?
+11- Create the card .jpg's and add to the images package
+12- GameController needs to set button image when a new card is drawn from the deck into hand
+13- Do we have a function that gets new card for hand after play?
+14- Finish JUnit tests with at least one for compareCards(...) with branch coverage
+15- Create a data package and move textfiles to that package
