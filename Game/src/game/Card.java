@@ -1,17 +1,21 @@
 package game;
 
+import javax.swing.ImageIcon;
+
 public class Card {
 	private String type;
 	private String archetype;
 	private String rarity;
 	private Float power;
+	private ImageIcon imgIconCard; //TODO add card images to images
 	
 	public Card(String type, String archetype, String rarity,
-			Float power) {
+			Float power, String strImgIconCard) {
 		setType(type);
 		setArchetype(archetype);
 		setRarity(rarity);
 		setPower(power);
+		setImgIconCard(strImgIconCard);
 	}
 	
 	public String getType() {
@@ -44,5 +48,13 @@ public class Card {
 	
 	public void setPower(Float power) {
 		this.power = power;
-	}	
+	}
+
+	public ImageIcon getImgIconCard() {
+		return imgIconCard;
+	}
+
+	public void setImgIconCard(String strImgIconCard) {
+		this.imgIconCard =  new ImageIcon(Card.class.getResource(strImgIconCard)); //TODO needs tested
+	}
 }

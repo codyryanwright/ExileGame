@@ -37,7 +37,7 @@ public class Deck {
 			while (lineCount <= deckSize) {
 		        String[] split = line.split("\\s+");
 		        Card cardToAdd = new Card(split[0], split[1], 
-		        		split[2], Float.valueOf(split[3]));
+		        		split[2], Float.valueOf(split[3]), split[4]);
 		        
 		        deck.push(cardToAdd);
 		        

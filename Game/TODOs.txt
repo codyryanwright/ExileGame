@@ -10,7 +10,7 @@ TODO's
 8- Create text that will be displayed at game start, and after each turn. (also where that will be held)
 9- endPanel txtYouWin("You Win!") should be variable (String win or loss) not hardcoded
 10- ImageIcon attribute added to the cards?
-11- Create the card .jpg's and add to the images package
+11- Create the card .jpg's and add to the images package, also add the ".src/..." paths to the deck text file and handle when card created
 12- GameController needs to set button image when a new card is drawn from the deck into hand
 13- Do we have a function that gets new card for hand after play?
 14- Finish JUnit tests with at least one for compareCards(...) with branch coverage

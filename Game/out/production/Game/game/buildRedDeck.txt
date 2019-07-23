@@ -1,20 +1,20 @@
-red dragon legendary 15
-red dragon epic 7
-blue wizard epic 7
-green knight epic 7
-green dragon rare 4
-green wizard rare 4
-blue knight rare 4
-blue dragon rare 4
-red wizard rare 4
-red knight rare 4
-red wizard common 3
-red dragon common 2
-red knight common 2
-red dragon common 3
-blue wizard common 2
-blue dragon common 2
-blue knight common 3
-green knight common 3
-green dragon common 3
-green wizard common 2
+red dragon legendary 15 /images/rd15.jpg
+red dragon epic 7 /images/rd7.jpg
+blue wizard epic 7 /images/bw7.jpg
+green knight epic 7 /images/gk7.jpg
+green dragon rare 4 /images/gd4.jpg
+green wizard rare 4 /images/gw4.jpg
+blue knight rare 4 /images/bk4.jpg
+blue dragon rare 4 /images/bd4.jpg
+red wizard rare 4 /images/rw4.jpg
+red knight rare 4 /images/rk4.jpg
+red wizard common 3 /images/rw3.jpg
+red dragon common 2 /images/rd2.jpg
+red knight common 2 /images/rk2.jpg
+red dragon common 3 /images/rd3.jpg
+blue wizard common 2 /images/bw2.jpg
+blue dragon common 2 /images/bd2.jpg
+blue knight common 3 /images/bk3.jpg
+green knight common 3 /images/gk3.jpg
+green dragon common 3 /images/gd3.jpg
+green wizard common 2 /images/gw2.jpg
