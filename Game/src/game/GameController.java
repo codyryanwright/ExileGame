@@ -1,5 +1,6 @@
 package game;
 
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -45,6 +46,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 0;
 			user.setDeck(collection[deckChoice]);
+			//sets the opponents deck randomly
+			int choice = new Random().nextInt(2);
+			opponent.setDeck(collection[choice]);
 			view.show("playPanel");
 		}
 	}
@@ -53,6 +57,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 1;
 			user.setDeck(collection[deckChoice]);
+			//sets the opponents deck randomly
+			int choice = new Random().nextInt(2);
+			opponent.setDeck(collection[choice]);
 			view.show("playPanel");
 		}
 	}
@@ -61,6 +68,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 2;
 			user.setDeck(collection[deckChoice]);
+			//sets the opponents deck randomly
+			int choice = new Random().nextInt(2);
+			opponent.setDeck(collection[choice]);
 			view.show("playPanel");
 		}
 	}
@@ -102,6 +112,13 @@ public class GameController {
 				// TODO set card art for new card
 				// 		update score / health
 				//		check if game over
+				
+				//checks who wins
+				if(user.getHealth() == 0);
+					//TODO go to win screen
+				else if (opponent.getHealth() == 0);
+					//TODO go to lose screen
+				else;
 			}
 		}
 	}
@@ -143,7 +160,37 @@ public class GameController {
 //		return null;
 //	}
 	
-	public void compareCards(Card userCard, Card opponentCard){
-		// TODO game logic
+	void compareCards(Card userCard, Card opponentCard) {
+		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
+		// In the case that both types match
+		// In the case that both archTypes, return
+		if (userCard.getType().equals(opponentCard.getType()))
+			;
+
+		else if ((userCard.getType().equals("red") && opponentCard.getType().equals("green"))
+				|| (userCard.getType().equals("green") && opponentCard.getType().equals("blue"))
+				|| (userCard.getType().equals("blue") && opponentCard.getType().equals("red")))
+			playerPower += userCard.getPower();
+
+		else
+			opponentPower += opponentCard.getPower();
+
+		if (userCard.getArchetype().equals(opponentCard.getArchetype()))
+			;
+
+		else if ((userCard.getArchetype().equals("dragon") && opponentCard.getArchetype().equals("wizard"))
+				|| (userCard.getArchetype().equals("wizard") && opponentCard.getArchetype().equals("knight"))
+				|| (userCard.getArchetype().equals("knight") && opponentCard.getArchetype().equals("dragon")))
+			playerPower += 1.5 * userCard.getPower();
+
+		else
+			opponentPower += 1.5 * userCard.getPower();
+
+		if (opponentPower > playerPower)
+			user.decreaseHealth();
+		else if (opponentPower < playerPower)
+			opponent.decreaseHealth();
+		else
+			return;
 	}
 }
