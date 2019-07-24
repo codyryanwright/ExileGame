@@ -1,17 +1,15 @@
-TODO's
+---IN PROGRESS---
+(A) Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
+(D) Add card hierarchy explanation to rules
+(A) Add the rest of ActionListeners (already created in GameController, just need changed in UI)
+(L) Finish JUnit tests with at least one for compareCards(...) with branch coverage
+(D) Create the card .jpg's and add to the images package
 
-A 1- Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
-C 2- Get rid of playMusic function (refactor into where it's called)
-D 3- Add card hierarchy explanation to rules
-4- Move ChangeListener for spinnerDifficulty to GameController (like the EventListeners for buttons were)
-A 5- Add the rest of ActionListeners (already created in GameController, just need changed in UI)
-6- Connect barPlayerHealth to outcome of compareCards() (listener for GC)
-7- Get rid of Wins/Losses move health bars / menu button
-8- Create text that will be displayed at game start, and after each turn. (also where that will be held)
-9- endPanel txtYouWin("You Win!") should be variable (String win or loss) not hardcoded
-10- ImageIcon attribute added to the cards?
-11- Create the card .jpg's and add to the images package, also add the ".src/..." paths to the deck text file and handle when card created
-12- GameController needs to set button image when a new card is drawn from the deck into hand
-13- Do we have a function that gets new card for hand after play?
-14- Finish JUnit tests with at least one for compareCards(...) with branch coverage
-15- Create a data package and move textfiles to that package
+---UNASSIGNED---
+Connect barPlayerHealth to outcome of compareCards() (listener for GC)
+Create text that will be displayed at game start, and after each turn. (also where that will be held)
+endPanel txtYouWin("You Win!") should be variable (String win or loss) not hardcoded
+GameController needs to set button image when a new card is drawn from the deck into hand
+Do we have a function that gets new card for hand after play?
+Create a data package and move textfiles to that package
+Move ChangeListener for spinnerDifficulty to GameController (like the EventListeners for buttons were)

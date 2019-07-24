@@ -13,7 +13,6 @@ import java.awt.Image;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import javax.swing.SwingConstants;
@@ -58,7 +57,7 @@ public class UI {
  			sequencer.open();
  			is = new BufferedInputStream(ClassLoader.getSystemResourceAsStream("music/bjorn__lynne-_proud_warriors.mid"));
 			sequencer.setSequence(is);
-			playMusic(true); // default setting
+			sequencer.start(); // default setting
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -70,13 +69,6 @@ public class UI {
 	public void show(String panel) {
 		cardlayout.show(frame.getContentPane(), panel);
 	}
-	
-	// TODO Is this function even necessary?
-	public void playMusic(Boolean on) {
-		if(on) sequencer.start();
-		else sequencer.stop();
-	}
-	
 	
 	/**
 	 * Add Controller Listeners
@@ -117,34 +109,37 @@ public class UI {
 	protected void addContinueListener(ActionListener ContinueListener) {
 		btnContinue.addActionListener(ContinueListener);
 	}
+	// For difficulty setting, unsure how to do
+//		protected void addDifficultChangeListener(PropertyChange listener) {
+//			spinnerDifficulty.addChangeListener(listener);
+//		}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initMainMenu() {
 		mainMenuPanel = new JPanel();
-		frame.getContentPane().add(mainMenuPanel, "mainMenuPanel");
 		mainMenuPanel.setLayout(null);
+		frame.getContentPane().add(mainMenuPanel, "mainMenuPanel");
 		
 		JPanel panelTitle = new JPanel();
 		panelTitle.setBounds(0, 0, 477, 675);
-		mainMenuPanel.add(panelTitle);
 		panelTitle.setLayout(null);
+		mainMenuPanel.add(panelTitle);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
 		lblTitle.setBounds(72, 10, 332, 65);
-		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
+		panelTitle.add(lblTitle);
 		
-		ImageIcon imgMainMenuScreen = new ImageIcon(UI.class.getResource("/images/mainMenuScreen.jpg"));		
-		
+		ImageIcon imgMainMenuScreen = new ImageIcon(UI.class.getResource("/images/mainMenuScreen.jpg"));				
 		JLabel lblMainMenuScreen = new JLabel("");
 		lblMainMenuScreen.setBounds(0, 0, 477, 675);
-		panelTitle.add(lblMainMenuScreen);
 		lblMainMenuScreen.setBackground(Color.BLACK);
 		lblMainMenuScreen.setIcon(new ImageIcon(getScaledImage(imgMainMenuScreen.getImage(), 477, 675)));
+		panelTitle.add(lblMainMenuScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBorder(null);
@@ -155,22 +150,22 @@ public class UI {
 
 		btnNewGameStart = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnNewGameStart.setBounds(189, 103, 220, 40);
-		panelContent.add(btnNewGameStart);
 		btnNewGameStart.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewGameStart.setText("New Game");
 		btnNewGameStart.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewGameStart.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnNewGameStart.setBorder(UIManager.getBorder("Button.border"));
+		panelContent.add(btnNewGameStart);
 		
 		JButton btnRules = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnRules.setBounds(189, 246, 220, 40);
-		panelContent.add(btnRules);
 		btnRules.setVerticalTextPosition(SwingConstants.CENTER);
 		btnRules.setText("Rules");
 		btnRules.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnRules.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnRules.setBorder(UIManager.getBorder("Button.border"));
-		btnRules.addActionListener(new ActionListener() {
+		panelContent.add(btnRules);
+		btnRules.addActionListener(new ActionListener() { //TODO change to GC
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "rulesPanel");
 			}
@@ -178,13 +173,13 @@ public class UI {
 		
 		JButton btnSettings = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnSettings.setBounds(189, 389, 220, 40);
-		panelContent.add(btnSettings);
 		btnSettings.setVerticalTextPosition(SwingConstants.CENTER);
 		btnSettings.setText("Settings");
 		btnSettings.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnSettings.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnSettings.setBorder(UIManager.getBorder("Button.border"));
-		btnSettings.addActionListener(new ActionListener() {
+		panelContent.add(btnSettings);
+		btnSettings.addActionListener(new ActionListener() { //TODO change to GC
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "settingsPanel");
 			}
@@ -192,70 +187,65 @@ public class UI {
 		
 		btnContinue = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnContinue.setBounds(189, 532, 220, 40);
-		panelContent.add(btnContinue);
 		btnContinue.setVerticalTextPosition(SwingConstants.CENTER);
 		btnContinue.setText("Continue Game");
 		btnContinue.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnContinue.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnContinue.setBorder(UIManager.getBorder("Button.border"));
-//		btnContinue.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				cardlayout.show(frame.getContentPane(), "playPanel");
-//			}
-//		});
+		panelContent.add(btnContinue);
 	}
 	
 	private void initRules() {
 		rulesPanel = new JPanel();
 		rulesPanel.setBackground(Color.BLACK);
-		frame.getContentPane().add(rulesPanel, "rulesPanel");
 		rulesPanel.setLayout(null);
+		frame.getContentPane().add(rulesPanel, "rulesPanel");
 		
 		JPanel panelTitle = new JPanel();
 		panelTitle.setBounds(0, 0, 477, 675);
-		rulesPanel.add(panelTitle);
 		panelTitle.setLayout(null);
+		rulesPanel.add(panelTitle);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
 		lblTitle.setBounds(72, 10, 332, 65);
-		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
+		panelTitle.add(lblTitle);
 		
 		ImageIcon imgRulesScreen = new ImageIcon(UI.class.getResource("/images/rulesScreen.jpg"));		
 		JLabel lblRulesScreen = new JLabel("");
 		lblRulesScreen.setBounds(0, 0, 477, 675);
-		panelTitle.add(lblRulesScreen);
 		lblRulesScreen.setIcon(new ImageIcon(getScaledImage(imgRulesScreen.getImage(), 477, 675)));
+		panelTitle.add(lblRulesScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(Color.BLACK);
 		panelContent.setBounds(477, 0, 599, 675);
-		rulesPanel.add(panelContent);
 		panelContent.setLayout(null);
+		rulesPanel.add(panelContent);
 		
 		JLabel lblRules = new JLabel("RULES");
 		lblRules.setBounds(225, 42, 148, 47);
-		panelContent.add(lblRules);
 		lblRules.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRules.setForeground(Color.WHITE);
 		lblRules.setFont(new Font("Viner Hand ITC", Font.BOLD, 26));
 		lblRules.setBackground(Color.BLACK);
+		panelContent.add(lblRules);
 		
 		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnMainMenu.setBounds(189, 593, 220, 40);
-		panelContent.add(btnMainMenu);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setText("Main Menu");
 		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
-		btnMainMenu.addActionListener(new ActionListener() {
+		btnMainMenu.addActionListener(new ActionListener() { //TODO move to GC
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
 		});
+		panelContent.add(btnMainMenu);
 		
 		JTextPane txtpnRules = new JTextPane();
 		txtpnRules.setEditable(false);
@@ -268,7 +258,7 @@ public class UI {
 				"- If the battle ends in a draw, no health we will be diducted from any player\r\n\n" + 
 				"- Otherwise, the player that lost the battle will lose a life point and their health bar will go down\r\n\n" + 
 				"- At the end of each turn, each player will draw a card\r\n\n" + 
-				"- The game continues until one of the player's health runs out"); // TODO missing card heirarchy explaination
+				"- The game continues until one of the player's health runs out"); // TODO missing card hierarchy explanation
 		txtpnRules.setBackground(Color.BLACK);
 		txtpnRules.setForeground(Color.WHITE);
 		txtpnRules.setBounds(144, 0, 330, 335);
@@ -277,32 +267,32 @@ public class UI {
 		
 		JScrollPane scrollPane = new JScrollPane(txtpnRules);
 		scrollPane.setBounds(16, 131, 567, 420);
-		panelContent.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panelContent.add(scrollPane);
 	}
 	
 	private void initSettings() {
 		settingsPanel = new JPanel();
-		frame.getContentPane().add(settingsPanel, "settingsPanel");
 		settingsPanel.setLayout(null);
+		frame.getContentPane().add(settingsPanel, "settingsPanel");
 		
 		JPanel panelTitle = new JPanel();
 		panelTitle.setBounds(0, 0, 477, 675);
-		settingsPanel.add(panelTitle);
 		panelTitle.setLayout(null);
+		settingsPanel.add(panelTitle);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
 		lblTitle.setBounds(72, 10, 332, 65);
-		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
+		panelTitle.add(lblTitle);
 		
 		ImageIcon imgSettingsScreen = new ImageIcon(UI.class.getResource("/images/settingsScreen.jpg"));		
 		JLabel lblSettingsScreen = new JLabel("");
 		lblSettingsScreen.setBounds(0, 0, 477, 675);
-		panelTitle.add(lblSettingsScreen);
 		lblSettingsScreen.setIcon(new ImageIcon(getScaledImage(imgSettingsScreen.getImage(), 477, 675)));
+		panelTitle.add(lblSettingsScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(new Color(0, 0, 0));
@@ -312,120 +302,120 @@ public class UI {
 		
 		JLabel lblSettings = new JLabel("SETTINGS");
 		lblSettings.setBounds(225, 106, 148, 47);
-		panelContent.add(lblSettings);
 		lblSettings.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSettings.setForeground(Color.WHITE);
 		lblSettings.setFont(new Font("Viner Hand ITC", Font.BOLD, 26));
 		lblSettings.setBackground(Color.BLACK);
+		panelContent.add(lblSettings);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(163, 259, 246, 164);
-		panelContent.add(panel);
 		panel.setBackground(Color.BLACK);
 		panel.setLayout(null);
+		panelContent.add(panel);
 		
 		JLabel lblSound = new JLabel("Sound");
 		lblSound.setBounds(41, 7, 83, 27);
-		panel.add(lblSound);
 		lblSound.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSound.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		lblSound.setBackground(Color.BLACK);
 		lblSound.setForeground(Color.WHITE);
+		panel.add(lblSound);
 		
 		JSpinner spinnerSound = new JSpinner();
 		spinnerSound.setBounds(146, 0, 100, 40);
-		panel.add(spinnerSound);
 		spinnerSound.setFont(new Font("SimSun", Font.PLAIN, 26));
 		spinnerSound.setModel(new SpinnerListModel(new String[] {"On", "Off"}));
+		spinnerSound.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(spinnerSound.getValue() == "On") sequencer.start();
+				else sequencer.stop();
+			}
+		});
+		panel.add(spinnerSound);
 		
 		JLabel lblDifficulty = new JLabel("Difficulty");
 		lblDifficulty.setBounds(0, 131, 124, 27);
-		panel.add(lblDifficulty);
 		lblDifficulty.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDifficulty.setForeground(Color.WHITE);
 		lblDifficulty.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		lblDifficulty.setBackground(Color.BLACK);
+		panel.add(lblDifficulty);
 		
 		spinnerDifficulty = new JSpinner();
 		spinnerDifficulty.setBounds(146, 124, 100, 40);
-		panel.add(spinnerDifficulty);
 		spinnerDifficulty.setModel(new SpinnerListModel(new String[] {"Easy", "Normal", "Hard"}));
 		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
-		
-		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
-		btnMainMenu.setBounds(189, 529, 220, 40);
-		panelContent.add(btnMainMenu);
-		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
-		btnMainMenu.setText("Main Menu");
-		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
-		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
-		btnMainMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
-			}
-		});
+		panel.add(spinnerDifficulty);
 		spinnerDifficulty.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) { // TODO fill in difficulty changes
+			public void stateChanged(ChangeEvent e) { // TODO fill in difficulty changes & move to GC
 				if(spinnerDifficulty.getValue() == "Easy");
 				else if(spinnerDifficulty.getValue() == "Normal");
 				else;
 			}
 		});
-		spinnerSound.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				if(spinnerSound.getValue() == "On") playMusic(true);
-				else playMusic(false);
+
+		
+		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnMainMenu.setBounds(189, 529, 220, 40);
+		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		btnMainMenu.setText("Main Menu");
+		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
+		panelContent.add(btnMainMenu);
+		btnMainMenu.addActionListener(new ActionListener() { // TODO move to GC
+			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
 		});
 	}
 	
 	private void initChoose() {
 		choosePanel = new JPanel();
-		frame.getContentPane().add(choosePanel, "choosePanel");
 		choosePanel.setLayout(null);
+		frame.getContentPane().add(choosePanel, "choosePanel");
 		
 		JPanel panelTitle = new JPanel();
 		panelTitle.setBounds(0, 0, 477, 675);
-		choosePanel.add(panelTitle);
 		panelTitle.setLayout(null);
+		choosePanel.add(panelTitle);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
 		lblTitle.setBounds(72, 10, 332, 65);
-		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
+		panelTitle.add(lblTitle);
 		
 		ImageIcon imgChooseScreen = new ImageIcon(UI.class.getResource("/images/chooseScreen.jpg"));		
 		JLabel lblChooseScreen = new JLabel("");
 		lblChooseScreen.setBounds(0, 0, 477, 675);
-		panelTitle.add(lblChooseScreen);
 		lblChooseScreen.setIcon(new ImageIcon(getScaledImage(imgChooseScreen.getImage(), 477, 675)));
 		lblChooseScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblChooseScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		panelTitle.add(lblChooseScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(Color.BLACK);
 		panelContent.setBounds(477, 0, 599, 675);
-		choosePanel.add(panelContent);
 		panelContent.setLayout(null);
+		choosePanel.add(panelContent);
 		
 		JLabel lblChooseYourDeck = new JLabel("Choose Your Deck");
 		lblChooseYourDeck.setBounds(108, 144, 382, 66);
-		panelContent.add(lblChooseYourDeck);
 		lblChooseYourDeck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChooseYourDeck.setBackground(Color.BLACK);
 		lblChooseYourDeck.setForeground(Color.WHITE);
 		lblChooseYourDeck.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
+		panelContent.add(lblChooseYourDeck);
 		
 		JPanel deckPanel = new JPanel();
 		deckPanel.setBounds(108, 250, 382, 175);
-		panelContent.add(deckPanel);
 		deckPanel.setBorder(null);
 		deckPanel.setBackground(Color.BLACK);
 		deckPanel.setLayout(new GridLayout(0, 3, 0, 0));
-		
+		panelContent.add(deckPanel);		
 
 		ImageIcon imgIconDeck1 = new ImageIcon(UI.class.getResource("/images/deck1.png"));		
 		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
@@ -433,19 +423,13 @@ public class UI {
 		
 		btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
 		deckPanel.add(btnDeck1);
-//		btnDeck1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				cardlayout.show(frame.getContentPane(), "playPanel");	
-//				// TODO set deck 1
-//			}
-//		});
 
 		btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
 		deckPanel.add(btnDeck2);
 		btnDeck2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "playPanel");
-				// TODO set deck 2
+				// TODO move to GC
 			}
 		});
 		
@@ -454,7 +438,7 @@ public class UI {
 		btnDeck3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "playPanel");
-				// TODO set deck 3
+				// TODO move to GC
 			}
 		});
 	}
@@ -466,89 +450,53 @@ public class UI {
 		
 		JPanel panelTitle = new JPanel();
 		panelTitle.setBounds(0, 0, 477, 675);
-		playPanel.add(panelTitle);
 		panelTitle.setLayout(null);
+		playPanel.add(panelTitle);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
 		lblTitle.setBounds(72, 10, 332, 65);
-		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
+		panelTitle.add(lblTitle);
 		
 		ImageIcon imgPlayScreen = new ImageIcon(UI.class.getResource("/images/playScreen.jpg"));		
 		JLabel lblPlayScreen = new JLabel("");
 		lblPlayScreen.setBounds(0, 0, 477, 675);
-		panelTitle.add(lblPlayScreen);
 		lblPlayScreen.setIcon(new ImageIcon(getScaledImage(imgPlayScreen.getImage(), 477, 675)));
 		lblPlayScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblPlayScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		panelTitle.add(lblPlayScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(Color.BLACK);
 		panelContent.setBounds(477, 0, 599, 675);
-		playPanel.add(panelContent);
 		panelContent.setLayout(null);
+		playPanel.add(panelContent);
 		
 		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/dragon.jpg")); //TODO image should be variable
-		
 		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/wizard.jpg")); //TODO image should be variable
-		
 		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/knight.jpg")); //TODO image should be variable
 		
 		JPanel panelStatus = new JPanel();
 		panelStatus.setBorder(UIManager.getBorder("InternalFrame.border"));
 		panelStatus.setBackground(Color.BLACK);
 		panelStatus.setBounds(85, 32, 428, 75);
-		panelContent.add(panelStatus);
 		panelStatus.setLayout(null);
+		panelContent.add(panelStatus);
 		
 		JLabel lblPlayerHealth = new JLabel("Player Health");
 		lblPlayerHealth.setBounds(0, 14, 115, 18);
-		panelStatus.add(lblPlayerHealth);
 		lblPlayerHealth.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPlayerHealth.setForeground(Color.LIGHT_GRAY);
 		lblPlayerHealth.setFont(new Font("SimSun", Font.PLAIN, 14));
+		panelStatus.add(lblPlayerHealth);
 		
 		JProgressBar barPlayerHealth = new JProgressBar();
 		barPlayerHealth.setBounds(125, 14, 111, 18);
-		panelStatus.add(barPlayerHealth);
 		barPlayerHealth.setValue(100);  //TODO this should be variable
 		barPlayerHealth.setForeground(Color.GREEN);
-		
-		JLabel lblPlayerWins = new JLabel("Wins");
-		lblPlayerWins.setBounds(248, 14, 46, 18);
-		panelStatus.add(lblPlayerWins);
-		lblPlayerWins.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayerWins.setForeground(Color.LIGHT_GRAY);
-		lblPlayerWins.setFont(new Font("SimSun", Font.PLAIN, 14));
-		
-		JTextPane txtpnPlayerWins = new JTextPane();
-		txtpnPlayerWins.setBounds(294, 12, 23, 23);
-		panelStatus.add(txtpnPlayerWins);
-		txtpnPlayerWins.setText("01"); //TODO this should be variable
-		txtpnPlayerWins.setMargin(new Insets(0, 3, 3, 3));
-		txtpnPlayerWins.setForeground(Color.BLACK);
-		txtpnPlayerWins.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		txtpnPlayerWins.setEditable(false);
-		txtpnPlayerWins.setBackground(Color.LIGHT_GRAY);
-		
-		JLabel lblPlayerLosses = new JLabel("Losses");
-		lblPlayerLosses.setBounds(341, 14, 46, 18);
-		panelStatus.add(lblPlayerLosses);
-		lblPlayerLosses.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayerLosses.setForeground(Color.LIGHT_GRAY);
-		lblPlayerLosses.setFont(new Font("SimSun", Font.PLAIN, 14));
-		
-		JTextPane txtpnPlayerLosses = new JTextPane();
-		txtpnPlayerLosses.setBounds(395, 12, 23, 23);
-		panelStatus.add(txtpnPlayerLosses);
-		txtpnPlayerLosses.setText("01"); //TODO this should be variable
-		txtpnPlayerLosses.setMargin(new Insets(0, 3, 3, 3));
-		txtpnPlayerLosses.setForeground(Color.BLACK);
-		txtpnPlayerLosses.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		txtpnPlayerLosses.setEditable(false);
-		txtpnPlayerLosses.setBackground(Color.LIGHT_GRAY);
+		panelStatus.add(barPlayerHealth);
 		
 		JLabel lblOpponentHealth = new JLabel("Opponent Health");
 		lblOpponentHealth.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -562,40 +510,6 @@ public class UI {
 		barOpponentHealth.setForeground(Color.GREEN);
 		barOpponentHealth.setBounds(125, 46, 111, 18);
 		panelStatus.add(barOpponentHealth);
-		
-		JLabel lblOpponentWins = new JLabel("Wins");
-		lblOpponentWins.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOpponentWins.setForeground(Color.LIGHT_GRAY);
-		lblOpponentWins.setFont(new Font("SimSun", Font.PLAIN, 14));
-		lblOpponentWins.setBounds(248, 46, 46, 18);
-		panelStatus.add(lblOpponentWins);
-		
-		JTextPane txtpnOpponentWins = new JTextPane();
-		txtpnOpponentWins.setText("01");
-		txtpnOpponentWins.setMargin(new Insets(0, 3, 3, 3));
-		txtpnOpponentWins.setForeground(Color.BLACK);
-		txtpnOpponentWins.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		txtpnOpponentWins.setEditable(false);
-		txtpnOpponentWins.setBackground(Color.LIGHT_GRAY);
-		txtpnOpponentWins.setBounds(294, 44, 23, 23);
-		panelStatus.add(txtpnOpponentWins);
-		
-		JLabel lblOpponentLosses = new JLabel("Losses");
-		lblOpponentLosses.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOpponentLosses.setForeground(Color.LIGHT_GRAY);
-		lblOpponentLosses.setFont(new Font("SimSun", Font.PLAIN, 14));
-		lblOpponentLosses.setBounds(341, 46, 46, 18);
-		panelStatus.add(lblOpponentLosses);
-		
-		JTextPane txtpnOpponentLosses = new JTextPane();
-		txtpnOpponentLosses.setText("01");
-		txtpnOpponentLosses.setMargin(new Insets(0, 3, 3, 3));
-		txtpnOpponentLosses.setForeground(Color.BLACK);
-		txtpnOpponentLosses.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		txtpnOpponentLosses.setEditable(false);
-		txtpnOpponentLosses.setBackground(Color.LIGHT_GRAY);
-		txtpnOpponentLosses.setBounds(395, 44, 23, 23);
-		panelStatus.add(txtpnOpponentLosses);
 		barPlayerHealth.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (barPlayerHealth.getValue() == 0)
@@ -604,30 +518,41 @@ public class UI {
 			}
 		});
 		
+		JButton btnMenu = new JButton("Main Menu");
+		btnMenu.setBounds(287, 17, 100, 40);
+		btnMenu.setBackground(Color.LIGHT_GRAY);
+		btnMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
+		panelStatus.add(btnMenu);
+		btnMenu.addActionListener(new ActionListener() { // TODO move to GC
+			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
+			}
+		});
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(85, 117, 428, 244);
-		panelContent.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		panelContent.add(scrollPane);
 		
 		JTextPane txtpnGame = new JTextPane();
 		txtpnGame.setLocation(97, 0);
-		scrollPane.setViewportView(txtpnGame);
 		txtpnGame.setText(""); // TODO this needs to be variable and append card action text
 		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 7));
 		txtpnGame.setEditable(false);
+		scrollPane.setViewportView(txtpnGame);
 		
 		JPanel cardPanel = new JPanel();
 		cardPanel.setBounds(81, 371, 437, 200);
-		panelContent.add(cardPanel);
 		cardPanel.setBorder(null);
 		cardPanel.setBackground(Color.BLACK);
 		cardPanel.setLayout(new GridLayout(0, 3, 0, 0));
+		panelContent.add(cardPanel);
 		
 		btnCard1 = new JButton(new ImageIcon(getScaledImage(imgIconDragon.getImage(), 146, 200)));
 		cardPanel.add(btnCard1);
 		btnCard1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO change currently selected card
+				//TODO move to GC
 			}
 		});
 		
@@ -635,7 +560,7 @@ public class UI {
 		cardPanel.add(btnCard2);
 		btnCard2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO change currently selected card
+				//TODO move to GC
 			}
 		});
 		
@@ -643,76 +568,65 @@ public class UI {
 		cardPanel.add(btnCard3);
 		btnCard3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO change currently selected card
+				//TODO move to GC
 			}
 		});
 		
 		btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
 		btnPlayCard.setBounds(189, 603, 220, 40);
-		panelContent.add(btnPlayCard);
 		btnPlayCard.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlayCard.setText("Play Card");
 		btnPlayCard.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnPlayCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnPlayCard.setBorder(UIManager.getBorder("Button.border"));
-		
-		JButton btnMenu = new JButton("Menu");
-		btnMenu.setBounds(518, 640, 71, 25);
-		panelContent.add(btnMenu);
-		btnMenu.setBackground(Color.LIGHT_GRAY);
-		btnMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
-			}
-		});
+		panelContent.add(btnPlayCard);
 		btnPlayCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO plays currently selected card and draws another
+				//TODO move to GC
 			}
 		});
 	}
 	
 	private void initEnd() {
 		endPanel = new JPanel();
-		frame.getContentPane().add(endPanel, "endPanel");
 		endPanel.setLayout(null);
+		frame.getContentPane().add(endPanel, "endPanel");
 		
 		JPanel panelTitle = new JPanel();
 		panelTitle.setBounds(0, 0, 477, 675);
-		endPanel.add(panelTitle);
 		panelTitle.setLayout(null);
+		endPanel.add(panelTitle);
 		
 		JLabel lblTitle = new JLabel("Exile & Conquest");
 		lblTitle.setBounds(72, 10, 332, 65);
-		panelTitle.add(lblTitle);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		lblTitle.setBackground(Color.BLACK);
+		panelTitle.add(lblTitle);
 		
 		ImageIcon imgEndScreen = new ImageIcon(UI.class.getResource("/images/endScreen.jpg"));		
 		JLabel lblEndScreen = new JLabel("");
 		lblEndScreen.setBounds(0, 0, 477, 675);
-		panelTitle.add(lblEndScreen);
 		lblEndScreen.setIcon(new ImageIcon(getScaledImage(imgEndScreen.getImage(), 477, 675)));
 		lblEndScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblEndScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		panelTitle.add(lblEndScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(Color.BLACK);
 		panelContent.setBounds(477, 0, 599, 675);
-		endPanel.add(panelContent);
 		panelContent.setLayout(null);
+		endPanel.add(panelContent);
 		
 		btnNewGameEnd = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnNewGameEnd.setBounds(189, 324, 220, 40);
-		panelContent.add(btnNewGameEnd);
 		btnNewGameEnd.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewGameEnd.setText("New Game");
 		btnNewGameEnd.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewGameEnd.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnNewGameEnd.setBorder(UIManager.getBorder("Button.border"));
-		btnNewGameEnd.addActionListener(new ActionListener() {
+		panelContent.add(btnNewGameEnd);
+		btnNewGameEnd.addActionListener(new ActionListener() { //TODO move to GC
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "choosePanel");	
 			}
@@ -720,13 +634,13 @@ public class UI {
 		
 		JButton btnExit = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnExit.setBounds(189, 499, 220, 40);
-		panelContent.add(btnExit);
 		btnExit.setVerticalTextPosition(SwingConstants.CENTER);
 		btnExit.setText("Exit");
 		btnExit.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnExit.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnExit.setBorder(UIManager.getBorder("Button.border"));
-		btnExit.addActionListener(new ActionListener() {
+		panelContent.add(btnExit);
+		btnExit.addActionListener(new ActionListener() {// TODO move to GC
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
@@ -734,7 +648,6 @@ public class UI {
 		
 		JTextField txtYouWin = new JTextField();
 		txtYouWin.setBounds(189, 135, 220, 54);
-		panelContent.add(txtYouWin);
 		txtYouWin.setEditable(false);
 		txtYouWin.setBorder(null);
 		txtYouWin.setHorizontalAlignment(SwingConstants.CENTER);
@@ -742,6 +655,7 @@ public class UI {
 		txtYouWin.setText("YOU WIN!");  //TODO this should be variable
 		txtYouWin.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
 		txtYouWin.setForeground(Color.WHITE);
+		panelContent.add(txtYouWin);
 	}
 	
 	private void initialize() {
@@ -768,11 +682,6 @@ public class UI {
 //		cardlayout.show(frame.getContentPane(), "playPanel");
 //		cardlayout.show(frame.getContentPane(), "endPanel");
 	}
-	
-// For difficulty setting, unsure how to do
-//	private void addChangeListener(JSpinner spinner, PropertyChange listener) {
-//		spinner.addChangeListener(listener);
-//	}
 	
 	private Image getScaledImage(Image srcImg, int w, int h) {
 	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
