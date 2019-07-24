@@ -153,17 +153,6 @@ public class GameController {
 		return collection[deckChoice];
 	}
 	
-//	TODO DONT THINK WE NEED THIS HERE, PARTICIPANT OWNS THE DECK
-//	// pops a card from chosen deck
-//	public Card draw(int cardPosition) {
-//		return null;
-//	}
-	
-//	TODO DONT NEED THIS, CONTROLLER CAN CALL participant.setDeck()
-//	public Deck giveDeck(int deckChoice) {
-//		return null;
-//	}
-	
 	public void compareCards(Card userCard, Card opponentCard) {
 		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
 		// In the case that both types match
