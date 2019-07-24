@@ -19,27 +19,23 @@ public class GameControllerTest {
 		Card c1 = new Card("red", "dragon", "rare", 4.0f, "");
 		Card c2 = new Card("blue", "dragon", "rare", 4.0f, "");
 		Card c3 = new Card("blue", "knight", "rare", 4.0f, "");
-		try {
-			//Same type, different archetype
-			gc.compareCards(c2, c3);
-			assertEquals(gc.user.getHealth(), 80f);
-			assertEquals(gc.opponent.getHealth(), 100f);
-			
-			//Different type, same archetype
-			gc.compareCards(c2, c1);
-			assertEquals(gc.user.getHealth(), 80f);
-			assertEquals(gc.opponent.getHealth(), 80f);
-			
-			//Same type, same archetype
-			gc.compareCards(c1, c1);
-			assertEquals(gc.user.getHealth(), 80f);
-			assertEquals(gc.opponent.getHealth(), 80f);
-		}
-		catch(RuntimeException e)
-		{
-			e.printStackTrace();
-		}
+		//Same type, different archetype
+		gc.compareCards(c2, c3);
+		assertEquals(gc.user.getHealth(), 80f);
+		assertEquals(gc.opponent.getHealth(), 100f);
 		
+		//Different type, same archetype
+		gc.compareCards(c2, c1);
+		assertEquals(gc.user.getHealth(), 80f);
+		assertEquals(gc.opponent.getHealth(), 80f);
+		
+		//Same type, same archetype
+		gc.compareCards(c1, c1);
+		assertEquals(gc.user.getHealth(), 80f);
+		assertEquals(gc.opponent.getHealth(), 80f);
 	}
-
+		
+		
 }
+
+

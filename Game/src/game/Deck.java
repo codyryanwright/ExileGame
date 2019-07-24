@@ -12,9 +12,15 @@ public class Deck {
 	private Card playedCard;
 	final private int deckSize = 20;
 	
-	public Deck(int deckChoice) throws IOException {
-		deck = new Stack<Card>();
-		loadDeck(deckChoice);
+	public Deck(int deckChoice) {
+		try {
+			deck = new Stack<Card>();
+			loadDeck(deckChoice);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	private void loadDeck(int deckChoice) throws IOException {

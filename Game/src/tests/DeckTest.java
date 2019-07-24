@@ -12,13 +12,8 @@ class DeckTest {
 
 	@Test
 	void testDeck() {
-		try {
-			Deck testDeck = new Deck(1);
-			assertEquals(20, testDeck.getDeck().size());
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Deck testDeck = new Deck(1);
+		assertEquals(20, testDeck.getDeck().size());
 	}
 
 }
