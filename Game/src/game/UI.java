@@ -536,7 +536,28 @@ public class UI {
 		
 		JTextPane txtpnGame = new JTextPane();
 		txtpnGame.setLocation(97, 0);
-		txtpnGame.setText(""); // TODO this needs to be variable and append card action text
+		txtpnGame.setText("          ,   ,\r\n" + 
+				"         ,-`{-`/\r\n" + 
+				"      ,-~ , \\ {-~~-,\r\n" + 
+				"    ,~  ,   ,`,-~~-,`,\r\n" + 
+				"  ,`   ,   { {      } }                                             }/\r\n" + 
+				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
+				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
+				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
+				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
+				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
+				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
+				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
+				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
+				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
+				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
+				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
+				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
+				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
+				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
+				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
+				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
+				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,"); // TODO this needs to be variable and append card action text
 		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 7));
 		txtpnGame.setEditable(false);
 		scrollPane.setViewportView(txtpnGame);
