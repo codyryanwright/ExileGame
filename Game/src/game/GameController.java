@@ -14,14 +14,18 @@ public class GameController {
 	public Participant user;
 	public Participant opponent;	
 	
-	public GameController(UI view) throws IOException {
+	public GameController(UI view) {
 		deckChoice = -1;
 		this.view = view;
 		user = new User();
-		
 		opponent = new AutoOpponent();
 		
-		buildCollection();
+		try {
+			buildCollection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 		// TODO add action listeners to view
 		view.addNewGameListener(new NewGameListener());
@@ -160,7 +164,7 @@ public class GameController {
 //		return null;
 //	}
 	
-	void compareCards(Card userCard, Card opponentCard) {
+	public void compareCards(Card userCard, Card opponentCard) {
 		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
 		// In the case that both types match
 		// In the case that both archTypes, return

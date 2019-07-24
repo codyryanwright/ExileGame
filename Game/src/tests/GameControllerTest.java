@@ -3,24 +3,22 @@ package tests;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.Test;
 import game.GameController;
 import game.Card;
-import game.Participant;
+import game.UI;
 
 public class GameControllerTest {
 	
-	GameController gc;
-	Participant user;
-	Participant cpu;
+	UI ui = new UI();
+	GameController gc = new GameController(ui);
+	
 	@Test
 	public void compareTest() {
 		
-		Card c1 = new Card("red", "dragon", "rare", 4.0f);
-		Card c2 = new Card("blue", "dragon", "rare", 4.0f);
-		Card c3 = new Card("blue", "knight", "rare", 4.0f);
+		Card c1 = new Card("red", "dragon", "rare", 4.0f, "");
+		Card c2 = new Card("blue", "dragon", "rare", 4.0f, "");
+		Card c3 = new Card("blue", "knight", "rare", 4.0f, "");
 		try {
 			//Same type, different archetype
 			gc.compareCards(c2, c3);

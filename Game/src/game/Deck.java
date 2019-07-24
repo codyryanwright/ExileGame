@@ -41,7 +41,7 @@ public class Deck {
 		        
 //		        For testing
 //		        Card cardToAdd = new Card(split[0], split[1], 
-//		        		split[2], Float.valueOf(split[3]), split[4]);
+//		        		split[2], Float.valueOf(split[3]));
 //		        
 		        
 		        deck.push(cardToAdd);
