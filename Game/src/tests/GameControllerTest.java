@@ -22,11 +22,11 @@ public class GameControllerTest {
 		try {
 			//Same type, different archetype
 			gc.compareCards(c2, c3);
-			assertEquals(gc.user.getHealth(), 100f);
-			assertEquals(gc.opponent.getHealth(), 80f);
+			assertEquals(gc.user.getHealth(), 80f);
+			assertEquals(gc.opponent.getHealth(), 100f);
 			
 			//Different type, same archetype
-			gc.compareCards(c1, c2);
+			gc.compareCards(c2, c1);
 			assertEquals(gc.user.getHealth(), 80f);
 			assertEquals(gc.opponent.getHealth(), 80f);
 			

@@ -168,8 +168,8 @@ public class GameController {
 		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
 		// In the case that both types match
 		// In the case that both archTypes, return
-		if (userCard.getType().equals(opponentCard.getType()))
-			;
+		if (userCard.getType().equals(opponentCard.getType()));
+		//do nothing
 
 		else if ((userCard.getType().equals("red") && opponentCard.getType().equals("green"))
 				|| (userCard.getType().equals("green") && opponentCard.getType().equals("blue"))
@@ -179,8 +179,9 @@ public class GameController {
 		else
 			opponentPower += opponentCard.getPower();
 
-		if (userCard.getArchetype().equals(opponentCard.getArchetype()))
-			;
+
+		if (userCard.getArchetype().equals(opponentCard.getArchetype()));
+		//do nothing
 
 		else if ((userCard.getArchetype().equals("dragon") && opponentCard.getArchetype().equals("wizard"))
 				|| (userCard.getArchetype().equals("wizard") && opponentCard.getArchetype().equals("knight"))
