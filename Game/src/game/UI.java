@@ -474,9 +474,9 @@ public class UI {
 		panelContent.setLayout(null);
 		playPanel.add(panelContent);
 		
-		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/dragon.jpg")); //TODO image should be variable
-		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/wizard.jpg")); //TODO image should be variable
-		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/knight.jpg")); //TODO image should be variable
+		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
+		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
+		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
 		
 		JPanel panelStatus = new JPanel();
 		panelStatus.setBorder(UIManager.getBorder("InternalFrame.border"));
