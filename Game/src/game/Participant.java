@@ -9,7 +9,8 @@ public abstract class Participant {
 	protected int health;
 	protected int cardPosition; // seems out of place
 	
-	public Participant() {		
+	public Participant() {	
+		this.health = 100;
 		// Controller builds Participant given player choices from UI
 	}
 	
@@ -36,6 +37,12 @@ public abstract class Participant {
 	}
 	public void setHealth(int health) {
 		this.health = health;
+	}
+	public void draw() {
+		hand.add(cardPosition, deck.getCard());
+	}
+	public void decreaseHealth() {
+		this.health -= 20;
 	}
 	public int getCardPosition() {
 		return cardPosition;
