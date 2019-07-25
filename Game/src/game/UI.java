@@ -40,10 +40,11 @@ public class UI {
 	protected JFrame frame;
 	protected CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
-	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck1, btnDeck2, btnDeck3, btnCard1, btnCard2, btnCard3, btnPlayCard;
+	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, btnCard0, btnCard1, btnCard2, btnPlayCard;
 	private JSpinner spinnerDifficulty;
 	private Sequencer sequencer;
 	private InputStream is;
+	private JProgressBar barPlayerHealth, barOpponentHealth;
 
 	/**
 	 * Create the application.
@@ -73,16 +74,16 @@ public class UI {
 	/**
 	 * Add Controller Listeners
 	 */
-	protected void addNewGameListener(ActionListener newGameListener) {
+	public void addNewGameListener(ActionListener newGameListener) {
 		btnNewGameStart.addActionListener(newGameListener);
 		btnNewGameEnd.addActionListener(newGameListener);
 	}
 
 	public void addDeck0Listener(ActionListener deck0Listener) {
-		btnDeck3.addActionListener(deck0Listener);
+		btnDeck0.addActionListener(deck0Listener);
 	}
 	
-	protected void addDeck1Listener(ActionListener deck1Listener) {
+	public void addDeck1Listener(ActionListener deck1Listener) {
 		btnDeck1.addActionListener(deck1Listener);
 	}
 
@@ -90,30 +91,34 @@ public class UI {
 		btnDeck2.addActionListener(deck2Listener);		
 	}
 	
-	protected void addCard0Listener(ActionListener card0Listener) {
-		btnCard3.addActionListener(card0Listener);
+	public void addCard0Listener(ActionListener card0Listener) {
+		btnCard0.addActionListener(card0Listener);
 	}
 	
-	protected void addCard1Listener(ActionListener card1Listener) {
+	public void addCard1Listener(ActionListener card1Listener) {
 		btnCard1.addActionListener(card1Listener);
 	}
 	
-	protected void addCard2Listener(ActionListener card2Listener) {
+	public void addCard2Listener(ActionListener card2Listener) {
 		btnCard2.addActionListener(card2Listener);
 	}
 	
-	protected void addPlayCardListener(ActionListener playCardListener) {
+	public void addPlayCardListener(ActionListener playCardListener) {
 		btnPlayCard.addActionListener(playCardListener);
 	}
 	
-	protected void addContinueListener(ActionListener ContinueListener) {
+	public void addContinueListener(ActionListener ContinueListener) {
 		btnContinue.addActionListener(ContinueListener);
 	}
-	// For difficulty setting, unsure how to do
-//		protected void addDifficultChangeListener(PropertyChange listener) {
-//			spinnerDifficulty.addChangeListener(listener);
-//		}
 
+	public void addDifficultyListener(ChangeListener listener) {
+		spinnerDifficulty.addChangeListener(listener);
+	}
+
+	public Object getDifficulty() {
+		return spinnerDifficulty.getValue();
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -165,7 +170,7 @@ public class UI {
 		btnRules.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnRules.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnRules);
-		btnRules.addActionListener(new ActionListener() { //TODO change to GC
+		btnRules.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "rulesPanel");
 			}
@@ -179,7 +184,7 @@ public class UI {
 		btnSettings.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnSettings.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnSettings);
-		btnSettings.addActionListener(new ActionListener() { //TODO change to GC
+		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "settingsPanel");
 			}
@@ -240,7 +245,7 @@ public class UI {
 		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
-		btnMainMenu.addActionListener(new ActionListener() { //TODO move to GC
+		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
@@ -347,14 +352,6 @@ public class UI {
 		spinnerDifficulty.setModel(new SpinnerListModel(new String[] {"Easy", "Normal", "Hard"}));
 		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
 		panel.add(spinnerDifficulty);
-		spinnerDifficulty.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) { // TODO fill in difficulty changes & move to GC
-				if(spinnerDifficulty.getValue() == "Easy");
-				else if(spinnerDifficulty.getValue() == "Normal");
-				else;
-			}
-		});
-
 		
 		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnMainMenu.setBounds(189, 529, 220, 40);
@@ -364,7 +361,7 @@ public class UI {
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnMainMenu);
-		btnMainMenu.addActionListener(new ActionListener() { // TODO move to GC
+		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
@@ -417,30 +414,18 @@ public class UI {
 		deckPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		panelContent.add(deckPanel);		
 
-		ImageIcon imgIconDeck1 = new ImageIcon(UI.class.getResource("/images/deck1.png"));		
+		ImageIcon imgIconDeck0 = new ImageIcon(UI.class.getResource("/images/deck0.png"));		
+		ImageIcon imgIconDeck1 = new ImageIcon(UI.class.getResource("/images/deck1.png"));
 		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
-		ImageIcon imgIconDeck3 = new ImageIcon(UI.class.getResource("/images/deck3.png"));
+		
+		btnDeck0 = new JButton(new ImageIcon(getScaledImage(imgIconDeck0.getImage(),127, 175)));
+		deckPanel.add(btnDeck0);
 		
 		btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
 		deckPanel.add(btnDeck1);
 
 		btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
 		deckPanel.add(btnDeck2);
-		btnDeck2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");
-				// TODO move to GC
-			}
-		});
-		
-		btnDeck3 = new JButton(new ImageIcon(getScaledImage(imgIconDeck3.getImage(),127, 175)));
-		deckPanel.add(btnDeck3);
-		btnDeck3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "playPanel");
-				// TODO move to GC
-			}
-		});
 	}
 	
 	private void initPlay() {
@@ -474,10 +459,6 @@ public class UI {
 		panelContent.setLayout(null);
 		playPanel.add(panelContent);
 		
-		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
-		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
-		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
-		
 		JPanel panelStatus = new JPanel();
 		panelStatus.setBorder(UIManager.getBorder("InternalFrame.border"));
 		panelStatus.setBackground(Color.BLACK);
@@ -492,9 +473,9 @@ public class UI {
 		lblPlayerHealth.setFont(new Font("SimSun", Font.PLAIN, 14));
 		panelStatus.add(lblPlayerHealth);
 		
-		JProgressBar barPlayerHealth = new JProgressBar();
+		barPlayerHealth = new JProgressBar();
 		barPlayerHealth.setBounds(125, 14, 111, 18);
-		barPlayerHealth.setValue(100);  //TODO this should be variable
+		barPlayerHealth.setValue(100);  //TODO this should be updated after each compare
 		barPlayerHealth.setForeground(Color.GREEN);
 		panelStatus.add(barPlayerHealth);
 		
@@ -505,25 +486,18 @@ public class UI {
 		lblOpponentHealth.setBounds(0, 45, 115, 18);
 		panelStatus.add(lblOpponentHealth);
 		
-		JProgressBar barOpponentHealth = new JProgressBar();
+		barOpponentHealth = new JProgressBar();
 		barOpponentHealth.setValue(100);
 		barOpponentHealth.setForeground(Color.GREEN);
 		barOpponentHealth.setBounds(125, 46, 111, 18);
 		panelStatus.add(barOpponentHealth);
-		barPlayerHealth.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				if (barPlayerHealth.getValue() == 0)
-					cardlayout.show(frame.getContentPane(), "endPanel");
-					// TODO set game outcome win/loss variable
-			}
-		});
 		
-		JButton btnMenu = new JButton("Main Menu");
-		btnMenu.setBounds(287, 17, 100, 40);
-		btnMenu.setBackground(Color.LIGHT_GRAY);
-		btnMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
-		panelStatus.add(btnMenu);
-		btnMenu.addActionListener(new ActionListener() { // TODO move to GC
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.setBounds(287, 17, 100, 40);
+		btnMainMenu.setBackground(Color.LIGHT_GRAY);
+		btnMainMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
+		panelStatus.add(btnMainMenu);
+		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
@@ -569,29 +543,18 @@ public class UI {
 		cardPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		panelContent.add(cardPanel);
 		
+		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
+		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
+		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
+		
+		btnCard0 = new JButton(new ImageIcon(getScaledImage(imgIconKnight.getImage(), 146, 200)));
+		cardPanel.add(btnCard0);
+		
 		btnCard1 = new JButton(new ImageIcon(getScaledImage(imgIconDragon.getImage(), 146, 200)));
 		cardPanel.add(btnCard1);
-		btnCard1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO move to GC
-			}
-		});
-		
+
 		btnCard2 = new JButton(new ImageIcon(getScaledImage(imgIconWizard.getImage(), 146, 200)));
 		cardPanel.add(btnCard2);
-		btnCard2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO move to GC
-			}
-		});
-		
-		btnCard3 = new JButton(new ImageIcon(getScaledImage(imgIconKnight.getImage(), 146, 200)));
-		cardPanel.add(btnCard3);
-		btnCard3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO move to GC
-			}
-		});
 		
 		btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
 		btnPlayCard.setBounds(189, 603, 220, 40);
@@ -601,11 +564,6 @@ public class UI {
 		btnPlayCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnPlayCard.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnPlayCard);
-		btnPlayCard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO move to GC
-			}
-		});
 	}
 	
 	private void initEnd() {
@@ -647,11 +605,6 @@ public class UI {
 		btnNewGameEnd.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnNewGameEnd.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnNewGameEnd);
-		btnNewGameEnd.addActionListener(new ActionListener() { //TODO move to GC
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(frame.getContentPane(), "choosePanel");	
-			}
-		});
 		
 		JButton btnExit = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
 		btnExit.setBounds(189, 499, 220, 40);
@@ -661,7 +614,7 @@ public class UI {
 		btnExit.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnExit.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnExit);
-		btnExit.addActionListener(new ActionListener() {// TODO move to GC
+		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}

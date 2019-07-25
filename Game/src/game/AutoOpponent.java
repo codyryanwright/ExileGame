@@ -3,7 +3,7 @@ package game;
 import java.util.Random;
 
 public class AutoOpponent extends Participant {
-	private int difficulty;
+	protected int difficulty;
 
 	public int choiceAI(int difficulty)
 	{

@@ -1,6 +1,10 @@
 package game;
 
 import java.util.Random;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -37,6 +41,7 @@ public class GameController {
 		view.addCard2Listener(new Card2Listener());
 		view.addPlayCardListener(new PlayCardListener());
 		view.addContinueListener(new ContinueListener());
+		view.addDifficultyListener(new DifficultyListener());
 	}
 
 	class NewGameListener implements ActionListener {
@@ -106,7 +111,7 @@ public class GameController {
 			else
 			{
 				//gets a card from the user and the opponent
-				Card userCard = ((User) user).playCard();
+				Card userCard = ((User) user).playCard(); //TODO null pointer exception bug
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
 				
 				compareCards(userCard, opCard);
@@ -120,9 +125,9 @@ public class GameController {
 				
 				//checks who wins
 				if(user.getHealth() == 0);
-					//TODO go to win screen
+					//TODO set win message, go to end screen
 				else if (opponent.getHealth() == 0);
-					//TODO go to lose screen
+					//TODO set lose message, go to end screen
 				else;
 			}
 		}
@@ -134,6 +139,13 @@ public class GameController {
 				view.show("choosePanel");
 			else
 				view.show("playPanel");
+		}
+	}
+	
+	class DifficultyListener implements ChangeListener {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			((AutoOpponent) opponent).setDifficulty((int) view.getDifficulty());			
 		}
 	}
 	
