@@ -42,6 +42,7 @@ public class GameController {
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			view.show("choosePanel");
+			// TODO reset game variables
 		}
 	}
 	

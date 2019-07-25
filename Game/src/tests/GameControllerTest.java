@@ -21,6 +21,7 @@ public class GameControllerTest {
 		Card c3 = new Card("blue", "knight", "rare", 4.0f, "");
 		Card c4 = new Card("green", "knight", "rare", 4.0f, "");
 		Card c5 = new Card("green", "wizard", "rare", 4.0f, "");
+		
 		//Same type, different archetype
 		gc.compareCards(c2, c4);
 		assertEquals(gc.user.getHealth(), 80f);
@@ -65,11 +66,7 @@ public class GameControllerTest {
 		gc.compareCards(c5, c1);
 		assertEquals(gc.user.getHealth(), 20f);
 		assertEquals(gc.opponent.getHealth(), 0f);
-		
-		
 	}
-		
-		
 }
 
 
