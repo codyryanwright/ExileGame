@@ -3,11 +3,11 @@ package game;
 import java.util.ArrayList;
 
 public abstract class Participant {
-	protected String name;
+	protected String name; // TODO where is this used?
 	protected Deck deck;
 	protected ArrayList <Card> hand;
 	protected int health;
-	protected int cardPosition; // seems out of place
+	protected int cardPosition;
 	
 	public Participant() {	
 		this.health = 100;
