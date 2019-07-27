@@ -106,7 +106,7 @@ public class GameController {
 	class PlayCardListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (user.getCardPosition() == -1)
-				// card not chosen do nothing
+				// card not chosen do nothing TODO add message to select?
 				return;
 			else
 			{
@@ -115,20 +115,29 @@ public class GameController {
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
 				
 				compareCards(userCard, opCard);
-				user.pushToDiscard(userCard);
-				opponent.pushToDiscard(opCard);
-				user.setCardPosition(-1); // resets card position
 				
-				// TODO set card art for new card
-				// 		update score / health
-				//		check if game over
-				
-				//checks who wins
-				if(user.getHealth() == 0);
-					//TODO set win message, go to end screen
-				else if (opponent.getHealth() == 0);
-					//TODO set lose message, go to end screen
-				else;
+				//check for winner
+				if(user.getHealth() == 0)
+				{
+					view.setEndMessage("YOU LOSE!");
+					view.show("endPanel");
+				}
+				else if (opponent.getHealth() == 0)
+				{
+					view.setEndMessage("YOU WIN!");
+					view.show("endPanel");
+				}
+				else
+				{
+					user.pushToDiscard(userCard);
+					opponent.pushToDiscard(opCard);
+					user.setCardPosition(-1); // resets card position
+					
+					// TODO set card art for new card
+					// 		update score / health
+					//		check if game over
+				}
+
 			}
 		}
 	}

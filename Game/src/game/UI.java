@@ -45,6 +45,7 @@ public class UI {
 	private Sequencer sequencer;
 	private InputStream is;
 	private JProgressBar barPlayerHealth, barOpponentHealth;
+	private String strEndMsg;
 
 	/**
 	 * Create the application.
@@ -117,6 +118,10 @@ public class UI {
 
 	public Object getDifficulty() {
 		return spinnerDifficulty.getValue();
+	}
+	
+	public void setEndMessage(String msg) {
+		strEndMsg = msg;
 	}
 	
 	/**
@@ -626,7 +631,7 @@ public class UI {
 		txtYouWin.setBorder(null);
 		txtYouWin.setHorizontalAlignment(SwingConstants.CENTER);
 		txtYouWin.setBackground(Color.BLACK);
-		txtYouWin.setText("YOU WIN!");  //TODO this should be variable
+		txtYouWin.setText(strEndMsg);  //TODO this should be variable
 		txtYouWin.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
 		txtYouWin.setForeground(Color.WHITE);
 		panelContent.add(txtYouWin);
