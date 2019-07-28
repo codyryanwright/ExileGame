@@ -1,15 +1,10 @@
 ---IN PROGRESS---
 (A) Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
 (D) Add card hierarchy explanation to rules
-(A) Add the rest of ActionListeners (already created in GameController, just need changed in UI)
-(L) Finish JUnit tests with at least one for compareCards(...) with branch coverage
 (D) Create the card .jpg's and add to the images package
 
 ---UNASSIGNED---
 Connect barPlayerHealth to outcome of compareCards() (listener for GC)
 Create text that will be displayed at game start, and after each turn. (also where that will be held)
-endPanel txtYouWin("You Win!") should be variable (String win or loss) not hardcoded
 GameController needs to set button image when a new card is drawn from the deck into hand
-Do we have a function that gets new card for hand after play?
 Create a data package and move textfiles to that package
-Move ChangeListener for spinnerDifficulty to GameController (like the EventListeners for buttons were)
