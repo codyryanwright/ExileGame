@@ -27,6 +27,11 @@ public class Card {
 		setImgIconCard(strImgIconCard);
 	}
 	
+	public String getName() {
+		String name = type + " " + archetype;
+		return name;
+	}
+	
 	public String getType() {
 		return type;
 	}
