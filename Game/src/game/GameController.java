@@ -47,6 +47,7 @@ public class GameController {
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			view.show("choosePanel");
+			view.resetText();
 			// TODO reset game variables
 		}
 	}
@@ -114,9 +115,11 @@ public class GameController {
 	
 	class PlayCardListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (user.getCardPosition() == -1)
-				// card not chosen do nothing TODO add message to select?
+			if (user.getCardPosition() == -1) {
+				view.appendText("Please choose a Card!");
+				view.refreshText();
 				return;
+			}
 			else
 			{
 				//  add "please select a card"

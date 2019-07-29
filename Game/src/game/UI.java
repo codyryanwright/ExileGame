@@ -17,7 +17,15 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import javax.swing.SwingConstants;
 import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequencer;
 import javax.swing.JButton;
@@ -25,6 +33,7 @@ import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 import java.awt.CardLayout;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.SpinnerListModel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -48,12 +57,21 @@ public class UI {
 	private InputStream is;
 	private JProgressBar barPlayerHealth, barOpponentHealth;
 	private String strEndMsg;
+	private static File file = new File ("./src/gameRecord.txt");
+	private JTextArea txtpnGame = new JTextArea();
 
 	/**
 	 * Create the application.
 	 */
 	public UI() {
 		initialize();
+		
+		try {
+			if (!file.exists()) 
+			{
+				file.createNewFile();
+			}
+		} 	catch (IOException e) {}
 		
 		// set music
 		try {
@@ -515,31 +533,10 @@ public class UI {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		panelContent.add(scrollPane);
 		
-		JTextPane txtpnGame = new JTextPane();
+		//TODO fix document section
 		txtpnGame.setLocation(97, 0);
-		txtpnGame.setText("          ,   ,\r\n" + 
-				"         ,-`{-`/\r\n" + 
-				"      ,-~ , \\ {-~~-,\r\n" + 
-				"    ,~  ,   ,`,-~~-,`,\r\n" + 
-				"  ,`   ,   { {      } }                                             }/\r\n" + 
-				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
-				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
-				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
-				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
-				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
-				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
-				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
-				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
-				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
-				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
-				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
-				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
-				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
-				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
-				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
-				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
-				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,"); // TODO this needs to be variable and append card action text
 		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 7));
+		resetText();
 		txtpnGame.setEditable(false);
 		scrollPane.setViewportView(txtpnGame);
 		
@@ -581,6 +578,63 @@ public class UI {
 		case 1: btnCard1.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
 		case 2: btnCard2.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
 		}
+	}
+	
+	public void appendText(String s) {
+		try {
+			// appending user name and message to the file
+			BufferedWriter out = new BufferedWriter(new FileWriter(file,
+					true));
+				
+			out.write(s + "\n");
+			out.close(); // closing writer
+		} 
+		catch (IOException e1) {}
+	}
+	
+	public void refreshText() {
+		try {
+			// opening file and appending all file contents to message area
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNext()) {
+				txtpnGame.append("\n"+scanner.nextLine() + "\n");
+			}
+			scanner.close();
+		} 
+		catch (FileNotFoundException e1) {}
+
+	}
+	
+	public void resetText() {
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		pw.close();
+		txtpnGame.setText("          ,   ,\r\n" + 
+				"         ,-`{-`/\r\n" + 
+				"      ,-~ , \\ {-~~-,\r\n" + 
+				"    ,~  ,   ,`,-~~-,`,\r\n" + 
+				"  ,`   ,   { {      } }                                             }/\r\n" + 
+				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
+				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
+				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
+				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
+				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
+				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
+				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
+				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
+				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
+				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
+				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
+				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
+				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
+				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
+				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
+				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
+				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,");
 	}
 	
 	private void initEnd() {
