@@ -22,11 +22,11 @@ public class AutoOpponent extends Participant {
 		int choice;
 		
 		if(difficulty == 1) 
-			if(hand.get(0).getPower() >= hand.get(1).getPower()
-			&& hand.get(0).getPower() >= hand.get(2).getPower())
+			if(hand[0].getPower() >= hand[1].getPower()
+			&& hand[0].getPower() >= hand[2].getPower())
 				choice = 0;
-			else if(hand.get(1).getPower() >= hand.get(0).getPower()
-			&& hand.get(1).getPower() >= hand.get(2).getPower())
+			else if(hand[1].getPower() >= hand[0].getPower()
+			&& hand[1].getPower() >= hand[2].getPower())
 				choice = 1;
 			else
 				choice = 2;
@@ -39,7 +39,7 @@ public class AutoOpponent extends Participant {
 	// play card from hand and replace from deck
 	public Card playCard(int cardPosition) {
 
-		Card chosenCard = hand.get(cardPosition);
+		Card chosenCard = hand[cardPosition];
 
 		return chosenCard;
 	}

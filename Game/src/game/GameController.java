@@ -56,6 +56,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 0;
 			user.setDeck(collection[deckChoice]);
+			user.loadHand();
+			for(int i = 0; i < 3; i++)
+				view.setImageIcon(i, user.hand[i].getImgIconCard());
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
@@ -67,6 +70,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 1;
 			user.setDeck(collection[deckChoice]);
+			user.loadHand();
+			for(int i = 0; i < 3; i++)
+				view.setImageIcon(i, user.hand[i].getImgIconCard());
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
@@ -78,6 +84,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = 2;
 			user.setDeck(collection[deckChoice]);
+			user.loadHand();
+			for(int i = 0; i < 3; i++)
+				view.setImageIcon(i, user.hand[i].getImgIconCard());
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);

@@ -15,12 +15,14 @@ public class Deck {
 	public Deck(int deckChoice) {
 		try {
 			deck = new Stack<Card>();
+			discard = new Stack<Card>();
 			loadDeck(deckChoice);
 		}
 		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
+		shuffle();
 	}
 	
 	private void loadDeck(int deckChoice) throws IOException {

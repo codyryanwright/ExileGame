@@ -40,7 +40,9 @@ public class UI {
 	protected JFrame frame;
 	protected CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
-	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, btnCard0, btnCard1, btnCard2, btnPlayCard;
+	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, 
+		btnCard0, btnCard1, btnCard2, btnPlayCard;
+	ImageIcon cardImage0, cardImage1, cardImage2;
 	private JSpinner spinnerDifficulty;
 	private Sequencer sequencer;
 	private InputStream is;
@@ -548,17 +550,19 @@ public class UI {
 		cardPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		panelContent.add(cardPanel);
 		
-		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
-		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
-		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
+//		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
+//		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
+//		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
 		
-		btnCard0 = new JButton(new ImageIcon(getScaledImage(imgIconKnight.getImage(), 146, 200)));
+		btnCard0 = new JButton();
 		cardPanel.add(btnCard0);
 		
-		btnCard1 = new JButton(new ImageIcon(getScaledImage(imgIconDragon.getImage(), 146, 200)));
+		btnCard1 = new JButton();
+
 		cardPanel.add(btnCard1);
 
-		btnCard2 = new JButton(new ImageIcon(getScaledImage(imgIconWizard.getImage(), 146, 200)));
+		btnCard2 = new JButton();
+
 		cardPanel.add(btnCard2);
 		
 		btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
@@ -569,6 +573,14 @@ public class UI {
 		btnPlayCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnPlayCard.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnPlayCard);
+	}
+	
+	public void setImageIcon(int cardPosition, ImageIcon toSet) {
+		switch(cardPosition) {
+		case 0: btnCard0.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
+		case 1: btnCard1.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
+		case 2: btnCard2.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
+		}
 	}
 	
 	private void initEnd() {

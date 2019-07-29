@@ -64,6 +64,6 @@ public class Card {
 	}
 
 	public void setImgIconCard(String strImgIconCard) {
-		//this.imgIconCard =  new ImageIcon(Card.class.getResource(strImgIconCard)); //TODO needs tested
+		this.imgIconCard =  new ImageIcon(Card.class.getResource(strImgIconCard)); //TODO needs tested
 	}
 }
