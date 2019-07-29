@@ -110,6 +110,8 @@ public class GameController {
 				return;
 			else
 			{
+				//  add "please select a card"
+				
 				//gets a card from the user and the opponent
 				Card userCard = ((User) user).playCard(); //TODO null pointer exception bug
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
@@ -176,6 +178,10 @@ public class GameController {
 	}
 	
 	public void compareCards(Card userCard, Card opponentCard) {
+		// add text "You played userCard.getName()
+		// add text "Opponent played opponentCard.getName()
+		
+		
 		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
 		// In the case that both types match
 		// In the case that both archTypes, return
@@ -204,8 +210,10 @@ public class GameController {
 
 		if (opponentPower > playerPower)
 			user.decreaseHealth();
+			// add text similar to "Opponent won this round"
 		else if (opponentPower < playerPower)
 			opponent.decreaseHealth();
+			// add text similar to "You won this round!"
 		else
 			return;
 	}
