@@ -99,10 +99,8 @@ public class GameController {
 			else
 			{
 				//gets a card from the user and the opponent
-				Card userCard = ((User) user).playCard(); //TODO null pointer exception bug
-//				if(userCard == null) System.out.println("PLAYER INVALID");
+				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
-//				if(opCard == null) System.out.println("OPPONENT INVALID");
 				compareCards(userCard, opCard);
 				
 				//check for winner
@@ -150,7 +148,6 @@ public class GameController {
 			for(int i = 0; i < DECK_TOTAL; i++)
 				collection[i] = new Deck(i+1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

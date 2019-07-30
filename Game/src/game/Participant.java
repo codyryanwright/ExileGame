@@ -1,7 +1,6 @@
 package game;
 
 public abstract class Participant {
-	protected String name; // TODO where is this used?
 	protected Deck deck;
 	protected int HAND_SIZE = 3;
 	protected Card[] hand = new Card[HAND_SIZE];
@@ -12,14 +11,6 @@ public abstract class Participant {
 		this.health = 100;
 		cardPosition = -1;
 		// Controller builds Participant given player choices from UI
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
 	}
 	
 	public Deck getDeck() {

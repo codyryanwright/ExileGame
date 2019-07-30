@@ -9,7 +9,6 @@ import java.util.Stack;
 public class Deck {
 	private Stack <Card> deck;
 	private Stack <Card> discard;
-	private Card playedCard; // TODO can this just be moved to getCard?
 	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) {
@@ -46,7 +45,6 @@ public class Deck {
 			bufferedReader.close();
 		}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -62,7 +60,7 @@ public class Deck {
 	public Card getCard() {
 		if(deck.isEmpty()) reset();
 		
-		playedCard = deck.pop();
+		Card playedCard = deck.pop();
 		discard.push(playedCard);
 
 		return playedCard;
