@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
-import java.awt.Image;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -25,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequencer;
 import javax.swing.JButton;
@@ -51,14 +49,13 @@ public class UI {
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
 	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, 
 		btnCard0, btnCard1, btnCard2, btnPlayCard;
-	ImageIcon cardImage0, cardImage1, cardImage2;
 	private JSpinner spinnerDifficulty;
 	private Sequencer sequencer;
 	private InputStream is;
 	private JProgressBar barPlayerHealth, barOpponentHealth;
 	private int userHealth = 100, opHealth = 100;
 	private String strEndMsg;
-	private static File file = new File ("./src/gameRecord.txt");
+	private static File file = new File ("./src/gameRecord.txt"); // TODO why is this one static?
 	private JTextArea txtpnGame = new JTextArea();
 	private JTextField txtYouWin = new JTextField();
 
@@ -70,10 +67,8 @@ public class UI {
 		
 		try {
 			if (!file.exists()) 
-			{
 				file.createNewFile();
-			}
-		} 	catch (IOException e) {}
+		} catch (IOException e) {}
 		
 		// set music
 		try {
@@ -163,7 +158,7 @@ public class UI {
 		JLabel lblMainMenuScreen = new JLabel("");
 		lblMainMenuScreen.setBounds(0, 0, 477, 675);
 		lblMainMenuScreen.setBackground(Color.BLACK);
-		lblMainMenuScreen.setIcon(new ImageIcon(getScaledImage(imgMainMenuScreen.getImage(), 477, 675)));
+		lblMainMenuScreen.setIcon(getScaledImage(imgMainMenuScreen, 477, 675));
 		panelTitle.add(lblMainMenuScreen);
 		
 		JPanel panelContent = new JPanel();
@@ -173,7 +168,7 @@ public class UI {
 		panelContent.setLayout(null);
 		mainMenuPanel.add(panelContent);
 
-		btnNewGameStart = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnNewGameStart = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnNewGameStart.setBounds(189, 103, 220, 40);
 		btnNewGameStart.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewGameStart.setText("New Game");
@@ -182,7 +177,7 @@ public class UI {
 		btnNewGameStart.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnNewGameStart);
 		
-		JButton btnRules = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnRules = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnRules.setBounds(189, 246, 220, 40);
 		btnRules.setVerticalTextPosition(SwingConstants.CENTER);
 		btnRules.setText("Rules");
@@ -196,7 +191,7 @@ public class UI {
 			}
 		});
 		
-		JButton btnSettings = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnSettings = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnSettings.setBounds(189, 389, 220, 40);
 		btnSettings.setVerticalTextPosition(SwingConstants.CENTER);
 		btnSettings.setText("Settings");
@@ -210,7 +205,7 @@ public class UI {
 			}
 		});
 		
-		btnContinue = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnContinue = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnContinue.setBounds(189, 532, 220, 40);
 		btnContinue.setVerticalTextPosition(SwingConstants.CENTER);
 		btnContinue.setText("Continue Game");
@@ -241,7 +236,7 @@ public class UI {
 		ImageIcon imgRulesScreen = new ImageIcon(UI.class.getResource("/images/rulesScreen.jpg"));		
 		JLabel lblRulesScreen = new JLabel("");
 		lblRulesScreen.setBounds(0, 0, 477, 675);
-		lblRulesScreen.setIcon(new ImageIcon(getScaledImage(imgRulesScreen.getImage(), 477, 675)));
+		lblRulesScreen.setIcon(getScaledImage(imgRulesScreen, 477, 675));
 		panelTitle.add(lblRulesScreen);
 		
 		JPanel panelContent = new JPanel();
@@ -258,7 +253,7 @@ public class UI {
 		lblRules.setBackground(Color.BLACK);
 		panelContent.add(lblRules);
 		
-		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnMainMenu = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnMainMenu.setBounds(189, 593, 220, 40);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setText("Main Menu");
@@ -316,7 +311,7 @@ public class UI {
 		ImageIcon imgSettingsScreen = new ImageIcon(UI.class.getResource("/images/settingsScreen.jpg"));		
 		JLabel lblSettingsScreen = new JLabel("");
 		lblSettingsScreen.setBounds(0, 0, 477, 675);
-		lblSettingsScreen.setIcon(new ImageIcon(getScaledImage(imgSettingsScreen.getImage(), 477, 675)));
+		lblSettingsScreen.setIcon(getScaledImage(imgSettingsScreen, 477, 675));
 		panelTitle.add(lblSettingsScreen);
 		
 		JPanel panelContent = new JPanel();
@@ -373,7 +368,7 @@ public class UI {
 		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
 		panel.add(spinnerDifficulty);
 		
-		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnMainMenu = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnMainMenu.setBounds(189, 529, 220, 40);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setText("Main Menu");
@@ -408,7 +403,7 @@ public class UI {
 		ImageIcon imgChooseScreen = new ImageIcon(UI.class.getResource("/images/chooseScreen.jpg"));		
 		JLabel lblChooseScreen = new JLabel("");
 		lblChooseScreen.setBounds(0, 0, 477, 675);
-		lblChooseScreen.setIcon(new ImageIcon(getScaledImage(imgChooseScreen.getImage(), 477, 675)));
+		lblChooseScreen.setIcon(getScaledImage(imgChooseScreen, 477, 675));
 		lblChooseScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblChooseScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitle.add(lblChooseScreen);
@@ -438,13 +433,13 @@ public class UI {
 		ImageIcon imgIconDeck1 = new ImageIcon(UI.class.getResource("/images/deck1.png"));
 		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
 		
-		btnDeck0 = new JButton(new ImageIcon(getScaledImage(imgIconDeck0.getImage(),127, 175)));
+		btnDeck0 = new JButton(getScaledImage(imgIconDeck0,127, 175));
 		deckPanel.add(getBtnDeck0());
 		
-		btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
+		btnDeck1 = new JButton(getScaledImage(imgIconDeck1,127, 175));
 		deckPanel.add(btnDeck1);
 
-		btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
+		btnDeck2 = new JButton(getScaledImage(imgIconDeck2,127, 175));
 		deckPanel.add(btnDeck2);
 	}
 	
@@ -468,7 +463,7 @@ public class UI {
 		ImageIcon imgPlayScreen = new ImageIcon(UI.class.getResource("/images/playScreen.jpg"));		
 		JLabel lblPlayScreen = new JLabel("");
 		lblPlayScreen.setBounds(0, 0, 477, 675);
-		lblPlayScreen.setIcon(new ImageIcon(getScaledImage(imgPlayScreen.getImage(), 477, 675)));
+		lblPlayScreen.setIcon(getScaledImage(imgPlayScreen, 477, 675));
 		lblPlayScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblPlayScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitle.add(lblPlayScreen);
@@ -557,7 +552,7 @@ public class UI {
 
 		cardPanel.add(btnCard2);
 		
-		btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
+		btnPlayCard = new JButton(getScaledImage(imgIconButton,220, 40));
 		btnPlayCard.setBounds(189, 603, 220, 40);
 		btnPlayCard.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlayCard.setText("Play Card");
@@ -569,9 +564,9 @@ public class UI {
 	
 	public void setImageIcon(int cardPosition, ImageIcon toSet) {
 		switch(cardPosition) {
-		case 0: btnCard0.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
-		case 1: btnCard1.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
-		case 2: btnCard2.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
+		case 0: btnCard0.setIcon(getScaledImage(toSet, 146, 200));
+		case 1: btnCard1.setIcon(getScaledImage(toSet, 146, 200));
+		case 2: btnCard2.setIcon(getScaledImage(toSet, 146, 200));
 		}
 	}
 	
@@ -657,7 +652,7 @@ public class UI {
 		ImageIcon imgEndScreen = new ImageIcon(UI.class.getResource("/images/endScreen.jpg"));		
 		JLabel lblEndScreen = new JLabel("");
 		lblEndScreen.setBounds(0, 0, 477, 675);
-		lblEndScreen.setIcon(new ImageIcon(getScaledImage(imgEndScreen.getImage(), 477, 675)));
+		lblEndScreen.setIcon(getScaledImage(imgEndScreen, 477, 675));
 		lblEndScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblEndScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitle.add(lblEndScreen);
@@ -668,7 +663,7 @@ public class UI {
 		panelContent.setLayout(null);
 		endPanel.add(panelContent);
 		
-		btnNewGameEnd = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnNewGameEnd = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnNewGameEnd.setBounds(189, 324, 220, 40);
 		btnNewGameEnd.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewGameEnd.setText("New Game");
@@ -677,7 +672,7 @@ public class UI {
 		btnNewGameEnd.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnNewGameEnd);
 		
-		JButton btnExit = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnExit = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnExit.setBounds(189, 499, 220, 40);
 		btnExit.setVerticalTextPosition(SwingConstants.CENTER);
 		btnExit.setText("Exit");
@@ -727,13 +722,13 @@ public class UI {
 //		cardlayout.show(frame.getContentPane(), "endPanel");
 	}
 	
-	private Image getScaledImage(Image srcImg, int w, int h) {
+	private ImageIcon getScaledImage(ImageIcon srcImgIcon, int w, int h) {
 	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
 	    Graphics2D g2 = resizedImg.createGraphics();
 	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-	    g2.drawImage(srcImg, 0, 0, w, h, null);
+	    g2.drawImage(srcImgIcon.getImage(), 0, 0, w, h, null);
 	    g2.dispose();
-	    return resizedImg;
+	    return new ImageIcon(resizedImg);
 	}
 
 

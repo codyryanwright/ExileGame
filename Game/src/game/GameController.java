@@ -188,7 +188,7 @@ public class GameController {
 		
 		// Print match results
 		view.appendText("Match Results: \nYour "+userCard.getName()+ 
-				" power: "+playerPower+"\n Your Opponent's "+opponentCard.getName()+
+				" power: "+playerPower+"\nYour Opponent's "+opponentCard.getName()+
 				" power: "+opponentPower);
 		
 		// Print outcome
