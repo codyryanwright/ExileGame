@@ -9,51 +9,45 @@ import java.util.Stack;
 public class Deck {
 	private Stack <Card> deck;
 	private Stack <Card> discard;
-	private Card playedCard;
+	private Card playedCard; // TODO can this just be moved to getCard?
 	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) {
-		try {
-			deck = new Stack<Card>();
-			discard = new Stack<Card>();
-			loadDeck(deckChoice);
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+		deck = new Stack<Card>();
+		discard = new Stack<Card>();
+		loadDeck(deckChoice);
 		shuffle();
 	}
 	
-	private void loadDeck(int deckChoice) throws IOException {
+	private void loadDeck(int deckChoice) {
 		BufferedReader bufferedReader = null;
 		
-		switch (deckChoice) {
-		case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
-			break;
-		case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
-			break;
-		case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
-			break;
-		}
-		
-		int lineCount = 1;
-		
 		try {
+			switch (deckChoice) {
+				case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+					break;
+				case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+					break;
+				case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+					break;
+			}
+			
+			int lineCount = 1;
 			String line = bufferedReader.readLine();
 			
 			while (lineCount <= deckSize) {
 		        String[] split = line.split("\\s+");
-		        Card cardToAdd = new Card(split[0], split[1], 
-		        		split[2], Float.valueOf(split[3]), split[4]);
-		        
+		        Card cardToAdd = new Card(split[0], split[1], split[2], Float.valueOf(split[3]), split[4]);
 		        deck.push(cardToAdd);
-		        
 				line = bufferedReader.readLine();
 				lineCount++;
 			}
-		} finally {
+			
 			bufferedReader.close();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -66,11 +60,10 @@ public class Deck {
 	}
 	
 	public Card getCard() {
-		if(deck.isEmpty())
-			reset();
+		if(deck.isEmpty()) reset();
 		
 		playedCard = deck.pop();
-		discard.push(playedCard); // working right
+		discard.push(playedCard);
 
 		return playedCard;
 	}
@@ -85,8 +78,4 @@ public class Deck {
 		
 		shuffle();
 	}
-//  Wasn't working right
-//	public void pushToDiscard(Card userCard) {
-//		discard.push(userCard);	
-//	}
 }

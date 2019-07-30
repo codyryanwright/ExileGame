@@ -1,9 +1,10 @@
 package game;
 
 public abstract class Participant {
+	private static final int HAND_SIZE = 3;
+
 	protected String name; // TODO where is this used?
 	protected Deck deck;
-	protected int HAND_SIZE = 3;
 	protected Card[] hand = new Card[HAND_SIZE];
 	protected int health;
 	protected int cardPosition;
@@ -69,16 +70,16 @@ public abstract class Participant {
 	public void setCardPosition(int cardPosition) {
 		this.cardPosition = cardPosition;
 	}
-
-//	public void pushToDiscard(Card userCard) {
-//		deck.pushToDiscard(userCard);
-//	}
 	
 	public void reset() {
 		this.health = 100;
 		cardPosition = -1;
-		if(deck != null) deck.reset(); // reset the current deck (move discard back into deck)
-		deck = null;
+		
+		if(deck != null) { 
+			deck.reset(); // move discard cards back into deck
+			deck = null;
+		}
+		
 		for(int i = 0; i < HAND_SIZE; i++) {
 			hand[i] = null;
 		}

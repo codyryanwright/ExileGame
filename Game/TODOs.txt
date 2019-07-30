@@ -1,10 +1,10 @@
 ---IN PROGRESS---
 (A) Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
 (D) Add card hierarchy explanation to rules
-(D) Create the card .jpg's and add to the images package
 
 ---UNASSIGNED---
-Connect barPlayerHealth to outcome of compareCards() (listener for GC)
-Create text that will be displayed at game start, and after each turn. (also where that will be held)
-GameController needs to set button image when a new card is drawn from the deck into hand
-Create a data package and move textfiles to that package
+Create a data package and move textfiles to that package.
+Check unused items in TODO's
+
+
+*To view all annotated TODO's click Window->Show View->Tasks

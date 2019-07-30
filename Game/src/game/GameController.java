@@ -1,13 +1,10 @@
 package game;
 
 import java.util.Random;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 
 public class GameController {
@@ -23,13 +20,7 @@ public class GameController {
 		this.view = view;
 		user = new User();
 		opponent = new AutoOpponent();
-		
-		try {
-			buildCollection();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		buildCollection();
 	
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
@@ -124,8 +115,6 @@ public class GameController {
 				}
 				else
 				{
-//					user.pushToDiscard(userCard);
-//					opponent.pushToDiscard(opCard);
 					user.setCardPosition(-1); // resets card position
 				}
 
@@ -153,9 +142,14 @@ public class GameController {
 		this.deckChoice = deckChoice;
 	}
 	
-	public void buildCollection() throws IOException {
-		for(int i = 0; i < DECK_TOTAL; i++)
-			collection[i] = new Deck(i+1);
+	public void buildCollection() {
+		try {
+			for(int i = 0; i < DECK_TOTAL; i++)
+				collection[i] = new Deck(i+1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public int getDeckChoice() {
@@ -167,41 +161,37 @@ public class GameController {
 	}
 	
 	public void compareCards(Card userCard, Card opponentCard) {
+		// Print cards played
 		view.appendText("You played "+userCard.getName() +
 				"\nYour Opponent played "+opponentCard.getName());
 		view.refreshText();
 		
-		
 		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
-		// In the case that both types match
-		// In the case that both archTypes, return
-		if (userCard.getType().equals(opponentCard.getType()));
-		//do nothing
 
+		// Make type comparison and modify participants power
+		if (userCard.getType().equals(opponentCard.getType())); // do nothing
 		else if ((userCard.getType().equals("red") && opponentCard.getType().equals("green"))
 				|| (userCard.getType().equals("green") && opponentCard.getType().equals("blue"))
 				|| (userCard.getType().equals("blue") && opponentCard.getType().equals("red")))
 			playerPower += userCard.getPower();
-
 		else
 			opponentPower += opponentCard.getPower();
 
-
-		if (userCard.getArchetype().equals(opponentCard.getArchetype()));
-		//do nothing
-
+		// Make archetype comparison and modify participants power
+		if (userCard.getArchetype().equals(opponentCard.getArchetype())); // do nothing
 		else if ((userCard.getArchetype().equals("dragon") && opponentCard.getArchetype().equals("wizard"))
 				|| (userCard.getArchetype().equals("wizard") && opponentCard.getArchetype().equals("knight"))
 				|| (userCard.getArchetype().equals("knight") && opponentCard.getArchetype().equals("dragon")))
 			playerPower += 1.5 * userCard.getPower();
-
 		else
 			opponentPower += 1.5 * userCard.getPower();
 		
+		// Print match results
 		view.appendText("Match Results: \nYour "+userCard.getName()+ 
 				" power: "+playerPower+"\nYour Opponent's "+opponentCard.getName()+
 				" power: "+opponentPower);
 		
+		// Print outcome
 		if (opponentPower > playerPower) {
 			user.decreaseHealth();
 			view.appendText("\nYou've lost this round!\n");
@@ -218,8 +208,8 @@ public class GameController {
 			return;
 		}
 		
+		// Set next hand for play
 		view.setHealth(user.getHealth(), opponent.getHealth());
-		
 		user.draw();
 		opponent.draw();
 		updateHand();
