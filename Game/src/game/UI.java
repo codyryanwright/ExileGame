@@ -582,11 +582,10 @@ public class UI {
 	
 	public void appendText(String s) {
 		try {
-			// appending user name and message to the file
 			BufferedWriter out = new BufferedWriter(new FileWriter(file,
 					true));
 				
-			out.write(s + "\n");
+			out.write(s+"\n");
 			out.close(); // closing writer
 		} 
 		catch (IOException e1) {}
@@ -597,7 +596,7 @@ public class UI {
 			// opening file and appending all file contents to message area
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNext()) {
-				txtpnGame.append("\n"+scanner.nextLine() + "\n");
+				txtpnGame.append(scanner.nextLine() + "\n");
 			}
 			scanner.close();
 		} 
@@ -634,7 +633,7 @@ public class UI {
 				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
 				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
 				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
-				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,");
+				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,\n");
 	}
 	
 	private void initEnd() {

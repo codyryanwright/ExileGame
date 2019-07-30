@@ -63,6 +63,7 @@ public class GameController {
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
+			opponent.loadHand();
 			view.show("playPanel");
 		}
 	}
@@ -77,6 +78,7 @@ public class GameController {
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
+			opponent.loadHand();
 			view.show("playPanel");
 		}
 	}
@@ -91,6 +93,7 @@ public class GameController {
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
+			opponent.loadHand();
 			view.show("playPanel");
 		}
 	}
@@ -122,12 +125,11 @@ public class GameController {
 			}
 			else
 			{
-				//  add "please select a card"
-				
 				//gets a card from the user and the opponent
 				Card userCard = ((User) user).playCard(); //TODO null pointer exception bug
+//				if(userCard == null) System.out.println("PLAYER INVALID");
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
-				
+//				if(opCard == null) System.out.println("OPPONENT INVALID");
 				compareCards(userCard, opCard);
 				
 				//check for winner
@@ -190,8 +192,9 @@ public class GameController {
 	}
 	
 	public void compareCards(Card userCard, Card opponentCard) {
-		// add text "You played userCard.getName()
-		// add text "Opponent played opponentCard.getName()
+		view.appendText("You played "+userCard.getName() +
+				"\nYour Opponent played "+opponentCard.getName());
+		view.refreshText();
 		
 		
 		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
@@ -219,14 +222,25 @@ public class GameController {
 
 		else
 			opponentPower += 1.5 * userCard.getPower();
-
-		if (opponentPower > playerPower)
+		
+		view.appendText("Match Results: \nYour "+userCard.getName()+ 
+				" power: "+playerPower+"\n Your Opponent's "+opponentCard.getName()+
+				" power: "+opponentPower);
+		
+		if (opponentPower > playerPower) {
 			user.decreaseHealth();
-			// add text similar to "Opponent won this round"
-		else if (opponentPower < playerPower)
+			view.appendText("\nYou've lost this round!\n");
+			view.refreshText();
+		}
+		else if (opponentPower < playerPower) {
 			opponent.decreaseHealth();
-			// add text similar to "You won this round!"
-		else
+			view.appendText("\nYou've lost this round!\n");
+			view.refreshText();
+		}
+		else {
+			view.appendText("\nIt's a draw!\n");
+			view.refreshText();
 			return;
+		}
 	}
 }

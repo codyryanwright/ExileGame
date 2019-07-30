@@ -7,16 +7,7 @@ public class Card {
 	private String archetype;
 	private String rarity;
 	private Float power;
-	private ImageIcon imgIconCard; //TODO add card images to images
-
-//	For Testing
-//	public Card(String type, String archetype, String rarity,
-//			Float power) {
-//		setType(type);
-//		setArchetype(archetype);
-//		setRarity(rarity);
-//		setPower(power);
-//	}
+	private ImageIcon imgIconCard;
 	
 	public Card(String type, String archetype, String rarity,
 			Float power, String strImgIconCard) {
