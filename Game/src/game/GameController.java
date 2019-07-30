@@ -16,6 +16,7 @@ public class GameController {
 	private UI view;
 	public Participant user;
 	public Participant opponent;	
+	private float playerPower = 0, opponentPower = 0;
 	
 	public GameController(UI view) {
 		deckChoice = -1;
@@ -103,7 +104,7 @@ public class GameController {
 //				if(userCard == null) System.out.println("PLAYER INVALID");
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
 //				if(opCard == null) System.out.println("OPPONENT INVALID");
-				compareCards(userCard, opCard);
+				combatCards(userCard, opCard);
 				
 				//check for winner
 				if(user.getHealth() == 0)
@@ -163,13 +164,49 @@ public class GameController {
 		return collection[deckChoice];
 	}
 	
-	public void compareCards(Card userCard, Card opponentCard) {
+	//TODO disconnecting compare and logic
+	public void combatCards(Card userCard, Card opponentCard) {
+		playerPower = 0;
+		opponentPower = 0;
 		// Print cards played
 		view.appendText("You played "+userCard.getName() +
 				"\nYour Opponent played "+opponentCard.getName());
 		view.refreshText();
 		
-		float playerPower = userCard.getPower(), opponentPower = opponentCard.getPower();
+		int battleResult = compareCards(userCard, opponentCard);
+
+		// Print match results
+		view.appendText("Match Results: \nYour "+userCard.getName()+ 
+				" power: "+playerPower+"\nYour Opponent's "+opponentCard.getName()+
+				" power: "+opponentPower);
+		
+		// Print outcome
+		if (battleResult == 0) {
+			user.decreaseHealth();
+			view.appendText("\nYou've lost this round!\n");
+			view.refreshText();
+		}
+		else if (battleResult == 1) {
+			opponent.decreaseHealth();
+			view.appendText("\nYou've won this round!\n");
+			view.refreshText();
+		}
+		else {
+			view.appendText("\nIt's a draw!\n");
+			view.refreshText();
+			return;
+		}
+		
+		// Set next hand for play
+		view.setHealth(user.getHealth(), opponent.getHealth());
+		user.draw();
+		opponent.draw();
+		updateHand();
+	}
+	
+	public int compareCards(Card userCard, Card opponentCard) {
+		playerPower = userCard.getPower();
+		opponentPower = opponentCard.getPower();
 
 		// Make type comparison and modify participants power
 		if (userCard.getType().equals(opponentCard.getType())); // do nothing
@@ -189,32 +226,11 @@ public class GameController {
 		else
 			opponentPower += 1.5 * userCard.getPower();
 		
-		// Print match results
-		view.appendText("Match Results: \nYour "+userCard.getName()+ 
-				" power: "+playerPower+"\nYour Opponent's "+opponentCard.getName()+
-				" power: "+opponentPower);
-		
-		// Print outcome
-		if (opponentPower > playerPower) {
-			user.decreaseHealth();
-			view.appendText("\nYou've lost this round!\n");
-			view.refreshText();
-		}
-		else if (opponentPower < playerPower) {
-			opponent.decreaseHealth();
-			view.appendText("\nYou've won this round!\n");
-			view.refreshText();
-		}
-		else {
-			view.appendText("\nIt's a draw!\n");
-			view.refreshText();
-			return;
-		}
-		
-		// Set next hand for play
-		view.setHealth(user.getHealth(), opponent.getHealth());
-		user.draw();
-		opponent.draw();
-		updateHand();
+		if (opponentPower > playerPower) 
+			return 0;
+		else if (opponentPower < playerPower) 
+			return 1;
+		else 
+			return 2;
 	}
 }
