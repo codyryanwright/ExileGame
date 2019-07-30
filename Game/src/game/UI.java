@@ -707,7 +707,8 @@ public class UI {
 			e.printStackTrace();
 		}
 
-		txtpnGame.setText("          ,   ,\r\n" + 
+		txtpnGame.setText(
+				"          ,   ,\r\n" + 
 				"         ,-`{-`/\r\n" + 
 				"      ,-~ , \\ {-~~-,\r\n" + 
 				"    ,~  ,   ,`,-~~-,`,\r\n" + 

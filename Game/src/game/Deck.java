@@ -9,7 +9,7 @@ import java.util.Stack;
 public class Deck {
 	private Stack <Card> deck;
 	private Stack <Card> discard;
-	private Card playedCard;
+	private Card playedCard; // TODO can this just be moved to getCard?
 	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) {
@@ -24,12 +24,12 @@ public class Deck {
 		
 		try {
 			switch (deckChoice) {
-			case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
-				break;
-			case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
-				break;
-			case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
-				break;
+				case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+					break;
+				case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+					break;
+				case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+					break;
 			}
 			
 			int lineCount = 1;
@@ -37,11 +37,8 @@ public class Deck {
 			
 			while (lineCount <= deckSize) {
 		        String[] split = line.split("\\s+");
-		        Card cardToAdd = new Card(split[0], split[1], 
-		        		split[2], Float.valueOf(split[3]), split[4]);
-		        
+		        Card cardToAdd = new Card(split[0], split[1], split[2], Float.valueOf(split[3]), split[4]);
 		        deck.push(cardToAdd);
-		        
 				line = bufferedReader.readLine();
 				lineCount++;
 			}
@@ -63,8 +60,7 @@ public class Deck {
 	}
 	
 	public Card getCard() {
-		if(deck.isEmpty())
-			reset();
+		if(deck.isEmpty()) reset();
 		
 		playedCard = deck.pop();
 		discard.push(playedCard);

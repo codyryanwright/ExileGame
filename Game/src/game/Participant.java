@@ -73,8 +73,12 @@ public abstract class Participant {
 	public void reset() {
 		this.health = 100;
 		cardPosition = -1;
-		if(deck != null) deck.reset(); // reset the current deck (move discard back into deck)
-		deck = null;
+		
+		if(deck != null) { 
+			deck.reset(); // move discard cards back into deck
+			deck = null;
+		}
+		
 		for(int i = 0; i < HAND_SIZE; i++) {
 			hand[i] = null;
 		}
