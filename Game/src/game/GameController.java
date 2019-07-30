@@ -23,13 +23,7 @@ public class GameController {
 		this.view = view;
 		user = new User();
 		opponent = new AutoOpponent();
-		
-		try {
-			buildCollection();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		buildCollection();
 	
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
@@ -153,9 +147,14 @@ public class GameController {
 		this.deckChoice = deckChoice;
 	}
 	
-	public void buildCollection() throws IOException {
-		for(int i = 0; i < DECK_TOTAL; i++)
-			collection[i] = new Deck(i+1);
+	public void buildCollection() {
+		try {
+			for(int i = 0; i < DECK_TOTAL; i++)
+				collection[i] = new Deck(i+1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public int getDeckChoice() {

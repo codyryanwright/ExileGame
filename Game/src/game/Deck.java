@@ -67,7 +67,7 @@ public class Deck {
 			reset();
 		
 		playedCard = deck.pop();
-		discard.push(playedCard); // working right
+		discard.push(playedCard);
 
 		return playedCard;
 	}
