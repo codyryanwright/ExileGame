@@ -100,14 +100,11 @@ public class GameController {
 			else
 			{
 				//gets a card from the user and the opponent
-				Card userCard = ((User) user).playCard();
+				Card userCard = ((User) user).playCard(); //TODO null pointer exception bug
+//				if(userCard == null) System.out.println("PLAYER INVALID");
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
-<<<<<<< HEAD
 //				if(opCard == null) System.out.println("OPPONENT INVALID");
 				combatCards(userCard, opCard);
-=======
-				compareCards(userCard, opCard);
->>>>>>> bc71e714fd0ba116d964a6af13c1c52ab70ee408
 				
 				//check for winner
 				if(user.getHealth() == 0)
@@ -154,6 +151,7 @@ public class GameController {
 			for(int i = 0; i < DECK_TOTAL; i++)
 				collection[i] = new Deck(i+1);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
