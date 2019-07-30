@@ -530,7 +530,7 @@ public class UI {
 		
 		//TODO fix document section
 		txtpnGame.setLocation(97, 0);
-		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 7));
+		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 9));
 		resetText();
 		txtpnGame.setEditable(false);
 		scrollPane.setViewportView(txtpnGame);
@@ -593,6 +593,7 @@ public class UI {
 	
 	public void refreshText() {
 		txtpnGame.setText("");
+		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 13));
 		try {
 			// opening file and appending all file contents to message area
 			Scanner scanner = new Scanner(file);

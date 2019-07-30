@@ -199,7 +199,7 @@ public class GameController {
 			opponentPower += 1.5 * userCard.getPower();
 		
 		view.appendText("Match Results: \nYour "+userCard.getName()+ 
-				" power: "+playerPower+"\n Your Opponent's "+opponentCard.getName()+
+				" power: "+playerPower+"\nYour Opponent's "+opponentCard.getName()+
 				" power: "+opponentPower);
 		
 		if (opponentPower > playerPower) {
