@@ -592,6 +592,7 @@ public class UI {
 	}
 	
 	public void refreshText() {
+		txtpnGame.setText("");
 		try {
 			// opening file and appending all file contents to message area
 			Scanner scanner = new Scanner(file);
