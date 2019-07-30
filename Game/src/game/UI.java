@@ -27,7 +27,6 @@ import java.util.Scanner;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequencer;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 import java.awt.CardLayout;
@@ -43,8 +42,10 @@ import javax.swing.JScrollPane;
 
 public class UI {
 
-	final private ImageIcon imgIconButton = new ImageIcon(UI.class.getResource("/images/buttonPaper.png"));
+	static final private ImageIcon imgIconButton = new ImageIcon(UI.class.getResource("/images/buttonPaper.png"));
+	static final private File file = new File ("./src/gameRecord.txt");
 
+	
 	protected JFrame frame;
 	protected CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
@@ -56,7 +57,6 @@ public class UI {
 	private JProgressBar barPlayerHealth, barOpponentHealth;
 	private int userHealth = 100, opHealth = 100;
 	private String strEndMsg;
-	private static File file = new File ("./src/gameRecord.txt"); // TODO why is this one static?
 	private JTextArea txtpnGame = new JTextArea();
 	private JTextField txtYouWin = new JTextField();
 
@@ -524,7 +524,6 @@ public class UI {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		panelContent.add(scrollPane);
 		
-		//TODO fix document section
 		getTxtpnGame().setLocation(97, 0);
 		getTxtpnGame().setFont(new Font("SimSun", Font.PLAIN, 9));
 		resetText();
@@ -677,7 +676,6 @@ public class UI {
 			out.close();
 		} 
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -694,7 +692,6 @@ public class UI {
 			scanner.close();
 		} 
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -734,7 +731,7 @@ public class UI {
 				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,\n");
 	}
 
-	public JButton getBtnDeck0() { // TODO where are these used?
+	public JButton getBtnDeck0() {
 		return btnDeck0;
 	}
 
