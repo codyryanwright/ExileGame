@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
-import java.awt.Image;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -25,10 +24,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequencer;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 import java.awt.CardLayout;
@@ -51,14 +50,13 @@ public class UI {
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
 	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, 
 		btnCard0, btnCard1, btnCard2, btnPlayCard;
-	ImageIcon cardImage0, cardImage1, cardImage2;
 	private JSpinner spinnerDifficulty;
 	private Sequencer sequencer;
 	private InputStream is;
 	private JProgressBar barPlayerHealth, barOpponentHealth;
 	private int userHealth = 100, opHealth = 100;
 	private String strEndMsg;
-	private static File file = new File ("./src/gameRecord.txt");
+	private static File file = new File ("./src/gameRecord.txt"); // TODO why is this one static?
 	private JTextArea txtpnGame = new JTextArea();
 	private JTextField txtYouWin = new JTextField();
 
@@ -70,10 +68,8 @@ public class UI {
 		
 		try {
 			if (!file.exists()) 
-			{
 				file.createNewFile();
-			}
-		} 	catch (IOException e) {}
+		} catch (IOException e) {}
 		
 		// set music
 		try {
@@ -163,7 +159,7 @@ public class UI {
 		JLabel lblMainMenuScreen = new JLabel("");
 		lblMainMenuScreen.setBounds(0, 0, 477, 675);
 		lblMainMenuScreen.setBackground(Color.BLACK);
-		lblMainMenuScreen.setIcon(new ImageIcon(getScaledImage(imgMainMenuScreen.getImage(), 477, 675)));
+		lblMainMenuScreen.setIcon(getScaledImage(imgMainMenuScreen, 477, 675));
 		panelTitle.add(lblMainMenuScreen);
 		
 		JPanel panelContent = new JPanel();
@@ -173,7 +169,7 @@ public class UI {
 		panelContent.setLayout(null);
 		mainMenuPanel.add(panelContent);
 
-		btnNewGameStart = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnNewGameStart = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnNewGameStart.setBounds(189, 103, 220, 40);
 		btnNewGameStart.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewGameStart.setText("New Game");
@@ -182,7 +178,7 @@ public class UI {
 		btnNewGameStart.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnNewGameStart);
 		
-		JButton btnRules = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnRules = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnRules.setBounds(189, 246, 220, 40);
 		btnRules.setVerticalTextPosition(SwingConstants.CENTER);
 		btnRules.setText("Rules");
@@ -196,7 +192,7 @@ public class UI {
 			}
 		});
 		
-		JButton btnSettings = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnSettings = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnSettings.setBounds(189, 389, 220, 40);
 		btnSettings.setVerticalTextPosition(SwingConstants.CENTER);
 		btnSettings.setText("Settings");
@@ -210,7 +206,7 @@ public class UI {
 			}
 		});
 		
-		btnContinue = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnContinue = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnContinue.setBounds(189, 532, 220, 40);
 		btnContinue.setVerticalTextPosition(SwingConstants.CENTER);
 		btnContinue.setText("Continue Game");
@@ -241,7 +237,7 @@ public class UI {
 		ImageIcon imgRulesScreen = new ImageIcon(UI.class.getResource("/images/rulesScreen.jpg"));		
 		JLabel lblRulesScreen = new JLabel("");
 		lblRulesScreen.setBounds(0, 0, 477, 675);
-		lblRulesScreen.setIcon(new ImageIcon(getScaledImage(imgRulesScreen.getImage(), 477, 675)));
+		lblRulesScreen.setIcon(getScaledImage(imgRulesScreen, 477, 675));
 		panelTitle.add(lblRulesScreen);
 		
 		JPanel panelContent = new JPanel();
@@ -258,7 +254,7 @@ public class UI {
 		lblRules.setBackground(Color.BLACK);
 		panelContent.add(lblRules);
 		
-		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnMainMenu = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnMainMenu.setBounds(189, 593, 220, 40);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setText("Main Menu");
@@ -316,14 +312,14 @@ public class UI {
 		ImageIcon imgSettingsScreen = new ImageIcon(UI.class.getResource("/images/settingsScreen.jpg"));		
 		JLabel lblSettingsScreen = new JLabel("");
 		lblSettingsScreen.setBounds(0, 0, 477, 675);
-		lblSettingsScreen.setIcon(new ImageIcon(getScaledImage(imgSettingsScreen.getImage(), 477, 675)));
+		lblSettingsScreen.setIcon(getScaledImage(imgSettingsScreen, 477, 675));
 		panelTitle.add(lblSettingsScreen);
 		
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(new Color(0, 0, 0));
 		panelContent.setBounds(477, 0, 599, 675);
-		settingsPanel.add(panelContent);
 		panelContent.setLayout(null);
+		settingsPanel.add(panelContent);
 		
 		JLabel lblSettings = new JLabel("SETTINGS");
 		lblSettings.setBounds(225, 106, 148, 47);
@@ -373,19 +369,19 @@ public class UI {
 		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
 		panel.add(spinnerDifficulty);
 		
-		JButton btnMainMenu = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnMainMenu = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnMainMenu.setBounds(189, 529, 220, 40);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setText("Main Menu");
 		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
-		panelContent.add(btnMainMenu);
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
 		});
+		panelContent.add(btnMainMenu);
 	}
 	
 	private void initChoose() {
@@ -408,7 +404,7 @@ public class UI {
 		ImageIcon imgChooseScreen = new ImageIcon(UI.class.getResource("/images/chooseScreen.jpg"));		
 		JLabel lblChooseScreen = new JLabel("");
 		lblChooseScreen.setBounds(0, 0, 477, 675);
-		lblChooseScreen.setIcon(new ImageIcon(getScaledImage(imgChooseScreen.getImage(), 477, 675)));
+		lblChooseScreen.setIcon(getScaledImage(imgChooseScreen, 477, 675));
 		lblChooseScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblChooseScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitle.add(lblChooseScreen);
@@ -438,13 +434,13 @@ public class UI {
 		ImageIcon imgIconDeck1 = new ImageIcon(UI.class.getResource("/images/deck1.png"));
 		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
 		
-		btnDeck0 = new JButton(new ImageIcon(getScaledImage(imgIconDeck0.getImage(),127, 175)));
+		btnDeck0 = new JButton(getScaledImage(imgIconDeck0,127, 175));
 		deckPanel.add(getBtnDeck0());
 		
-		btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
+		btnDeck1 = new JButton(getScaledImage(imgIconDeck1,127, 175));
 		deckPanel.add(btnDeck1);
 
-		btnDeck2 = new JButton(new ImageIcon(getScaledImage(imgIconDeck2.getImage(),127, 175)));
+		btnDeck2 = new JButton(getScaledImage(imgIconDeck2,127, 175));
 		deckPanel.add(btnDeck2);
 	}
 	
@@ -468,7 +464,7 @@ public class UI {
 		ImageIcon imgPlayScreen = new ImageIcon(UI.class.getResource("/images/playScreen.jpg"));		
 		JLabel lblPlayScreen = new JLabel("");
 		lblPlayScreen.setBounds(0, 0, 477, 675);
-		lblPlayScreen.setIcon(new ImageIcon(getScaledImage(imgPlayScreen.getImage(), 477, 675)));
+		lblPlayScreen.setIcon(getScaledImage(imgPlayScreen, 477, 675));
 		lblPlayScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblPlayScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitle.add(lblPlayScreen);
@@ -495,7 +491,7 @@ public class UI {
 		
 		barPlayerHealth = new JProgressBar();
 		barPlayerHealth.setBounds(125, 14, 111, 18);
-		barPlayerHealth.setValue(userHealth);  //TODO this should be updated after each compare
+		barPlayerHealth.setValue(userHealth);
 		barPlayerHealth.setForeground(Color.GREEN);
 		panelStatus.add(barPlayerHealth);
 		
@@ -516,12 +512,12 @@ public class UI {
 		btnMainMenu.setBounds(287, 17, 100, 40);
 		btnMainMenu.setBackground(Color.LIGHT_GRAY);
 		btnMainMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
-		panelStatus.add(btnMainMenu);
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
 		});
+		panelStatus.add(btnMainMenu);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(85, 117, 428, 244);
@@ -542,22 +538,16 @@ public class UI {
 		cardPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		panelContent.add(cardPanel);
 		
-//		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
-//		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
-//		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
-		
 		btnCard0 = new JButton();
 		cardPanel.add(btnCard0);
 		
 		btnCard1 = new JButton();
-
 		cardPanel.add(btnCard1);
 
 		btnCard2 = new JButton();
-
 		cardPanel.add(btnCard2);
 		
-		btnPlayCard = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(),220, 40)));
+		btnPlayCard = new JButton(getScaledImage(imgIconButton,220, 40));
 		btnPlayCard.setBounds(189, 603, 220, 40);
 		btnPlayCard.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlayCard.setText("Play Card");
@@ -565,77 +555,6 @@ public class UI {
 		btnPlayCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnPlayCard.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnPlayCard);
-	}
-	
-	public void setImageIcon(int cardPosition, ImageIcon toSet) {
-		switch(cardPosition) {
-		case 0: btnCard0.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
-		case 1: btnCard1.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
-		case 2: btnCard2.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
-		}
-	}
-	
-	public void setHealth(int userHealth, int opHealth) {
-		barPlayerHealth.setValue(userHealth);
-		barOpponentHealth.setValue(opHealth);
-	}
-	
-	public void appendText(String s) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(file,
-					true));
-				
-			out.write(s+"\n");
-			out.close(); // closing writer
-		} 
-		catch (IOException e1) {}
-	}
-	
-	public void refreshText() {
-		getTxtpnGame().setText("");
-		getTxtpnGame().setFont(new Font("SimSun", Font.PLAIN, 13));
-		try {
-			// opening file and appending all file contents to message area
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNext()) {
-				getTxtpnGame().append(scanner.nextLine() + "\n");
-			}
-			scanner.close();
-		} 
-		catch (FileNotFoundException e1) {}
-
-	}
-	
-	public void resetText() {
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		pw.close();
-		getTxtpnGame().setText("          ,   ,\r\n" + 
-				"         ,-`{-`/\r\n" + 
-				"      ,-~ , \\ {-~~-,\r\n" + 
-				"    ,~  ,   ,`,-~~-,`,\r\n" + 
-				"  ,`   ,   { {      } }                                             }/\r\n" + 
-				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
-				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
-				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
-				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
-				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
-				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
-				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
-				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
-				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
-				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
-				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
-				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
-				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
-				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
-				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
-				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
-				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,\n");
 	}
 	
 	private void initEnd() {
@@ -658,7 +577,7 @@ public class UI {
 		ImageIcon imgEndScreen = new ImageIcon(UI.class.getResource("/images/endScreen.jpg"));		
 		JLabel lblEndScreen = new JLabel("");
 		lblEndScreen.setBounds(0, 0, 477, 675);
-		lblEndScreen.setIcon(new ImageIcon(getScaledImage(imgEndScreen.getImage(), 477, 675)));
+		lblEndScreen.setIcon(getScaledImage(imgEndScreen, 477, 675));
 		lblEndScreen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblEndScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitle.add(lblEndScreen);
@@ -669,7 +588,7 @@ public class UI {
 		panelContent.setLayout(null);
 		endPanel.add(panelContent);
 		
-		btnNewGameEnd = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		btnNewGameEnd = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnNewGameEnd.setBounds(189, 324, 220, 40);
 		btnNewGameEnd.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewGameEnd.setText("New Game");
@@ -678,7 +597,7 @@ public class UI {
 		btnNewGameEnd.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnNewGameEnd);
 		
-		JButton btnExit = new JButton(new ImageIcon(getScaledImage(imgIconButton.getImage(), 220, 40)));
+		JButton btnExit = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnExit.setBounds(189, 499, 220, 40);
 		btnExit.setVerticalTextPosition(SwingConstants.CENTER);
 		btnExit.setText("Exit");
@@ -697,7 +616,7 @@ public class UI {
 		txtYouWin.setBorder(null);
 		txtYouWin.setHorizontalAlignment(SwingConstants.CENTER);
 		txtYouWin.setBackground(Color.BLACK);
-		txtYouWin.setText(strEndMsg);  //TODO this should be variable
+		txtYouWin.setText(strEndMsg);
 		txtYouWin.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
 		txtYouWin.setForeground(Color.WHITE);
 		panelContent.add(txtYouWin);
@@ -728,17 +647,94 @@ public class UI {
 //		cardlayout.show(frame.getContentPane(), "endPanel");
 	}
 	
-	private Image getScaledImage(Image srcImg, int w, int h) {
+	private ImageIcon getScaledImage(ImageIcon srcImgIcon, int w, int h) {
 	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
 	    Graphics2D g2 = resizedImg.createGraphics();
 	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-	    g2.drawImage(srcImg, 0, 0, w, h, null);
+	    g2.drawImage(srcImgIcon.getImage(), 0, 0, w, h, null);
 	    g2.dispose();
-	    return resizedImg;
+	    return new ImageIcon(resizedImg);
 	}
 
+	
+	public void setImageIcon(int cardPosition, ImageIcon imgIcon) {
+		switch(cardPosition) {
+			case 0: btnCard0.setIcon(getScaledImage(imgIcon, 146, 200));
+			case 1: btnCard1.setIcon(getScaledImage(imgIcon, 146, 200));
+			case 2: btnCard2.setIcon(getScaledImage(imgIcon, 146, 200));
+		}
+	}
+	
+	public void setHealth(int userHealth, int opHealth) {
+		barPlayerHealth.setValue(userHealth);
+		barOpponentHealth.setValue(opHealth);
+	}
+	
+	public void appendText(String strTxt) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(file, true));
+			out.write(strTxt + "\n");
+			out.close();
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void refreshText() {
+		getTxtpnGame().setText("");
+		getTxtpnGame().setFont(new Font("SimSun", Font.PLAIN, 13));
+		try {
+			// opening file and appending all file contents to message area
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNext()) {
+				getTxtpnGame().append(scanner.nextLine() + "\n");
+			}
+			scanner.close();
+		} 
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	public JButton getBtnDeck0() {
+	}
+	
+	public void resetText() {
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(file);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		getTxtpnGame().setText(
+				"          ,   ,\r\n" + 
+				"         ,-`{-`/\r\n" + 
+				"      ,-~ , \\ {-~~-,\r\n" + 
+				"    ,~  ,   ,`,-~~-,`,\r\n" + 
+				"  ,`   ,   { {      } }                                             }/\r\n" + 
+				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
+				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
+				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
+				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
+				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
+				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
+				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
+				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
+				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
+				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
+				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
+				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
+				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
+				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
+				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
+				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
+				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,\n");
+	}
+
+	public JButton getBtnDeck0() { // TODO where are these used?
 		return btnDeck0;
 	}
 
@@ -759,4 +755,5 @@ public class UI {
 	public void setTxtpnGame(JTextArea txtpnGame) {
 		this.txtpnGame = txtpnGame;
 	}
+
 }
