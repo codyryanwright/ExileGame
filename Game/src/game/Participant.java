@@ -1,10 +1,9 @@
 package game;
 
 public abstract class Participant {
-	private static final int HAND_SIZE = 3;
-
 	protected String name; // TODO where is this used?
 	protected Deck deck;
+	protected int HAND_SIZE = 3;
 	protected Card[] hand = new Card[HAND_SIZE];
 	protected int health;
 	protected int cardPosition;
