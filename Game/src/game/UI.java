@@ -84,7 +84,6 @@ public class UI {
 			sequencer.start(); // default setting
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -102,16 +101,10 @@ public class UI {
 		btnNewGameEnd.addActionListener(newGameListener);
 	}
 
-	public void addDeck0Listener(ActionListener deck0Listener) {
-		btnDeck0.addActionListener(deck0Listener);
-	}
-	
-	public void addDeck1Listener(ActionListener deck1Listener) {
-		btnDeck1.addActionListener(deck1Listener);
-	}
-
-	public void addDeck2Listener(ActionListener deck2Listener) {
-		btnDeck2.addActionListener(deck2Listener);		
+	public void addDeckListener(ActionListener deckListener) {
+		getBtnDeck0().addActionListener(deckListener);
+		btnDeck1.addActionListener(deckListener);
+		btnDeck2.addActionListener(deckListener);
 	}
 	
 	public void addCard0Listener(ActionListener card0Listener) {
@@ -446,7 +439,7 @@ public class UI {
 		ImageIcon imgIconDeck2 = new ImageIcon(UI.class.getResource("/images/deck2.png"));
 		
 		btnDeck0 = new JButton(new ImageIcon(getScaledImage(imgIconDeck0.getImage(),127, 175)));
-		deckPanel.add(btnDeck0);
+		deckPanel.add(getBtnDeck0());
 		
 		btnDeck1 = new JButton(new ImageIcon(getScaledImage(imgIconDeck1.getImage(),127, 175)));
 		deckPanel.add(btnDeck1);
@@ -741,5 +734,18 @@ public class UI {
 	    g2.drawImage(srcImg, 0, 0, w, h, null);
 	    g2.dispose();
 	    return resizedImg;
+	}
+
+
+	public JButton getBtnDeck0() {
+		return btnDeck0;
+	}
+
+	public JButton getBtnDeck1() {
+		return btnDeck1;
+	}
+	
+	public JButton getBtnDeck2() {
+		return btnDeck2;
 	}
 }

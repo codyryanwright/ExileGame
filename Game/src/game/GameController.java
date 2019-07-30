@@ -32,9 +32,7 @@ public class GameController {
 		}
 	
 		view.addNewGameListener(new NewGameListener());
-		view.addDeck0Listener(new Deck0Listener());
-		view.addDeck1Listener(new Deck1Listener());
-		view.addDeck2Listener(new Deck2Listener());
+		view.addDeckListener(new DeckListener());
 		view.addCard0Listener(new Card0Listener());
 		view.addCard1Listener(new Card1Listener());
 		view.addCard2Listener(new Card2Listener());
@@ -54,38 +52,15 @@ public class GameController {
 		}
 	}
 	
-	// TODO a way to combine similar button listeners?
-	class Deck0Listener implements ActionListener {
+	class DeckListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == view.getBtnDeck0()) 
+				deckChoice = 0;
+			else if(e.getSource() == view.getBtnDeck1())
+				deckChoice = 1;
+			else if(e.getSource() == view.getBtnDeck2())
+			
 			deckChoice = 0;
-			user.setDeck(collection[deckChoice]);
-			user.loadHand();
-			updateHand();
-			//sets the opponents deck randomly
-			int choice = new Random().nextInt(2);
-			opponent.setDeck(collection[choice]);
-			opponent.loadHand();
-			view.show("playPanel");
-		}
-	}
-	
-	class Deck1Listener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			deckChoice = 1;
-			user.setDeck(collection[deckChoice]);
-			user.loadHand();
-			updateHand();
-			//sets the opponents deck randomly
-			int choice = new Random().nextInt(2);
-			opponent.setDeck(collection[choice]);
-			opponent.loadHand();
-			view.show("playPanel");
-		}
-	}
-
-	class Deck2Listener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			deckChoice = 2;
 			user.setDeck(collection[deckChoice]);
 			user.loadHand();
 			updateHand();
