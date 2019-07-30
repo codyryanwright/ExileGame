@@ -47,11 +47,6 @@ public class Deck {
 		        Card cardToAdd = new Card(split[0], split[1], 
 		        		split[2], Float.valueOf(split[3]), split[4]);
 		        
-//		        For testing
-//		        Card cardToAdd = new Card(split[0], split[1], 
-//		        		split[2], Float.valueOf(split[3]));
-//		        
-		        
 		        deck.push(cardToAdd);
 		        
 				line = bufferedReader.readLine();
@@ -72,10 +67,10 @@ public class Deck {
 	
 	public Card getCard() {
 		if(deck.isEmpty())
-			swapDecks();
+			reset();
 		
 		playedCard = deck.pop();
-//		discard.push(playedCard);
+		discard.push(playedCard); // working right
 
 		return playedCard;
 	}
@@ -84,15 +79,14 @@ public class Deck {
 		Collections.shuffle(deck);
 	}
 	
-	public void swapDecks() {
+	public void reset() {
 		while(!discard.isEmpty())
 			deck.push(discard.pop());
 		
 		shuffle();
 	}
-
-	public void pushToDiscard(Card userCard) {
-		discard.push(userCard);
-		
-	}
+//  Wasn't working right
+//	public void pushToDiscard(Card userCard) {
+//		discard.push(userCard);	
+//	}
 }

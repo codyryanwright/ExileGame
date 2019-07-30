@@ -31,7 +31,6 @@ public class GameController {
 			e.printStackTrace();
 		}
 	
-		// TODO add action listeners to view
 		view.addNewGameListener(new NewGameListener());
 		view.addDeck0Listener(new Deck0Listener());
 		view.addDeck1Listener(new Deck1Listener());
@@ -46,9 +45,13 @@ public class GameController {
 
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			view.show("choosePanel");
+			deckChoice = -1;
+			user.reset();
+			opponent.reset();
+			// view.setUserHealth(100);
+			// view.setOpponentHealth(100);
 			view.resetText();
-			// TODO reset game variables
+			view.show("choosePanel");
 		}
 	}
 	
@@ -145,8 +148,8 @@ public class GameController {
 				}
 				else
 				{
-					user.pushToDiscard(userCard);
-					opponent.pushToDiscard(opCard);
+//					user.pushToDiscard(userCard);
+//					opponent.pushToDiscard(opCard);
 					user.setCardPosition(-1); // resets card position
 					
 					// TODO set card art for new card
