@@ -529,11 +529,11 @@ public class UI {
 		panelContent.add(scrollPane);
 		
 		//TODO fix document section
-		txtpnGame.setLocation(97, 0);
-		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 9));
+		getTxtpnGame().setLocation(97, 0);
+		getTxtpnGame().setFont(new Font("SimSun", Font.PLAIN, 9));
 		resetText();
-		txtpnGame.setEditable(false);
-		scrollPane.setViewportView(txtpnGame);
+		getTxtpnGame().setEditable(false);
+		scrollPane.setViewportView(getTxtpnGame());
 		
 		JPanel cardPanel = new JPanel();
 		cardPanel.setBounds(81, 371, 437, 200);
@@ -592,13 +592,13 @@ public class UI {
 	}
 	
 	public void refreshText() {
-		txtpnGame.setText("");
-		txtpnGame.setFont(new Font("SimSun", Font.PLAIN, 13));
+		getTxtpnGame().setText("");
+		getTxtpnGame().setFont(new Font("SimSun", Font.PLAIN, 13));
 		try {
 			// opening file and appending all file contents to message area
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNext()) {
-				txtpnGame.append(scanner.nextLine() + "\n");
+				getTxtpnGame().append(scanner.nextLine() + "\n");
 			}
 			scanner.close();
 		} 
@@ -614,7 +614,7 @@ public class UI {
 			e.printStackTrace();
 		}
 		pw.close();
-		txtpnGame.setText("          ,   ,\r\n" + 
+		getTxtpnGame().setText("          ,   ,\r\n" + 
 				"         ,-`{-`/\r\n" + 
 				"      ,-~ , \\ {-~~-,\r\n" + 
 				"    ,~  ,   ,`,-~~-,`,\r\n" + 
@@ -748,5 +748,15 @@ public class UI {
 	
 	public JButton getBtnDeck2() {
 		return btnDeck2;
+	}
+
+
+	public JTextArea getTxtpnGame() {
+		return txtpnGame;
+	}
+
+
+	public void setTxtpnGame(JTextArea txtpnGame) {
+		this.txtpnGame = txtpnGame;
 	}
 }

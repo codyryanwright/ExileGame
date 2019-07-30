@@ -3,6 +3,8 @@ package game;
 import java.util.Random;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,6 +42,7 @@ public class GameController {
 			view.setHealth(100, 100);
 			view.resetText();
 			view.show("choosePanel");
+			view.getTxtpnGame().setFont(new Font("SimSun", Font.PLAIN, 9));
 		}
 	}
 	
