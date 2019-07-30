@@ -13,33 +13,26 @@ public class Deck {
 	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) {
-		try {
-			deck = new Stack<Card>();
-			discard = new Stack<Card>();
-			loadDeck(deckChoice);
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+		deck = new Stack<Card>();
+		discard = new Stack<Card>();
+		loadDeck(deckChoice);
 		shuffle();
 	}
 	
-	private void loadDeck(int deckChoice) throws IOException {
+	private void loadDeck(int deckChoice) {
 		BufferedReader bufferedReader = null;
 		
-		switch (deckChoice) {
-		case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
-			break;
-		case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
-			break;
-		case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
-			break;
-		}
-		
-		int lineCount = 1;
-		
 		try {
+			switch (deckChoice) {
+			case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+				break;
+			case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+				break;
+			case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+				break;
+			}
+			
+			int lineCount = 1;
 			String line = bufferedReader.readLine();
 			
 			while (lineCount <= deckSize) {
@@ -52,8 +45,12 @@ public class Deck {
 				line = bufferedReader.readLine();
 				lineCount++;
 			}
-		} finally {
+			
 			bufferedReader.close();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -85,8 +82,4 @@ public class Deck {
 		
 		shuffle();
 	}
-//  Wasn't working right
-//	public void pushToDiscard(Card userCard) {
-//		discard.push(userCard);	
-//	}
 }

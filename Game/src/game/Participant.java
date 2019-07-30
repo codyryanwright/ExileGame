@@ -69,10 +69,6 @@ public abstract class Participant {
 	public void setCardPosition(int cardPosition) {
 		this.cardPosition = cardPosition;
 	}
-
-//	public void pushToDiscard(Card userCard) {
-//		deck.pushToDiscard(userCard);
-//	}
 	
 	public void reset() {
 		this.health = 100;
