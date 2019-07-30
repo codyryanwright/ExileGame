@@ -33,6 +33,7 @@ public class AutoOpponent extends Participant {
 		
 		else
 			choice = new Random().nextInt(2);
+		setCardPosition(choice);
 		return choice;
 	}
 	

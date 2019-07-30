@@ -48,8 +48,7 @@ public class GameController {
 			deckChoice = -1;
 			user.reset();
 			opponent.reset();
-			// view.setUserHealth(100);
-			// view.setOpponentHealth(100);
+			view.setHealth(100, 100);
 			view.resetText();
 			view.show("choosePanel");
 		}
@@ -61,8 +60,7 @@ public class GameController {
 			deckChoice = 0;
 			user.setDeck(collection[deckChoice]);
 			user.loadHand();
-			for(int i = 0; i < 3; i++)
-				view.setImageIcon(i, user.hand[i].getImgIconCard());
+			updateHand();
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
@@ -76,8 +74,7 @@ public class GameController {
 			deckChoice = 1;
 			user.setDeck(collection[deckChoice]);
 			user.loadHand();
-			for(int i = 0; i < 3; i++)
-				view.setImageIcon(i, user.hand[i].getImgIconCard());
+			updateHand();
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
@@ -91,14 +88,18 @@ public class GameController {
 			deckChoice = 2;
 			user.setDeck(collection[deckChoice]);
 			user.loadHand();
-			for(int i = 0; i < 3; i++)
-				view.setImageIcon(i, user.hand[i].getImgIconCard());
+			updateHand();
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
 			opponent.loadHand();
 			view.show("playPanel");
 		}
+	}
+	
+	public void updateHand() {
+		for(int i = 0; i < 3; i++)
+			view.setImageIcon(i, user.hand[i].getImgIconCard());
 	}
 	
 	class Card0Listener implements ActionListener {
@@ -151,10 +152,6 @@ public class GameController {
 //					user.pushToDiscard(userCard);
 //					opponent.pushToDiscard(opCard);
 					user.setCardPosition(-1); // resets card position
-					
-					// TODO set card art for new card
-					// 		update score / health
-					//		check if game over
 				}
 
 			}
@@ -237,7 +234,7 @@ public class GameController {
 		}
 		else if (opponentPower < playerPower) {
 			opponent.decreaseHealth();
-			view.appendText("\nYou've lost this round!\n");
+			view.appendText("\nYou've won this round!\n");
 			view.refreshText();
 		}
 		else {
@@ -245,5 +242,11 @@ public class GameController {
 			view.refreshText();
 			return;
 		}
+		
+		view.setHealth(user.getHealth(), opponent.getHealth());
+		
+		user.draw();
+		opponent.draw();
+		updateHand();
 	}
 }

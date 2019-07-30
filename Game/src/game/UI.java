@@ -56,9 +56,11 @@ public class UI {
 	private Sequencer sequencer;
 	private InputStream is;
 	private JProgressBar barPlayerHealth, barOpponentHealth;
+	private int userHealth = 100, opHealth = 100;
 	private String strEndMsg;
 	private static File file = new File ("./src/gameRecord.txt");
 	private JTextArea txtpnGame = new JTextArea();
+	private JTextField txtYouWin = new JTextField();
 
 	/**
 	 * Create the application.
@@ -141,7 +143,7 @@ public class UI {
 	}
 	
 	public void setEndMessage(String msg) {
-		strEndMsg = msg;
+		txtYouWin.setText(msg);
 	}
 	
 	/**
@@ -500,7 +502,7 @@ public class UI {
 		
 		barPlayerHealth = new JProgressBar();
 		barPlayerHealth.setBounds(125, 14, 111, 18);
-		barPlayerHealth.setValue(100);  //TODO this should be updated after each compare
+		barPlayerHealth.setValue(userHealth);  //TODO this should be updated after each compare
 		barPlayerHealth.setForeground(Color.GREEN);
 		panelStatus.add(barPlayerHealth);
 		
@@ -512,7 +514,7 @@ public class UI {
 		panelStatus.add(lblOpponentHealth);
 		
 		barOpponentHealth = new JProgressBar();
-		barOpponentHealth.setValue(100);
+		barOpponentHealth.setValue(opHealth);
 		barOpponentHealth.setForeground(Color.GREEN);
 		barOpponentHealth.setBounds(125, 46, 111, 18);
 		panelStatus.add(barOpponentHealth);
@@ -578,6 +580,11 @@ public class UI {
 		case 1: btnCard1.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
 		case 2: btnCard2.setIcon(new ImageIcon(getScaledImage(toSet.getImage(), 146, 200)));
 		}
+	}
+	
+	public void setHealth(int userHealth, int opHealth) {
+		barPlayerHealth.setValue(userHealth);
+		barOpponentHealth.setValue(opHealth);
 	}
 	
 	public void appendText(String s) {
@@ -691,7 +698,6 @@ public class UI {
 			}
 		});
 		
-		JTextField txtYouWin = new JTextField();
 		txtYouWin.setBounds(189, 135, 220, 54);
 		txtYouWin.setEditable(false);
 		txtYouWin.setBorder(null);
