@@ -317,8 +317,8 @@ public class UI {
 		JPanel panelContent = new JPanel();
 		panelContent.setBackground(new Color(0, 0, 0));
 		panelContent.setBounds(477, 0, 599, 675);
-		settingsPanel.add(panelContent);
 		panelContent.setLayout(null);
+		settingsPanel.add(panelContent);
 		
 		JLabel lblSettings = new JLabel("SETTINGS");
 		lblSettings.setBounds(225, 106, 148, 47);
@@ -375,12 +375,12 @@ public class UI {
 		btnMainMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnMainMenu.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnMainMenu.setBorder(UIManager.getBorder("Button.border"));
-		panelContent.add(btnMainMenu);
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
 		});
+		panelContent.add(btnMainMenu);
 	}
 	
 	private void initChoose() {
@@ -490,7 +490,7 @@ public class UI {
 		
 		barPlayerHealth = new JProgressBar();
 		barPlayerHealth.setBounds(125, 14, 111, 18);
-		barPlayerHealth.setValue(userHealth);  //TODO this should be updated after each compare
+		barPlayerHealth.setValue(userHealth);
 		barPlayerHealth.setForeground(Color.GREEN);
 		panelStatus.add(barPlayerHealth);
 		
@@ -511,12 +511,12 @@ public class UI {
 		btnMainMenu.setBounds(287, 17, 100, 40);
 		btnMainMenu.setBackground(Color.LIGHT_GRAY);
 		btnMainMenu.setFont(new Font("SimSun", Font.PLAIN, 14));
-		panelStatus.add(btnMainMenu);
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "mainMenuPanel");
 			}
 		});
+		panelStatus.add(btnMainMenu);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(85, 117, 428, 244);
@@ -537,19 +537,13 @@ public class UI {
 		cardPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		panelContent.add(cardPanel);
 		
-//		ImageIcon imgIconDragon = new ImageIcon(UI.class.getResource("/images/gk7.png")); //TODO image should be variable
-//		ImageIcon imgIconWizard = new ImageIcon(UI.class.getResource("/images/rd2.png")); //TODO image should be variable
-//		ImageIcon imgIconKnight = new ImageIcon(UI.class.getResource("/images/bw15.png")); //TODO image should be variable
-		
 		btnCard0 = new JButton();
 		cardPanel.add(btnCard0);
 		
 		btnCard1 = new JButton();
-
 		cardPanel.add(btnCard1);
 
 		btnCard2 = new JButton();
-
 		cardPanel.add(btnCard2);
 		
 		btnPlayCard = new JButton(getScaledImage(imgIconButton,220, 40));
@@ -560,76 +554,6 @@ public class UI {
 		btnPlayCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnPlayCard.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnPlayCard);
-	}
-	
-	public void setImageIcon(int cardPosition, ImageIcon toSet) {
-		switch(cardPosition) {
-		case 0: btnCard0.setIcon(getScaledImage(toSet, 146, 200));
-		case 1: btnCard1.setIcon(getScaledImage(toSet, 146, 200));
-		case 2: btnCard2.setIcon(getScaledImage(toSet, 146, 200));
-		}
-	}
-	
-	public void setHealth(int userHealth, int opHealth) {
-		barPlayerHealth.setValue(userHealth);
-		barOpponentHealth.setValue(opHealth);
-	}
-	
-	public void appendText(String s) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(file,
-					true));
-				
-			out.write(s+"\n");
-			out.close(); // closing writer
-		} 
-		catch (IOException e1) {}
-	}
-	
-	public void refreshText() {
-		txtpnGame.setText("");
-		try {
-			// opening file and appending all file contents to message area
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNext()) {
-				txtpnGame.append(scanner.nextLine() + "\n");
-			}
-			scanner.close();
-		} 
-		catch (FileNotFoundException e1) {}
-
-	}
-	
-	public void resetText() {
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		pw.close();
-		txtpnGame.setText("          ,   ,\r\n" + 
-				"         ,-`{-`/\r\n" + 
-				"      ,-~ , \\ {-~~-,\r\n" + 
-				"    ,~  ,   ,`,-~~-,`,\r\n" + 
-				"  ,`   ,   { {      } }                                             }/\r\n" + 
-				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
-				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
-				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
-				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
-				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
-				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
-				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
-				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
-				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
-				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
-				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
-				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
-				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
-				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
-				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
-				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
-				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,\n");
 	}
 	
 	private void initEnd() {
@@ -691,7 +615,7 @@ public class UI {
 		txtYouWin.setBorder(null);
 		txtYouWin.setHorizontalAlignment(SwingConstants.CENTER);
 		txtYouWin.setBackground(Color.BLACK);
-		txtYouWin.setText(strEndMsg);  //TODO this should be variable
+		txtYouWin.setText(strEndMsg);
 		txtYouWin.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
 		txtYouWin.setForeground(Color.WHITE);
 		panelContent.add(txtYouWin);
@@ -731,8 +655,83 @@ public class UI {
 	    return new ImageIcon(resizedImg);
 	}
 
+	
+	public void setImageIcon(int cardPosition, ImageIcon imgIcon) {
+		switch(cardPosition) {
+			case 0: btnCard0.setIcon(getScaledImage(imgIcon, 146, 200));
+			case 1: btnCard1.setIcon(getScaledImage(imgIcon, 146, 200));
+			case 2: btnCard2.setIcon(getScaledImage(imgIcon, 146, 200));
+		}
+	}
+	
+	public void setHealth(int userHealth, int opHealth) {
+		barPlayerHealth.setValue(userHealth);
+		barOpponentHealth.setValue(opHealth);
+	}
+	
+	public void appendText(String strTxt) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(file, true));
+			out.write(strTxt + "\n");
+			out.close();
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void refreshText() {
+		txtpnGame.setText("");
+		try {
+			// opening file and appending all file contents to message area
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNext()) {
+				txtpnGame.append(scanner.nextLine() + "\n");
+			}
+			scanner.close();
+		} 
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	public JButton getBtnDeck0() {
+	}
+	
+	public void resetText() {
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(file);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		txtpnGame.setText("          ,   ,\r\n" + 
+				"         ,-`{-`/\r\n" + 
+				"      ,-~ , \\ {-~~-,\r\n" + 
+				"    ,~  ,   ,`,-~~-,`,\r\n" + 
+				"  ,`   ,   { {      } }                                             }/\r\n" + 
+				" ;     ,--/`\\ \\    / /                                     }/      /,/\r\n" + 
+				";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/\r\n" + 
+				"; /   `       } } `, `-`-.___                            / `,  ,/  `,/\r\n" + 
+				" \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;\r\n" + 
+				"  `        { {                                     __  /  ,`/   ,`,;\r\n" + 
+				"        /   \\ \\                                 _,`, `{  `,{   `,`;`\r\n" + 
+				"       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;\r\n" + 
+				"       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-\r\n" + 
+				"        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {\r\n" + 
+				"                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }\r\n" + 
+				"                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`\r\n" + 
+				"       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;\r\n" + 
+				"      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__\r\n" + 
+				"     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\\r\n" + 
+				"    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``\r\n" + 
+				"  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___\r\n" + 
+				"/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,\n");
+	}
+
+	public JButton getBtnDeck0() { // TODO where are these used?
 		return btnDeck0;
 	}
 
