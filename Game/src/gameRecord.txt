@@ -1,8 +1,0 @@
-You played green wizard
-Your Opponent played green dragon
-Match Results: 
-Your green wizard power: 3.0
-Your Opponent's green dragon power: 7.5
-
-You've lost this round!
-
