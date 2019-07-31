@@ -1,8 +1,0 @@
-You played green knight
-Your Opponent played green dragon
-Match Results: 
-Your green knight power: 37.5
-Your Opponent's green dragon power: 7.0
-
-You've won this round!
-

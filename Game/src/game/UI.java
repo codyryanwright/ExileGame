@@ -791,4 +791,12 @@ public class UI {
 	public JButton getBtnCard2() {
 		return btnCard2;
 	}
+
+	public int getUserHealth() {
+		return userHealth;
+	}
+	
+	public int getOpHealth() {
+		return opHealth;
+	}
 }
