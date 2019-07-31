@@ -22,50 +22,35 @@ public class GameControllerTest {
 		Card c4 = new Card("green", "knight", "rare", 4.0f, "");
 		Card c5 = new Card("green", "wizard", "rare", 4.0f, "");
 		
-		//Same type, different archetype
-		gc.compareCards(c2, c4);
-		assertEquals(gc.user.getHealth(), 80f);
-		assertEquals(gc.opponent.getHealth(), 100f);
+		//Same type, different archetype, opponent wins
+		assertEquals(gc.compareCards(c2, c4), 0);
 		
-		//Different type, same archetype
-		gc.compareCards(c2, c1);
-		assertEquals(gc.user.getHealth(), 80f);
-		assertEquals(gc.opponent.getHealth(), 80f);
+		//Different type, same archetype, user wins
+		assertEquals(gc.compareCards(c2, c1), 1);
 		
-		//Same type, same archetype
-		gc.compareCards(c1, c1);
-		assertEquals(gc.user.getHealth(), 80f);
-		assertEquals(gc.opponent.getHealth(), 80f);
+		//Same type, same archetype, draw
+		assertEquals(gc.compareCards(c1, c1), 2);
 		
-		gc.compareCards(c2, c3);
-		assertEquals(gc.user.getHealth(), 60f);
-		assertEquals(gc.opponent.getHealth(), 80f);
+		//Same type, different archetype, opponent wins
+		assertEquals(gc.compareCards(c2, c3), 0);
 		
-		//Same type, different archetype
-		gc.compareCards(c4, c2);
-		assertEquals(gc.user.getHealth(), 60f);
-		assertEquals(gc.opponent.getHealth(), 60f);
+		//Same type, different archetype, user wins
+		assertEquals(gc.compareCards(c4, c2), 1);
 		
-		//Different type, same archetype
-		gc.compareCards(c1, c2);
-		assertEquals(gc.user.getHealth(), 40f);
-		assertEquals(gc.opponent.getHealth(), 60f);
-				
-		gc.compareCards(c3, c2);
-		assertEquals(gc.user.getHealth(), 40f);
-		assertEquals(gc.opponent.getHealth(), 40f);
+		//Different type, same archetype, opponent wins
+		assertEquals(gc.compareCards(c1, c2), 0);
 		
-		gc.compareCards(c1, c5);
-		assertEquals(gc.user.getHealth(), 40f);
-		assertEquals(gc.opponent.getHealth(), 20f);
+		//Same type, different archetype, user wins
+		assertEquals(gc.compareCards(c3, c2), 1);
 		
-		gc.compareCards(c5, c3);
-		assertEquals(gc.user.getHealth(), 40f);
-		assertEquals(gc.opponent.getHealth(), 0f);
+		//user wins
+		assertEquals(gc.compareCards(c1, c5), 1);
 		
-		gc.compareCards(c5, c1);
-		assertEquals(gc.user.getHealth(), 20f);
-		assertEquals(gc.opponent.getHealth(), 0f);
+		//user wins
+		assertEquals(gc.compareCards(c5, c3), 1);
+		
+		//opponent wins
+		assertEquals(gc.compareCards(c5, c1), 0);
 	}
 }
 

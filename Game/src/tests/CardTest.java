@@ -11,7 +11,7 @@ public class CardTest {
 
 	@Test
 	public void testCard() {
-		Card c1 = new Card("red", "dragon", "rare", 4.0f, "");
+		Card c1 = new Card("red", "dragon", "rare", 4.0f, "/images/rd4.png");
 		
 		assertEquals("red", c1.getType());
 		assertEquals("dragon", c1.getArchetype());
