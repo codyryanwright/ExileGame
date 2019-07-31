@@ -754,15 +754,15 @@ public class UI {
 	}
 
 
-	public Object getBtnCard0() {
+	public JButton getBtnCard0() {
 		return btnCard0;
 	}
 
-	public Object getBtnCard1() {
+	public JButton getBtnCard1() {
 		return btnCard1;
 	}
 
-	public Object getBtnCard2() {
+	public JButton getBtnCard2() {
 		return btnCard2;
 	}
 }

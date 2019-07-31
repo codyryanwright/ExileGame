@@ -1,0 +1,12 @@
+You played red dragon
+Your Opponent played blue wizard
+Match Results: 
+Your red dragon power: 7.5
+Your Opponent's blue wizard power: 4.0
+
+You've won this round!
+
+Please choose a Card!
+Please choose a Card!
+Please choose a Card!
+Please choose a Card!

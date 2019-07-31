@@ -70,9 +70,9 @@ public class GameController {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == view.getBtnCard0())
 				user.setCardPosition(0);
-			if(e.getSource() == view.getBtnCard1())
+			else if(e.getSource() == view.getBtnCard1())
 				user.setCardPosition(1);
-			if(e.getSource() == view.getBtnCard2())
+			else if(e.getSource() == view.getBtnCard2())
 				user.setCardPosition(2);
 		}
 	}
