@@ -23,5 +23,14 @@ class UserTest {
 		p1.loadHand();
 		assertNotNull(p1.getHand());
 	}
+	
+	@Test 
+	void resetTest() {
+		
+		p1.reset();
+		assertEquals(p1.getHealth(), 100);
+		assertNotNull(p1.getHand());
+		
+	}
 
 }
