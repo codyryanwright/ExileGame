@@ -11,6 +11,13 @@ class UserTest {
 	Deck d1 = new Deck(1);
 	
 	@Test
+	void decreaseHealthTest() {
+		p1.decreaseHealth();
+		assertEquals(p1.getHealth(), 80);
+	}
+
+	
+	@Test
 	void loadHandTest() {
 		p1.setDeck(d1);
 		p1.loadHand();
