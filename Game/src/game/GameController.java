@@ -27,9 +27,7 @@ public class GameController {
 	
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
-		view.addCard0Listener(new Card0Listener());
-		view.addCard1Listener(new Card1Listener());
-		view.addCard2Listener(new Card2Listener());
+		view.addCard0Listener(new CardListener());
 		view.addPlayCardListener(new PlayCardListener());
 		view.addContinueListener(new ContinueListener());
 		view.addDifficultyListener(new DifficultyListener());
@@ -54,11 +52,12 @@ public class GameController {
 			else if(e.getSource() == view.getBtnDeck1())
 				deckChoice = 1;
 			else if(e.getSource() == view.getBtnDeck2())
+				deckChoice = 0;
 			
-			deckChoice = 0;
 			user.setDeck(collection[deckChoice]);
 			user.loadHand();
 			updateHand();
+			
 			//sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
 			opponent.setDeck(collection[choice]);
@@ -67,26 +66,14 @@ public class GameController {
 		}
 	}
 	
-	public void updateHand() {
-		for(int i = 0; i < 3; i++)
-			view.setImageIcon(i, user.hand[i].getImgIconCard());
-	}
-	
-	class Card0Listener implements ActionListener {
+	class CardListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			user.setCardPosition(0);
-		}
-	}
-	
-	class Card1Listener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			user.setCardPosition(1);
-		}
-	}
-	
-	class Card2Listener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			user.setCardPosition(2);
+			if(e.getSource() == view.getBtnCard0())
+				user.setCardPosition(0);
+			if(e.getSource() == view.getBtnCard1())
+				user.setCardPosition(1);
+			if(e.getSource() == view.getBtnCard2())
+				user.setCardPosition(2);
 		}
 	}
 	
@@ -100,10 +87,8 @@ public class GameController {
 			else
 			{
 				//gets a card from the user and the opponent
-				Card userCard = ((User) user).playCard(); //TODO null pointer exception bug
-//				if(userCard == null) System.out.println("PLAYER INVALID");
+				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
-//				if(opCard == null) System.out.println("OPPONENT INVALID");
 				combatCards(userCard, opCard);
 				
 				//check for winner
@@ -140,6 +125,11 @@ public class GameController {
 		public void stateChanged(ChangeEvent e) {
 			((AutoOpponent) opponent).setDifficulty((int) view.getDifficulty());			
 		}
+	}
+	
+	public void updateHand() {
+		for(int i = 0; i < 3; i++)
+			view.setImageIcon(i, user.hand[i].getImgIconCard());
 	}
 	
 	public void setDeckChoice(int deckChoice) {

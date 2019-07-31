@@ -753,4 +753,16 @@ public class UI {
 		this.txtpnGame = txtpnGame;
 	}
 
+
+	public Object getBtnCard0() {
+		return btnCard0;
+	}
+
+	public Object getBtnCard1() {
+		return btnCard1;
+	}
+
+	public Object getBtnCard2() {
+		return btnCard2;
+	}
 }
