@@ -67,12 +67,11 @@ public class UI {
 		initialize();
 		
 		try {
+			// Create file for game record
 			if (!file.exists()) 
 				file.createNewFile();
-		} catch (IOException e) {}
-		
-		// set music
-		try {
+			
+			// Play music
 			sequencer = MidiSystem.getSequencer();
  			sequencer.open();
  			is = new BufferedInputStream(ClassLoader.getSystemResourceAsStream("music/bjorn__lynne-_proud_warriors.mid"));
@@ -83,15 +82,11 @@ public class UI {
 			e.printStackTrace();
 		}
 	}
-	
 
 	public void show(String panel) {
 		cardlayout.show(frame.getContentPane(), panel);
 	}
 	
-	/**
-	 * Add Controller Listeners
-	 */
 	public void addNewGameListener(ActionListener newGameListener) {
 		btnNewGameStart.addActionListener(newGameListener);
 		btnNewGameEnd.addActionListener(newGameListener);
@@ -130,7 +125,7 @@ public class UI {
 	}
 	
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the Main Menu screen.
 	 */
 	private void initMainMenu() {
 		mainMenuPanel = new JPanel();
@@ -209,7 +204,10 @@ public class UI {
 		btnContinue.setBorder(UIManager.getBorder("Button.border"));
 		panelContent.add(btnContinue);
 	}
-	
+
+	/**
+	 * Initialize the Rules screen.
+	 */
 	private void initRules() {
 		rulesPanel = new JPanel();
 		rulesPanel.setBackground(Color.BLACK);
@@ -285,7 +283,10 @@ public class UI {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelContent.add(scrollPane);
 	}
-	
+
+	/**
+	 * Initialize the Settings screen.
+	 */
 	private void initSettings() {
 		settingsPanel = new JPanel();
 		settingsPanel.setLayout(null);
@@ -378,6 +379,9 @@ public class UI {
 		panelContent.add(btnMainMenu);
 	}
 	
+	/**
+	 * Initialize the Choose screen.
+	 */
 	private void initChoose() {
 		choosePanel = new JPanel();
 		choosePanel.setLayout(null);
@@ -438,6 +442,9 @@ public class UI {
 		deckPanel.add(btnDeck2);
 	}
 	
+	/**
+	 * Initialize the Play screen.
+	 */
 	private void initPlay() {
 		playPanel = new JPanel();
 		playPanel.setLayout(null);
@@ -550,6 +557,9 @@ public class UI {
 		panelContent.add(btnPlayCard);
 	}
 	
+	/**
+	 * Initialize the End screen.
+	 */
 	private void initEnd() {
 		endPanel = new JPanel();
 		endPanel.setLayout(null);
@@ -614,7 +624,10 @@ public class UI {
 		txtYouWin.setForeground(Color.WHITE);
 		panelContent.add(txtYouWin);
 	}
-	
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -640,6 +653,14 @@ public class UI {
 //		cardlayout.show(frame.getContentPane(), "endPanel");
 	}
 	
+	/**
+	 * Returns an ImageIcon scaled to specified parameters
+	 * 
+	 * @param srcImgIcon  an ImageIcon created from image in images package
+	 * @param w  the desired width
+	 * @param h  the desired height
+	 * @return the scaled ImageIcon
+	 */
 	private ImageIcon getScaledImage(ImageIcon srcImgIcon, int w, int h) {
 	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
 	    Graphics2D g2 = resizedImg.createGraphics();
@@ -650,6 +671,12 @@ public class UI {
 	}
 
 	
+	/**
+	 * Sets the icon for the Card buttons when a card is drawn from the deck.
+	 *
+	 *@param cardPosition  the specified button artwork that needs updated
+	 *@param imgIcon  the specified artwork that should be shown
+	 */
 	public void setImageIcon(int cardPosition, ImageIcon imgIcon) {
 		switch(cardPosition) {
 			case 0: btnCard0.setIcon(getScaledImage(imgIcon, 146, 200));
@@ -663,6 +690,11 @@ public class UI {
 		barOpponentHealth.setValue(opHealth);
 	}
 	
+	/**
+	 * Appends text to the text area document
+	 * 
+	 * @param strTxt  the text that will be appended to the document
+	 */
 	public void appendText(String strTxt) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(file, true));
