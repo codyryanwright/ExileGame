@@ -27,7 +27,7 @@ public class GameController {
 	
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
-		view.addCard0Listener(new CardListener());
+		view.addCardListener(new CardListener());
 		view.addPlayCardListener(new PlayCardListener());
 		view.addContinueListener(new ContinueListener());
 		view.addDifficultyListener(new DifficultyListener());

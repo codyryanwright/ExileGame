@@ -98,21 +98,15 @@ public class UI {
 	}
 
 	public void addDeckListener(ActionListener deckListener) {
-		getBtnDeck0().addActionListener(deckListener);
+		btnDeck0.addActionListener(deckListener);
 		btnDeck1.addActionListener(deckListener);
 		btnDeck2.addActionListener(deckListener);
 	}
 	
-	public void addCard0Listener(ActionListener card0Listener) {
-		btnCard0.addActionListener(card0Listener);
-	}
-	
-	public void addCard1Listener(ActionListener card1Listener) {
-		btnCard1.addActionListener(card1Listener);
-	}
-	
-	public void addCard2Listener(ActionListener card2Listener) {
-		btnCard2.addActionListener(card2Listener);
+	public void addCardListener(ActionListener cardListener) {
+		btnCard0.addActionListener(cardListener);
+		btnCard1.addActionListener(cardListener);
+		btnCard2.addActionListener(cardListener);
 	}
 	
 	public void addPlayCardListener(ActionListener playCardListener) {

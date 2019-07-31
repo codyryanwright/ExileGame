@@ -1,12 +1,16 @@
-You played red dragon
-Your Opponent played blue wizard
+You played blue knight
+Your Opponent played blue knight
 Match Results: 
-Your red dragon power: 7.5
-Your Opponent's blue wizard power: 4.0
+Your blue knight power: 4.0
+Your Opponent's blue knight power: 4.0
 
-You've won this round!
+It's a draw!
 
-Please choose a Card!
-Please choose a Card!
-Please choose a Card!
-Please choose a Card!
+You played blue dragon
+Your Opponent played red knight
+Match Results: 
+Your blue dragon power: 6.0
+Your Opponent's red knight power: 6.5
+
+You've lost this round!
+
