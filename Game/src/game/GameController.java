@@ -214,7 +214,7 @@ public class GameController {
 				|| (userCard.getArchetype().equals("knight") && opponentCard.getArchetype().equals("dragon")))
 			playerPower += 1.5 * userCard.getPower();
 		else
-			opponentPower += 1.5 * userCard.getPower();
+			opponentPower += 1.5 * opponentCard.getPower();
 		
 		if (opponentPower > playerPower) 
 			return 0;
