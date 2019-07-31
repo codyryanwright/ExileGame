@@ -123,7 +123,9 @@ public class GameController {
 	class DifficultyListener implements ChangeListener {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			((AutoOpponent) opponent).setDifficulty((int) view.getDifficulty());			
+			if (view.getDifficulty() == "Hard")
+				((AutoOpponent) opponent).setDifficulty(0);
+			else ((AutoOpponent) opponent).setDifficulty(1);
 		}
 	}
 	

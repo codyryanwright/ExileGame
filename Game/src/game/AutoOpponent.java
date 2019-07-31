@@ -5,11 +5,6 @@ import java.util.Random;
 public class AutoOpponent extends Participant {
 	protected int difficulty;
 
-	public int choiceAI(int difficulty)
-	{
-		return 0;
-	}
-
 	public int getDifficulty() {
 		return difficulty;
 	}
