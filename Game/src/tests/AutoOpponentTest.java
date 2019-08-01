@@ -17,13 +17,13 @@ class AutoOpponentTest {
 		ao1.setDifficulty(1);
 		ao1.setDeck(d1);
 		ao1.loadHand();
-		if(ao1.choice() != 0 && ao1.choice() != 1 && 
-				ao1.choice() != 2)	
+		if(ao1.choice() == 0 || ao1.choice() == 1 || 
+				ao1.choice() == 2)	
 		{
-			fail();
+			return;
 		}
 		else {
-			return;
+			fail();
 		}
 	}
 	
@@ -32,13 +32,14 @@ class AutoOpponentTest {
 		ao1.setDifficulty(2);
 		ao1.setDeck(d1);
 		ao1.loadHand();
-		if(ao1.choice() != 0 && ao1.choice() != 1 && 
-				ao1.choice() != 2)	
+		if(ao1.choice() == 0 || ao1.choice() == 1 || 
+				ao1.choice() == 2)	
 		{
-			fail();
+			return;
 		}
 		else {
-			return;
+			System.out.println(ao1.getCardPosition());
+			fail();
 		}
 	}
 
