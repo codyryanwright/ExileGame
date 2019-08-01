@@ -72,8 +72,9 @@ public class GameController {
 				user.setCardPosition(0);
 			else if(e.getSource() == view.getBtnCard1())
 				user.setCardPosition(1);
-			else if(e.getSource() == view.getBtnCard2())
+			else if(e.getSource() == view.getBtnCard2()) 
 				user.setCardPosition(2);
+			view.setChosenBorder(user.getCardPosition());
 		}
 	}
 	
@@ -105,6 +106,7 @@ public class GameController {
 				else
 				{
 					user.setCardPosition(-1); // resets card position
+					view.setChosenBorder(user.cardPosition);
 				}
 
 			}
@@ -156,7 +158,6 @@ public class GameController {
 		return collection[deckChoice];
 	}
 	
-	//TODO disconnecting compare and logic
 	public void combatCards(Card userCard, Card opponentCard) {
 		playerPower = 0;
 		opponentPower = 0;

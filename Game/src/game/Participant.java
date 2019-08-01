@@ -61,6 +61,11 @@ public abstract class Participant {
 		this.cardPosition = cardPosition;
 	}
 	
+	public void mulligan() {
+		draw();
+		decreaseHealth();
+	}
+	
 	public void reset() {
 		this.health = 100;
 		cardPosition = -1;
