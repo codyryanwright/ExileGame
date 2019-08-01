@@ -18,16 +18,21 @@ public class Deck {
 		shuffle();
 	}
 	
+	/**
+	 * Reads from a file to build the deck.
+	 * 
+	 * @param deckChoice the case that specifies which deck to build.
+	 */
 	private void loadDeck(int deckChoice) {
 		BufferedReader bufferedReader = null;
 		
 		try {
 			switch (deckChoice) {
-				case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+				case 0: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
 					break;
-				case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+				case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
 					break;
-				case 3: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+				case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
 					break;
 			}
 			

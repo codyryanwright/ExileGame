@@ -15,7 +15,7 @@ public class AutoOpponent extends Participant {
 	
 	/**
 	 * AI for making a card selection.
-	 * If the difficulty is hard it chooses best available, else it chooses a random selection.
+	 * If the difficulty is hard it chooses best available, else it chooses a random selection then sets cardPosition.
 	 */
 	public void makeChoice() {
 		int choice;

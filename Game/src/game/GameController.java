@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class GameController {
 	static final int DECK_TOTAL = 3;
 	private Deck[] collection = new Deck[DECK_TOTAL];
@@ -77,6 +76,9 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * Sets the game play in motion by calling Participants' playCard() and passing to combatCards()
+	 */
 	class PlayCardListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (user.getCardPosition() == -1) {
@@ -90,6 +92,7 @@ public class GameController {
 				Card opCard = ((AutoOpponent) opponent).playCard();
 				combatCards(userCard, opCard);
 				
+				// TODO Should this be moved to combatCards since it already handles some text output and resetting?
 				//check for winner
 				if(user.getHealth() == 0)
 				{
@@ -130,18 +133,17 @@ public class GameController {
 			view.setImageIcon(i, user.hand[i].getImgIconCard());
 	}
 	
-	public void setDeckChoice(int deckChoice) {
-		this.deckChoice = deckChoice;
-	}
-	
 	public void buildCollection() {
 		try {
 			for(int i = 0; i < DECK_TOTAL; i++)
-				collection[i] = new Deck(i+1);
+				collection[i] = new Deck(i);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void setDeckChoice(int deckChoice) {
+		this.deckChoice = deckChoice;
 	}
 	
 	public int getDeckChoice() {
@@ -153,6 +155,12 @@ public class GameController {
 	}
 	
 	//TODO disconnecting compare and logic
+	/**
+	 * Handles the output for a given card match-up both pre- and post-call to compareCards, then resets game for next play.
+	 * 
+	 * @param userCard  the card that has been chosen by the user
+	 * @param opponentCard  the card that has been chosen by the opponent
+	 */
 	public void combatCards(Card userCard, Card opponentCard) {
 		playerPower = 0;
 		opponentPower = 0;
@@ -192,6 +200,13 @@ public class GameController {
 		updateHand();
 	}
 	
+	/**
+	 * Makes the comparison of the card matchups and modifies the card power accordingly to determine a winner.
+	 * 
+	 * @param userCard  the card that has been chosen by the user
+	 * @param opponentCard  the card that has been chosen by the opponent
+	 * @return returns a switch case for win/lose/draw for the round
+	 */
 	public int compareCards(Card userCard, Card opponentCard) {
 		playerPower = userCard.getPower();
 		opponentPower = opponentCard.getPower();
