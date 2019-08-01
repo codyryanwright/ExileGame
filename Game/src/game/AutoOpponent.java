@@ -17,7 +17,7 @@ public class AutoOpponent extends Participant {
 	 * AI for making a card selection.
 	 * If the difficulty is hard it chooses best available, else it chooses a random selection.
 	 * 
-	 * @return 
+	 * @return the choice for which card the opponenet should play
 	 */
 	public int getChoice() {
 		int choice;
