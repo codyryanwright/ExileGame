@@ -16,10 +16,8 @@ public class AutoOpponent extends Participant {
 	/**
 	 * AI for making a card selection.
 	 * If the difficulty is hard it chooses best available, else it chooses a random selection.
-	 * 
-	 * @return the choice for which card the opponenet should play
 	 */
-	public int getChoice() {
+	public void makeChoice() {
 		int choice;
 		
 		if (difficulty == 1) { // Hard
@@ -34,12 +32,11 @@ public class AutoOpponent extends Participant {
 			choice = new Random().nextInt(2);
 		
 		this.cardPosition = choice;
-		
-		return choice;
 	}
 	
 	// play card from hand
-	public Card playCard(int cardPosition) {
+	public Card playCard() {
+		makeChoice();
 		return hand[cardPosition];
 	}
 }

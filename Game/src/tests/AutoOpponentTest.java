@@ -15,7 +15,7 @@ class AutoOpponentTest {
 		ao1.setDifficulty(1);
 		ao1.setDeck(d1);
 		ao1.loadHand();
-		ao1.getChoice();
+		ao1.makeChoice();
 		if(ao1.getCardPosition() == 0 || ao1.getCardPosition() == 1|| 
 				ao1.getCardPosition() == 2)	
 		{
@@ -31,7 +31,7 @@ class AutoOpponentTest {
 		ao1.setDifficulty(0);
 		ao1.setDeck(d1);
 		ao1.loadHand();
-		ao1.getChoice();
+		ao1.makeChoice();
 		if(ao1.getCardPosition() == 0 || ao1.getCardPosition() == 1|| 
 				ao1.getCardPosition() == 2)	
 		{

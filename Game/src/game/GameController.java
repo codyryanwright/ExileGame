@@ -82,13 +82,12 @@ public class GameController {
 			if (user.getCardPosition() == -1) {
 				view.appendText("Please choose a Card!");
 				view.refreshText();
-				return;
 			}
 			else
 			{
 				//gets a card from the user and the opponent
 				Card userCard = ((User) user).playCard();
-				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).getChoice());
+				Card opCard = ((AutoOpponent) opponent).playCard();
 				combatCards(userCard, opCard);
 				
 				//check for winner
@@ -103,10 +102,7 @@ public class GameController {
 					view.show("endPanel");
 				}
 				else
-				{
 					user.setCardPosition(-1); // resets card position
-				}
-
 			}
 		}
 	}
