@@ -55,7 +55,6 @@ public class UI {
 	private Sequencer sequencer;
 	private InputStream is;
 	private JProgressBar barPlayerHealth, barOpponentHealth;
-	private int userHealth = 100, opHealth = 100;
 	private String strEndMsg;
 	private JTextArea txtpnGame = new JTextArea();
 	private JTextField txtYouWin = new JTextField();
@@ -492,7 +491,7 @@ public class UI {
 		
 		barPlayerHealth = new JProgressBar();
 		barPlayerHealth.setBounds(125, 14, 111, 18);
-		barPlayerHealth.setValue(userHealth);
+		barPlayerHealth.setValue(100);
 		barPlayerHealth.setForeground(Color.GREEN);
 		panelStatus.add(barPlayerHealth);
 		
@@ -504,7 +503,7 @@ public class UI {
 		panelStatus.add(lblOpponentHealth);
 		
 		barOpponentHealth = new JProgressBar();
-		barOpponentHealth.setValue(opHealth);
+		barOpponentHealth.setValue(100);
 		barOpponentHealth.setForeground(Color.GREEN);
 		barOpponentHealth.setBounds(125, 46, 111, 18);
 		panelStatus.add(barOpponentHealth);
@@ -793,10 +792,10 @@ public class UI {
 	}
 
 	public int getUserHealth() {
-		return userHealth;
+		return barPlayerHealth.getValue();
 	}
 	
 	public int getOpHealth() {
-		return opHealth;
+		return barOpponentHealth.getValue();
 	}
 }

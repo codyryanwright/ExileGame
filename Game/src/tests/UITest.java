@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 class UITest {
 
 	UI view = new UI();
-	GameController gc = new GameController(view);
 	@Test
 	void testConstructor() {
 		assertNotNull(view);
