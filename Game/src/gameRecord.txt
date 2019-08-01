@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+=======
+You played green knight
+Your Opponent played blue wizard
+Match Results: 
+Your green knight power: 8.0
+Your Opponent's blue wizard power: 17.5
+
+You've lost this round!
+
+>>>>>>> a46ab8854fc1db792a9d5b4098c09128735906a9
