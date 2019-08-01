@@ -88,7 +88,7 @@ public class GameController {
 			{
 				//gets a card from the user and the opponent
 				Card userCard = ((User) user).playCard();
-				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
+				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).getChoice());
 				combatCards(userCard, opCard);
 				
 				//check for winner

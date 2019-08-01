@@ -1,8 +1,6 @@
 package tests;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import game.AutoOpponent;
 import game.Deck;
@@ -13,11 +11,11 @@ class AutoOpponentTest {
 	Deck d1 = new Deck(1);
 	
 	@Test
-	void choiceTest1() {
+	void choiceTestHard() {
 		ao1.setDifficulty(1);
 		ao1.setDeck(d1);
 		ao1.loadHand();
-		ao1.choice();
+		ao1.getChoice();
 		if(ao1.getCardPosition() == 0 || ao1.getCardPosition() == 1|| 
 				ao1.getCardPosition() == 2)	
 		{
@@ -29,11 +27,11 @@ class AutoOpponentTest {
 	}
 	
 	@Test
-	void choiceTest2() {
-		ao1.setDifficulty(2);
+	void choiceTestEasy() {
+		ao1.setDifficulty(0);
 		ao1.setDeck(d1);
 		ao1.loadHand();
-		ao1.choice();
+		ao1.getChoice();
 		if(ao1.getCardPosition() == 0 || ao1.getCardPosition() == 1|| 
 				ao1.getCardPosition() == 2)	
 		{

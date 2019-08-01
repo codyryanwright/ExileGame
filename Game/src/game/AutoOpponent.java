@@ -13,21 +13,27 @@ public class AutoOpponent extends Participant {
 		this.difficulty = difficulty;
 	}
 	
-	public int choice() {
+	/**
+	 * AI for making a card selection.
+	 * If the difficulty is hard it chooses best available, else it chooses a random selection.
+	 * 
+	 * @return 
+	 */
+	public int getChoice() {
 		int choice;
 		
-		if(difficulty == 1) {
-			if(hand[0].getPower() >= hand[1].getPower() && hand[0].getPower() >= hand[2].getPower())
+		if (difficulty == 1) { // Hard
+			if (hand[0].getPower() >= hand[1].getPower() && hand[0].getPower() >= hand[2].getPower())
 				choice = 0;
-			else if(hand[1].getPower() >= hand[0].getPower() && hand[1].getPower() >= hand[2].getPower())
+			else if (hand[1].getPower() >= hand[0].getPower() && hand[1].getPower() >= hand[2].getPower())
 				choice = 1;
 			else
 				choice = 2;
 		}
-		else
+		else // if (difficulty == 0), Easy
 			choice = new Random().nextInt(2);
 		
-		setCardPosition(choice);
+		this.cardPosition = choice;
 		
 		return choice;
 	}
