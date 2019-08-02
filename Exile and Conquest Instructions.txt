@@ -1,9 +1,0 @@
--Each player starts the game with a hand containing three cards and a full health bar (5 life points)
--A player loses the game when he or she runs out of health
--Each turn each player chooses a card to play out of his or her hand
--After each player has played his chosen card, the two cards will battle
--The battle either ends in a win or a draw
--If the battle ends in a draw, no health we will be diducted from any player
--Otherwise, the player that lost the battle will lose a life point and their health bar will go down
--At the end of each turn, each player will draw a card
--The game continues until one of the player's health runs out
