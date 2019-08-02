@@ -10,6 +10,7 @@ public class Deck {
 	private Stack <Card> deck;
 	private Stack <Card> discard;
 	final private int deckSize = 20;
+	private int cardCount = 0;
 	
 	public Deck(int deckChoice) {
 		deck = new Stack<Card>();

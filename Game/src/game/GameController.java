@@ -184,7 +184,6 @@ public class GameController {
 		else {
 			view.appendText("\nIt's a draw!\n");
 			view.refreshText();
-			return;
 		}
 		
 		// Set next hand for play
