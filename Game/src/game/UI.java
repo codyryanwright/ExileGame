@@ -4,11 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -32,14 +30,14 @@ import javax.sound.midi.Sequencer;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-
 import java.awt.CardLayout;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerListModel;
 import javax.swing.event.ChangeListener;
+
+import game.GameController.MullListener;
+
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -54,7 +52,7 @@ public class UI {
 	protected CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
 	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, btnCard0, btnCard1,
-			btnCard2, btnPlayCard;
+			btnCard2, btnMullCard, btnPlayCard;
 	private JSpinner spinnerDifficulty;
 	private Sequencer sequencer;
 	private InputStream is;
@@ -105,6 +103,10 @@ public class UI {
 		btnCard0.addActionListener(cardListener);
 		btnCard1.addActionListener(cardListener);
 		btnCard2.addActionListener(cardListener);
+	}
+	
+	public void addMulliganListener(MullListener mullListener) {
+		btnMullCard.addActionListener(mullListener);	
 	}
 
 	public void addPlayCardListener(ActionListener playCardListener) {
@@ -560,8 +562,17 @@ public class UI {
 		btnCard2.setBorderPainted(false);
 		cardPanel.add(btnCard2);
 
+		btnMullCard = new JButton(getScaledImage(imgIconButton, 220, 40));
+		btnMullCard.setBounds(47 , 603, 220, 40);
+		btnMullCard.setVerticalTextPosition(SwingConstants.CENTER);
+		btnMullCard.setText("Mulligan");
+		btnMullCard.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnMullCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		btnMullCard.setBorder(UIManager.getBorder("Button.border"));
+		panelContent.add(btnMullCard);
+		
 		btnPlayCard = new JButton(getScaledImage(imgIconButton, 220, 40));
-		btnPlayCard.setBounds(189, 603, 220, 40);
+		btnPlayCard.setBounds(330, 603, 220, 40);
 		btnPlayCard.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlayCard.setText("Play Card");
 		btnPlayCard.setHorizontalTextPosition(SwingConstants.CENTER);

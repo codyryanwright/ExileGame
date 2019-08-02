@@ -28,6 +28,7 @@ public class GameController {
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
 		view.addCardListener(new CardListener());
+		view.addMulliganListener(new MullListener());
 		view.addPlayCardListener(new PlayCardListener());
 		view.addContinueListener(new ContinueListener());
 		view.addDifficultyListener(new DifficultyListener());
@@ -78,6 +79,20 @@ public class GameController {
 		}
 	}
 	
+	
+	class MullListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(user.getCardPosition() == 0 ||
+					user.getCardPosition() == 1 ||
+						user.getCardPosition() == 2) {
+				user.mulligan();
+				checkWinner();
+				view.setHealth(user.getHealth(), opponent.getHealth());
+				updateHand();
+			}
+		}
+	}
+	
 	class PlayCardListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (user.getCardPosition() == -1) {
@@ -91,24 +106,7 @@ public class GameController {
 				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard(((AutoOpponent) opponent).choice());
 				combatCards(userCard, opCard);
-				
-				//check for winner
-				if(user.getHealth() == 0)
-				{
-					view.setEndMessage("YOU LOSE!");
-					view.show("endPanel");
-				}
-				else if (opponent.getHealth() == 0)
-				{
-					view.setEndMessage("YOU WIN!");
-					view.show("endPanel");
-				}
-				else
-				{
-					user.setCardPosition(-1); // resets card position
-					view.setChosenBorder(user.cardPosition);
-				}
-
+				checkWinner();
 			}
 		}
 	}
@@ -145,7 +143,6 @@ public class GameController {
 			for(int i = 0; i < DECK_TOTAL; i++)
 				collection[i] = new Deck(i+1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -225,5 +222,24 @@ public class GameController {
 			return 1;
 		else 
 			return 2;
+	}
+	
+	public void checkWinner() {
+		//check for winner
+		if(user.getHealth() == 0)
+		{
+			view.setEndMessage("YOU LOSE!");
+			view.show("endPanel");
+		}
+		else if (opponent.getHealth() == 0)
+		{
+			view.setEndMessage("YOU WIN!");
+			view.show("endPanel");
+		}
+		else
+		{
+			user.setCardPosition(-1); // resets card position
+			view.setChosenBorder(user.cardPosition);
+		}
 	}
 }
