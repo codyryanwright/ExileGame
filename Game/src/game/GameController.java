@@ -13,8 +13,7 @@ public class GameController {
 	private Deck[] collection = new Deck[DECK_TOTAL];
 	private int deckChoice;
 	private UI view;
-	public Participant user;
-	public Participant opponent;	
+	private Participant user, opponent;	
 	private float playerPower = 0, opponentPower = 0;
 	
 	public GameController(UI view) {
@@ -91,21 +90,6 @@ public class GameController {
 				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard();
 				combatCards(userCard, opCard);
-				
-				// TODO Should this be moved to combatCards since it already handles some text output and resetting?
-				//check for winner
-				if(user.getHealth() == 0)
-				{
-					view.setEndMessage("YOU LOSE!");
-					view.show("endPanel");
-				}
-				else if (opponent.getHealth() == 0)
-				{
-					view.setEndMessage("YOU WIN!");
-					view.show("endPanel");
-				}
-				else
-					user.setCardPosition(-1); // resets card position
 			}
 		}
 	}
@@ -193,11 +177,25 @@ public class GameController {
 			return;
 		}
 		
-		// Set next hand for play
-		view.setHealth(user.getHealth(), opponent.getHealth());
-		user.draw();
-		opponent.draw();
-		updateHand();
+		// Check health status
+		if(user.getHealth() == 0)
+		{
+			view.setEndMessage("YOU LOSE!");
+			view.show("endPanel");
+		}
+		else if (opponent.getHealth() == 0)
+		{
+			view.setEndMessage("YOU WIN!");
+			view.show("endPanel");
+		}
+		else // Update hand for play
+		{
+			view.setHealth(user.getHealth(), opponent.getHealth());
+			user.draw();
+			opponent.draw();
+			updateHand();
+			user.setCardPosition(-1); // resets card position
+		}
 	}
 	
 	/**
