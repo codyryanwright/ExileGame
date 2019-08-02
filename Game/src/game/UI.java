@@ -41,11 +41,9 @@ import javax.swing.JScrollPane;
 
 
 public class UI {
-
 	static final private ImageIcon imgIconButton = new ImageIcon(UI.class.getResource("/images/buttonPaper.png"));
 	static final private File file = new File ("./src/gameRecord.txt");
 
-	
 	protected JFrame frame;
 	protected CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
