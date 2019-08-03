@@ -13,7 +13,7 @@ class UserTest {
 	@Test
 	void decreaseHealthTest() {
 		p1.decreaseHealth();
-		assertEquals(p1.getHealth(), 80);
+		assertEquals(p1.getHealth(), 90);
 	}
 
 	
