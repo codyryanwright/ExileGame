@@ -1,0 +1,10 @@
+---IN PROGRESS---
+(A) Exception handling (can we handle any way other than printing error, ex. set to default value, prompt user to try again)
+(D) Add card hierarchy explanation to rules
+
+---UNASSIGNED---
+Create a data package and move textfiles to that package.
+Check unused items in TODO's
+
+
+*To view all annotated TODO's click Window->Show View->Tasks
