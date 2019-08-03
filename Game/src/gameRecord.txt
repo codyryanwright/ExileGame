@@ -1,0 +1,18 @@
+Please choose a Card!
+You played green knight
+Your Opponent played red dragon
+Match Results: 
+Your green knight power: 37.5
+Your Opponent's red dragon power: 8.0
+
+You've won this round!
+
+You played red wizard
+Your Opponent played green knight
+Match Results: 
+Your red wizard power: 14.0
+Your Opponent's green knight power: 2.0
+
+You've won this round!
+
+Please choose a Card!
