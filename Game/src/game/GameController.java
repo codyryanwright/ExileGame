@@ -106,10 +106,7 @@ public class GameController {
 				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard();
 				combatCards(userCard, opCard);
-<<<<<<< HEAD
-=======
 				checkWinner();
->>>>>>> multiguy
 			}
 		}
 	}
@@ -158,16 +155,12 @@ public class GameController {
 		return collection[deckChoice];
 	}
 	
-<<<<<<< HEAD
-	//TODO disconnecting compare and logic
 	/**
 	 * Handles the output for a given card match-up both pre- and post-call to compareCards, then resets game for next play.
 	 * 
 	 * @param userCard  the card that has been chosen by the user
 	 * @param opponentCard  the card that has been chosen by the opponent
 	 */
-=======
->>>>>>> multiguy
 	public void combatCards(Card userCard, Card opponentCard) {
 		playerPower = 0;
 		opponentPower = 0;

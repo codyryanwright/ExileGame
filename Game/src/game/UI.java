@@ -368,11 +368,8 @@ public class UI {
 
 		spinnerDifficulty = new JSpinner();
 		spinnerDifficulty.setBounds(146, 124, 100, 40);
-<<<<<<< HEAD
 		spinnerDifficulty.setModel(new SpinnerListModel(new String[] {"Easy", "Hard"}));
-=======
 		spinnerDifficulty.setModel(new SpinnerListModel(new String[] { "Normal", "Hard" }));
->>>>>>> multiguy
 		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
 		panel.add(spinnerDifficulty);
 
