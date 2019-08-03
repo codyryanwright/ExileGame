@@ -1,0 +1,104 @@
+You played blue knight
+Your Opponent played green knight
+Match Results: 
+Your blue knight power: 3.0
+Your Opponent's green knight power: 8.0
+
+You've lost this round!
+
+You played red knight
+Your Opponent played red dragon
+Match Results: 
+Your red knight power: 7.5
+Your Opponent's red dragon power: 4.0
+
+You've won this round!
+
+You played green dragon
+Your Opponent played blue knight
+Match Results: 
+Your green dragon power: 8.0
+Your Opponent's blue knight power: 10.0
+
+You've lost this round!
+
+You played red wizard
+Your Opponent played green wizard
+Match Results: 
+Your red wizard power: 14.0
+Your Opponent's green wizard power: 3.0
+
+You've won this round!
+
+You played red wizard
+Your Opponent played blue dragon
+Match Results: 
+Your red wizard power: 4.0
+Your Opponent's blue dragon power: 10.5
+
+You've lost this round!
+
+You played green knight
+Your Opponent played blue knight
+Match Results: 
+Your green knight power: 30.0
+Your Opponent's blue knight power: 7.0
+
+You've won this round!
+
+You played blue wizard
+Your Opponent played green dragon
+Match Results: 
+Your blue wizard power: 4.0
+Your Opponent's green dragon power: 24.5
+
+You've lost this round!
+
+You played blue wizard
+Your Opponent played red wizard
+Match Results: 
+Your blue wizard power: 4.0
+Your Opponent's red wizard power: 2.0
+
+You've won this round!
+
+You played red knight
+Your Opponent played blue wizard
+Match Results: 
+Your red knight power: 3.0
+Your Opponent's blue wizard power: 14.0
+
+You've lost this round!
+
+You played green dragon
+Your Opponent played green knight
+Match Results: 
+Your green dragon power: 7.0
+Your Opponent's green knight power: 37.5
+
+You've lost this round!
+
+You played red wizard
+Your Opponent played red dragon
+Match Results: 
+Your red wizard power: 2.0
+Your Opponent's red dragon power: 5.0
+
+You've lost this round!
+
+You played green dragon
+Your Opponent played red wizard
+Match Results: 
+Your green dragon power: 5.0
+Your Opponent's red wizard power: 14.0
+
+You've lost this round!
+
+You played red wizard
+Your Opponent played green wizard
+Match Results: 
+Your red wizard power: 8.0
+Your Opponent's green wizard power: 3.0
+
+You've won this round!
+
