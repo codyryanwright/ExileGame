@@ -26,6 +26,7 @@ public class GameController {
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
 		view.addCardListener(new CardListener());
+		view.addMulliganListener(new MullListener());
 		view.addPlayCardListener(new PlayCardListener());
 		view.addContinueListener(new ContinueListener());
 		view.addDifficultyListener(new DifficultyListener());
@@ -70,8 +71,23 @@ public class GameController {
 				user.setCardPosition(0);
 			else if(e.getSource() == view.getBtnCard1())
 				user.setCardPosition(1);
-			else if(e.getSource() == view.getBtnCard2())
+			else if(e.getSource() == view.getBtnCard2()) 
 				user.setCardPosition(2);
+			view.setChosenBorder(user.getCardPosition());
+		}
+	}
+	
+	
+	class MullListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(user.getCardPosition() == 0 ||
+					user.getCardPosition() == 1 ||
+						user.getCardPosition() == 2) {
+				user.mulligan();
+				checkWinner();
+				view.setHealth(user.getHealth(), opponent.getHealth());
+				updateHand();
+			}
 		}
 	}
 	
@@ -90,6 +106,10 @@ public class GameController {
 				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard();
 				combatCards(userCard, opCard);
+<<<<<<< HEAD
+=======
+				checkWinner();
+>>>>>>> multiguy
 			}
 		}
 	}
@@ -138,6 +158,7 @@ public class GameController {
 		return collection[deckChoice];
 	}
 	
+<<<<<<< HEAD
 	//TODO disconnecting compare and logic
 	/**
 	 * Handles the output for a given card match-up both pre- and post-call to compareCards, then resets game for next play.
@@ -145,6 +166,8 @@ public class GameController {
 	 * @param userCard  the card that has been chosen by the user
 	 * @param opponentCard  the card that has been chosen by the opponent
 	 */
+=======
+>>>>>>> multiguy
 	public void combatCards(Card userCard, Card opponentCard) {
 		playerPower = 0;
 		opponentPower = 0;
@@ -232,5 +255,24 @@ public class GameController {
 			return 1;
 		else 
 			return 2;
+	}
+	
+	public void checkWinner() {
+		//check for winner
+		if(user.getHealth() == 0)
+		{
+			view.setEndMessage("YOU LOSE!");
+			view.show("endPanel");
+		}
+		else if (opponent.getHealth() == 0)
+		{
+			view.setEndMessage("YOU WIN!");
+			view.show("endPanel");
+		}
+		else
+		{
+			user.setCardPosition(-1); // resets card position
+			view.setChosenBorder(user.cardPosition);
+		}
 	}
 }

@@ -50,7 +50,7 @@ public abstract class Participant {
 	}
 	
 	public void decreaseHealth() {
-		this.health -= 20;
+		this.health -= 10;
 	}
 	
 	public int getCardPosition() {
@@ -59,6 +59,11 @@ public abstract class Participant {
 	
 	public void setCardPosition(int cardPosition) {
 		this.cardPosition = cardPosition;
+	}
+	
+	public void mulligan() {
+		draw();
+		decreaseHealth();
 	}
 	
 	public void reset() {
