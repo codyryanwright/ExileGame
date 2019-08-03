@@ -242,8 +242,9 @@ public class GameController {
 		} else if (opponent.getHealth() == 0) {
 			view.setEndMessage("YOU WIN!");
 			view.show("endPanel");
-		} else
+		} else {
 			user.setCardPosition(-1); // resets card position
 			view.setChosenBorder(user.cardPosition);
+		}
 	}
 }
