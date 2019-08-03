@@ -56,6 +56,7 @@ public class GameController {
 			user.setDeck(collection[deckChoice]);
 			user.loadHand();
 			updateHand();
+			view.setChosenBorder(user.cardPosition);
 
 			// sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
@@ -82,8 +83,6 @@ public class GameController {
 			if (user.getCardPosition() == 0 || user.getCardPosition() == 1 || user.getCardPosition() == 2) {
 				user.mulligan();
 				checkWinner();
-				user.setCardPosition(-1); // resets card position
-				view.setChosenBorder(user.cardPosition);
 				view.setHealth(user.getHealth(), opponent.getHealth());
 				updateHand();
 			}
@@ -188,13 +187,11 @@ public class GameController {
 			view.refreshText();
 		}
 
-		checkWinner();
+
 		view.setHealth(user.getHealth(), opponent.getHealth());
 		user.draw();
 		opponent.draw();
 		updateHand();
-		user.setCardPosition(-1); // resets card position
-		view.setChosenBorder(user.cardPosition);
 	}
 
 	/**
@@ -246,6 +243,7 @@ public class GameController {
 			view.setEndMessage("YOU WIN!");
 			view.show("endPanel");
 		} else
-			return;
+			user.setCardPosition(-1); // resets card position
+			view.setChosenBorder(user.cardPosition);
 	}
 }
