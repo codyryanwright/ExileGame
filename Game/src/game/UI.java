@@ -711,6 +711,11 @@ public class UI {
 		}
 	}
 
+	/**
+	 * Set the border around a card when a card is selected.
+	 * 
+	 * @param cardPosition  specifies which card should have a border
+	 */
 	public void setChosenBorder(int cardPosition) {
 
 		btnCard0.setBorderPainted(false);
