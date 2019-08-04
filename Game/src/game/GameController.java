@@ -80,11 +80,18 @@ public class GameController {
 
 	class MullListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (user.getCardPosition() == 0 || user.getCardPosition() == 1 || user.getCardPosition() == 2) {
+			if (user.getCardPosition() == -1) {
+				view.appendText("Please choose a Card!");
+				view.refreshText();
+			} else {
 				user.mulligan();
-				checkWinner();
-				view.setHealth(user.getHealth(), opponent.getHealth());
-				updateHand();
+				
+				if(checkWinner() == false) {
+					user.setCardPosition(-1); // resets card position
+					view.setChosenBorder(user.cardPosition);
+					view.setHealth(user.getHealth(), opponent.getHealth());
+					updateHand();
+				}
 			}
 		}
 	}
@@ -103,7 +110,15 @@ public class GameController {
 				Card userCard = ((User) user).playCard();
 				Card opCard = ((AutoOpponent) opponent).playCard();
 				combatCards(userCard, opCard);
-				checkWinner();
+				
+				if(checkWinner() == false) {
+					view.setHealth(user.getHealth(), opponent.getHealth());
+					user.draw();
+					opponent.draw();
+					updateHand();
+					user.setCardPosition(-1); // resets card position
+					view.setChosenBorder(user.cardPosition);
+				}
 			}
 		}
 	}
@@ -186,12 +201,6 @@ public class GameController {
 			view.appendText("\nIt's a draw!\n");
 			view.refreshText();
 		}
-
-
-		view.setHealth(user.getHealth(), opponent.getHealth());
-		user.draw();
-		opponent.draw();
-		updateHand();
 	}
 
 	/**
@@ -234,17 +243,20 @@ public class GameController {
 			return 2;
 	}
 
-	public void checkWinner() {
+	public Boolean checkWinner() {
+		Boolean win = false;
+		
 		// check for winner
 		if (user.getHealth() == 0) {
 			view.setEndMessage("YOU LOSE!");
 			view.show("endPanel");
+			win = true;
 		} else if (opponent.getHealth() == 0) {
 			view.setEndMessage("YOU WIN!");
 			view.show("endPanel");
-		} else {
-			user.setCardPosition(-1); // resets card position
-			view.setChosenBorder(user.cardPosition);
+			win = true;
 		}
+		
+		return win;
 	}
 }
