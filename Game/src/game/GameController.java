@@ -15,6 +15,7 @@ public class GameController {
 	private UI view;
 	private Participant user, opponent;
 	private float playerPower = 0, opponentPower = 0;
+	private boolean hasMulliganed = false;
 
 	public GameController(UI view) {
 		deckChoice = -1;
@@ -53,14 +54,15 @@ public class GameController {
 			else if (e.getSource() == view.getBtnDeck2())
 				deckChoice = 0;
 
-			user.setDeck(collection[deckChoice]);
+			user.setDeck(new Deck(deckChoice));
 			user.loadHand();
 			updateHand();
 			view.setChosenBorder(user.cardPosition);
 
 			// sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
-			opponent.setDeck(collection[choice]);
+			//opponent.setDeck(collection[choice]);
+			opponent.setDeck(new Deck(choice));
 			opponent.loadHand();
 			view.show("playPanel");
 		}
@@ -80,10 +82,7 @@ public class GameController {
 
 	class MullListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (user.getCardPosition() == -1) {
-				view.appendText("Please choose a Card!");
-				view.refreshText();
-			} else {
+			if(!hasMulliganed) {
 				user.mulligan();
 				
 				if(checkWinner() == false) {
@@ -92,7 +91,15 @@ public class GameController {
 					view.setHealth(user.getHealth(), opponent.getHealth());
 					updateHand();
 				}
+				hasMulliganed = true;
 			}
+			
+			else {
+				view.appendText("You have already used your mulligan");
+				view.refreshText();
+			}
+
+
 		}
 	}
 
@@ -143,8 +150,11 @@ public class GameController {
 	}
 
 	public void updateHand() {
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++) {
+			System.out.println("deck size is: " + user.deckSize() + " discard size is: " + user.discardSize() );
 			view.setImageIcon(i, user.hand[i].getImgIconCard());
+		}
+			
 	}
 
 	public void buildCollection() {

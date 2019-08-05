@@ -81,4 +81,16 @@ public class Deck {
 		
 		shuffle();
 	}
+	
+	public void discard(Card card) {
+		discard.push(card);
+	}
+	
+	public int discardSize() {
+		return discard.size();
+	}
+	
+	public int deckSize() {
+		return deck.size();
+	}
 }

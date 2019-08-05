@@ -38,6 +38,7 @@ public abstract class Participant {
 	}
 	
 	public void draw() {
+		//deck.discard(hand[cardPosition]);
 		hand[cardPosition] = deck.getCard();
 	}
 	
@@ -62,7 +63,7 @@ public abstract class Participant {
 	}
 	
 	public void mulligan() {
-		draw();
+		loadHand();
 		decreaseHealth();
 	}
 	
@@ -81,4 +82,13 @@ public abstract class Participant {
 	}
 	
 	abstract Card playCard();
+	
+	public int deckSize() {
+		return deck.deckSize();
+	}
+	
+	public int discardSize() {
+		return deck.discardSize();
+	}
+	
 }
