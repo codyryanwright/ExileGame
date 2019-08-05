@@ -2,7 +2,7 @@ package game;
 
 public abstract class Participant {
 	protected Deck deck;
-	protected int HAND_SIZE = 3;
+	protected int HAND_SIZE = 3; // TODO was this supposed to be final since it's ALLCAPS?
 	protected Card[] hand = new Card[HAND_SIZE];
 	protected int health;
 	protected int cardPosition;
@@ -79,4 +79,6 @@ public abstract class Participant {
 			hand[i] = null;
 		}
 	}
+	
+	abstract Card playCard();
 }
