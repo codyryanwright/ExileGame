@@ -266,9 +266,8 @@ public class UI {
 
 		JTextPane txtpnRules = new JTextPane();
 		txtpnRules.setEditable(false);
-		txtpnRules.setFont(new Font("SimSun", Font.PLAIN, 15));
-		txtpnRules.setText(
-				"- Each player starts the game with a hand containing three cards and a full health bar (5 life points)\r\n\n"
+		txtpnRules.setFont(new Font("SimSun", Font.PLAIN, 14));
+		txtpnRules.setText("- Each player starts the game with a hand containing three cards and a full health bar (5 life points)\r\n\n"
 						+ "- A player loses the game when he or she runs out of health\r\n\n"
 						+ "- Each turn each player chooses a card to play out of his or her hand\r\n\n"
 						+ "- After each player has played his chosen card, the two cards will battle\r\n\n"
@@ -276,8 +275,11 @@ public class UI {
 						+ "- If the battle ends in a draw, no health we will be diducted from any player\r\n\n"
 						+ "- Otherwise, the player that lost the battle will lose a life point and their health bar will go down\r\n\n"
 						+ "- At the end of each turn, each player will draw a card\r\n\n"
-						+ "- The game continues until one of the player's health runs out"); // TODO missing card
-																								// hierarchy explanation
+						+ "- The game continues until one of the player's health runs out\r\n\n"
+						+ "- A card will have x2 power if it has a type advantage over the other card:\r\n"
+						+ "\tred beats green, green beats blue, blue beats red\r\n\n"
+						+ "- A card will have x1.5 power if it has an archetype advantage over the other card:\r\n"
+						+ "\tknight beats dragon, dragon beats wizard, wizard beats knight"); // TODO mulligan explanation
 		txtpnRules.setBackground(Color.BLACK);
 		txtpnRules.setForeground(Color.WHITE);
 		txtpnRules.setBounds(144, 0, 330, 335);
