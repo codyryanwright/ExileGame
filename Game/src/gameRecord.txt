@@ -1,9 +1,0 @@
-You played green knight
-Your Opponent played blue knight
-Match Results: 
-Your green knight power: 8.0
-Your Opponent's blue knight power: 3.0
-
-You've won this round!
-
-You have already used your mulligan

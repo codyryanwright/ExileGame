@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class GameController {
 	static final int DECK_TOTAL = 3;
-	private Deck[] collection = new Deck[DECK_TOTAL];
 	private int deckChoice;
 	private UI view;
 	private Participant user, opponent;
@@ -22,7 +21,6 @@ public class GameController {
 		this.view = view;
 		user = new User();
 		opponent = new AutoOpponent();
-		buildCollection();
 
 		view.addNewGameListener(new NewGameListener());
 		view.addDeckListener(new DeckListener());
@@ -36,6 +34,7 @@ public class GameController {
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			deckChoice = -1;
+			hasMulliganed = false;
 			user.reset();
 			opponent.reset();
 			view.setHealth(100, 100);
@@ -157,25 +156,12 @@ public class GameController {
 			
 	}
 
-	public void buildCollection() {
-		try {
-			for (int i = 0; i < DECK_TOTAL; i++)
-				collection[i] = new Deck(i);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void setDeckChoice(int deckChoice) {
 		this.deckChoice = deckChoice;
 	}
 
 	public int getDeckChoice() {
 		return deckChoice;
-	}
-
-	public Deck getDeck() {
-		return collection[deckChoice];
 	}
 
 	/**
@@ -257,11 +243,11 @@ public class GameController {
 		Boolean win = false;
 		
 		// check for winner
-		if (user.getHealth() == 0) {
+		if (user.getHealth() <= 0) {
 			view.setEndMessage("YOU LOSE!");
 			view.show("endPanel");
 			win = true;
-		} else if (opponent.getHealth() == 0) {
+		} else if (opponent.getHealth() <= 0) {
 			view.setEndMessage("YOU WIN!");
 			view.show("endPanel");
 			win = true;
