@@ -7,9 +7,9 @@ import java.util.Collections;
 import java.util.Stack;
 
 public class Deck {
+	static final int DECK_SIZE = 20;
 	private Stack <Card> deck;
 	private Stack <Card> discard;
-	final private int deckSize = 20;
 	
 	public Deck(int deckChoice) {
 		deck = new Stack<Card>();
@@ -39,7 +39,7 @@ public class Deck {
 			int lineCount = 1;
 			String line = bufferedReader.readLine();
 			
-			while (lineCount <= deckSize) {
+			while (lineCount <= DECK_SIZE) {
 		        String[] split = line.split("\\s+");
 		        Card cardToAdd = new Card(split[0], split[1], split[2], Float.valueOf(split[3]), split[4]);
 		        deck.push(cardToAdd);
