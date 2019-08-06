@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameController {
-	static final int DECK_TOTAL = 3;
 	private int deckChoice;
 	private UI view;
 	private Participant user, opponent;
@@ -60,7 +59,6 @@ public class GameController {
 
 			// sets the opponents deck randomly
 			int choice = new Random().nextInt(2);
-			//opponent.setDeck(collection[choice]);
 			opponent.setDeck(new Deck(choice));
 			opponent.loadHand();
 			view.show("playPanel");
@@ -149,11 +147,8 @@ public class GameController {
 	}
 
 	public void updateHand() {
-		for (int i = 0; i < 3; i++) {
-			System.out.println("deck size is: " + user.deckSize() + " discard size is: " + user.discardSize() );
-			view.setImageIcon(i, user.hand[i].getImgIconCard());
-		}
-			
+		for (int i = 0; i < 3; i++)
+			view.setImageIcon(i, user.hand[i].getImgIconCard());			
 	}
 
 	public void setDeckChoice(int deckChoice) {
@@ -165,8 +160,7 @@ public class GameController {
 	}
 
 	/**
-	 * Handles the output for a given card match-up both pre- and post-call to
-	 * compareCards, then resets game for next play.
+	 * Handles the output for a given card match-up both pre- and post-call to compareCards
 	 * 
 	 * @param userCard     the card that has been chosen by the user
 	 * @param opponentCard the card that has been chosen by the opponent
@@ -174,6 +168,7 @@ public class GameController {
 	public void combatCards(Card userCard, Card opponentCard) {
 		playerPower = 0;
 		opponentPower = 0;
+		
 		// Print cards played
 		view.appendText("You played " + userCard.getName() + "\nYour Opponent played " + opponentCard.getName());
 		view.refreshText();
@@ -212,8 +207,7 @@ public class GameController {
 		opponentPower = opponentCard.getPower();
 
 		// Make type comparison and modify participants power
-		if (userCard.getType().equals(opponentCard.getType()))
-			; // do nothing
+		if (userCard.getType().equals(opponentCard.getType())); // do nothing
 		else if ((userCard.getType().equals("red") && opponentCard.getType().equals("green"))
 				|| (userCard.getType().equals("green") && opponentCard.getType().equals("blue"))
 				|| (userCard.getType().equals("blue") && opponentCard.getType().equals("red")))
@@ -222,8 +216,7 @@ public class GameController {
 			opponentPower += opponentCard.getPower();
 
 		// Make archetype comparison and modify participants power
-		if (userCard.getArchetype().equals(opponentCard.getArchetype()))
-			; // do nothing
+		if (userCard.getArchetype().equals(opponentCard.getArchetype())); // do nothing
 		else if ((userCard.getArchetype().equals("dragon") && opponentCard.getArchetype().equals("wizard"))
 				|| (userCard.getArchetype().equals("wizard") && opponentCard.getArchetype().equals("knight"))
 				|| (userCard.getArchetype().equals("knight") && opponentCard.getArchetype().equals("dragon")))

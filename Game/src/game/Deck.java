@@ -75,6 +75,9 @@ public class Deck {
 		Collections.shuffle(deck);
 	}
 	
+	/**
+	 *  Moves cards from discard pile back to deck
+	 */
 	public void reset() {
 		while(!discard.isEmpty())
 			deck.push(discard.pop());

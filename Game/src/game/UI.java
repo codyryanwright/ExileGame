@@ -58,7 +58,7 @@ public class UI {
 	private JProgressBar barPlayerHealth, barOpponentHealth;
 	private String strEndMsg;
 	private JTextArea txtpnGame = new JTextArea();
-	private JTextField txtYouWin = new JTextField();
+	private JTextField txtEndMsg = new JTextField();
 
 	/**
 	 * Create the application.
@@ -120,14 +120,6 @@ public class UI {
 		spinnerDifficulty.addChangeListener(listener);
 	}
 
-	public Object getDifficulty() {
-		return spinnerDifficulty.getValue();
-	}
-
-	public void setEndMessage(String msg) {
-		txtYouWin.setText(msg);
-	}
-
 	/**
 	 * Initialize the Main Menu screen.
 	 */
@@ -178,12 +170,12 @@ public class UI {
 		btnRules.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnRules.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnRules.setBorder(UIManager.getBorder("Button.border"));
-		panelContent.add(btnRules);
 		btnRules.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "rulesPanel");
 			}
 		});
+		panelContent.add(btnRules);
 
 		JButton btnSettings = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnSettings.setBounds(189, 389, 220, 40);
@@ -192,12 +184,13 @@ public class UI {
 		btnSettings.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnSettings.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnSettings.setBorder(UIManager.getBorder("Button.border"));
-		panelContent.add(btnSettings);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(frame.getContentPane(), "settingsPanel");
 			}
 		});
+		panelContent.add(btnSettings);
+
 
 		btnContinue = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnContinue.setBounds(189, 532, 220, 40);
@@ -266,6 +259,10 @@ public class UI {
 
 		JTextPane txtpnRules = new JTextPane();
 		txtpnRules.setEditable(false);
+		txtpnRules.setBackground(Color.BLACK);
+		txtpnRules.setForeground(Color.WHITE);
+		txtpnRules.setBounds(144, 0, 330, 335);
+		txtpnRules.setCaretPosition(0);
 		txtpnRules.setFont(new Font("SimSun", Font.PLAIN, 14));
 		txtpnRules.setText("- Each player starts the game with a hand containing three cards and a full 100 point health bar\r\n\n"
 						+ "- Each turn the players choose a card to play out of his or her hand\r\n\n"
@@ -279,10 +276,6 @@ public class UI {
 						+ "- A card will have x1.5 power if it has an archetype advantage over the other card:  "
 						+ "knight beats dragon, dragon beats wizard, wizard beats knight\r\n\n"
 						+ "- A player has the option to use one \"mulligan\" which will replace the players hand inflict the same damage as a loss");
-		txtpnRules.setBackground(Color.BLACK);
-		txtpnRules.setForeground(Color.WHITE);
-		txtpnRules.setBounds(144, 0, 330, 335);
-		txtpnRules.setCaretPosition(0);
 		rulesPanel.add(txtpnRules);
 
 		JScrollPane scrollPane = new JScrollPane(txtpnRules);
@@ -370,7 +363,6 @@ public class UI {
 		spinnerDifficulty = new JSpinner();
 		spinnerDifficulty.setBounds(146, 124, 100, 40);
 		spinnerDifficulty.setModel(new SpinnerListModel(new String[] {"Easy", "Hard"}));
-		spinnerDifficulty.setModel(new SpinnerListModel(new String[] { "Normal", "Hard" }));
 		spinnerDifficulty.setFont(new Font("SimSun", Font.PLAIN, 26));
 		panel.add(spinnerDifficulty);
 
@@ -632,22 +624,22 @@ public class UI {
 		btnExit.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnExit.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
 		btnExit.setBorder(UIManager.getBorder("Button.border"));
-		panelContent.add(btnExit);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		panelContent.add(btnExit);
 
-		txtYouWin.setBounds(189, 135, 220, 54);
-		txtYouWin.setEditable(false);
-		txtYouWin.setBorder(null);
-		txtYouWin.setHorizontalAlignment(SwingConstants.CENTER);
-		txtYouWin.setBackground(Color.BLACK);
-		txtYouWin.setText(strEndMsg);
-		txtYouWin.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
-		txtYouWin.setForeground(Color.WHITE);
-		panelContent.add(txtYouWin);
+		txtEndMsg.setBounds(189, 135, 220, 54);
+		txtEndMsg.setEditable(false);
+		txtEndMsg.setBorder(null);
+		txtEndMsg.setHorizontalAlignment(SwingConstants.CENTER);
+		txtEndMsg.setBackground(Color.BLACK);
+		txtEndMsg.setText(strEndMsg);
+		txtEndMsg.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
+		txtEndMsg.setForeground(Color.WHITE);
+		panelContent.add(txtEndMsg);
 	}
 
 	/**
@@ -668,14 +660,6 @@ public class UI {
 		initChoose();
 		initPlay();
 		initEnd();
-
-		// Commands used to switch which Panel is viewed for debug
-//		cardlayout.show(frame.getContentPane(), "mainMenuPanel");
-//		cardlayout.show(frame.getContentPane(), "rulesPanel");
-//		cardlayout.show(frame.getContentPane(), "settingsPanel");
-//		cardlayout.show(frame.getContentPane(), "choosePanel");
-//		cardlayout.show(frame.getContentPane(), "playPanel");
-//		cardlayout.show(frame.getContentPane(), "endPanel");
 	}
 
 	/**
@@ -841,5 +825,13 @@ public class UI {
 
 	public int getOpHealth() {
 		return barOpponentHealth.getValue();
+	}
+
+	public Object getDifficulty() {
+		return spinnerDifficulty.getValue();
+	}
+
+	public void setEndMessage(String msg) {
+		txtEndMsg.setText(msg);
 	}
 }
