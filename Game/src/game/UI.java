@@ -51,7 +51,7 @@ public class UI {
 	protected CardLayout cardlayout;
 	private JPanel mainMenuPanel, rulesPanel, settingsPanel, choosePanel, playPanel, endPanel;
 	private JButton btnNewGameStart, btnNewGameEnd, btnContinue, btnDeck0, btnDeck1, btnDeck2, btnCard0, btnCard1,
-			btnCard2, btnMullCard, btnPlayCard;
+			btnCard2, btnMulligan, btnPlayCard;
 	private JSpinner spinnerDifficulty;
 	private Sequencer sequencer;
 	private InputStream is;
@@ -105,7 +105,7 @@ public class UI {
 	}
 	
 	public void addMulliganListener(MullListener mullListener) {
-		btnMullCard.addActionListener(mullListener);	
+		btnMulligan.addActionListener(mullListener);	
 	}
 
 	public void addPlayCardListener(ActionListener playCardListener) {
@@ -555,14 +555,14 @@ public class UI {
 		btnCard2.setBorderPainted(false);
 		cardPanel.add(btnCard2);
 
-		btnMullCard = new JButton(getScaledImage(imgIconButton, 220, 40));
-		btnMullCard.setBounds(47 , 603, 220, 40);
-		btnMullCard.setVerticalTextPosition(SwingConstants.CENTER);
-		btnMullCard.setText("Mulligan");
-		btnMullCard.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnMullCard.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
-		btnMullCard.setBorder(UIManager.getBorder("Button.border"));
-		panelContent.add(btnMullCard);
+		btnMulligan = new JButton(getScaledImage(imgIconButton, 220, 40));
+		btnMulligan.setBounds(47 , 603, 220, 40);
+		btnMulligan.setVerticalTextPosition(SwingConstants.CENTER);
+		btnMulligan.setText("Mulligan");
+		btnMulligan.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnMulligan.setFont(new Font("Viner Hand ITC", Font.PLAIN, 24));
+		btnMulligan.setBorder(UIManager.getBorder("Button.border"));
+		panelContent.add(btnMulligan);
 		
 		btnPlayCard = new JButton(getScaledImage(imgIconButton, 220, 40));
 		btnPlayCard.setBounds(330, 603, 220, 40);
