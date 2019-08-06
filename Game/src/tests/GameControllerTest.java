@@ -16,6 +16,7 @@ public class GameControllerTest {
 	@Test
 	public void compareTest() {
 		
+		// Empty string param for artwork not necessary in test
 		Card c1 = new Card("red", "dragon", "rare", 4.0f, "");
 		Card c2 = new Card("blue", "dragon", "rare", 4.0f, "");
 		Card c3 = new Card("blue", "knight", "rare", 4.0f, "");
