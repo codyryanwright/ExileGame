@@ -38,7 +38,6 @@ public abstract class Participant {
 	}
 	
 	public void draw() {
-		//deck.discard(hand[cardPosition]); // TODO are we going to try and implement this?
 		hand[cardPosition] = deck.getCard();
 	}
 	
