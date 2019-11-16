@@ -35,9 +35,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerListModel;
 import javax.swing.event.ChangeListener;
-
 import game.GameController.MullListener;
-
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
