@@ -45,11 +45,11 @@ public class GameController {
 
 	class DeckListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == view.getBtnDeck0())
+			if (e.getSource() == view.getBtnDeck0()) // Blue
 				deckChoice = 0;
-			else if (e.getSource() == view.getBtnDeck1())
+			else if (e.getSource() == view.getBtnDeck1()) // Red
 				deckChoice = 1;
-			else if (e.getSource() == view.getBtnDeck2())
+			else if (e.getSource() == view.getBtnDeck2()) // Green
 				deckChoice = 0;
 
 			user.setDeck(new Deck(deckChoice));

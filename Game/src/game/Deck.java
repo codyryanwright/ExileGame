@@ -1,6 +1,7 @@
 package game;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collections;
@@ -8,6 +9,7 @@ import java.util.Stack;
 
 public class Deck {
 	static final int DECK_SIZE = 20;
+	static final ClassLoader loader = Deck.class.getClassLoader();
 	private Stack <Card> deck;
 	private Stack <Card> discard;
 	
@@ -28,11 +30,11 @@ public class Deck {
 		
 		try {
 			switch (deckChoice) {
-				case 0: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildRedDeck.txt").getPath()));
+				case 0: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildBlueDeck.txt").getPath()));
 					break;
-				case 1: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildGreenDeck.txt").getPath()));
+				case 1: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildRedDeck.txt").getPath()));
 					break;
-				case 2: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildBlueDeck.txt").getPath()));
+				case 2: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildGreenDeck.txt").getPath()));
 					break;
 			}
 			
