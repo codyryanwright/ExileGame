@@ -28,11 +28,11 @@ public class Deck {
 		
 		try {
 			switch (deckChoice) {
-				case 0: bufferedReader = new BufferedReader(new FileReader("./src/game/buildRedDeck.txt"));
+				case 0: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildRedDeck.txt").getPath()));
 					break;
-				case 1: bufferedReader = new BufferedReader(new FileReader("./src/game/buildGreenDeck.txt"));
+				case 1: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildGreenDeck.txt").getPath()));
 					break;
-				case 2: bufferedReader = new BufferedReader(new FileReader("./src/game/buildBlueDeck.txt"));
+				case 2: bufferedReader = new BufferedReader(new FileReader(Deck.class.getResource("buildBlueDeck.txt").getPath()));
 					break;
 			}
 			
